@@ -21,9 +21,13 @@ class World {
       this.character.width,
       this.character.height
     );
+    this.enemies.forEach(enemy =>{this.ctx.drawImage(enemy.img, enemy.x, enemy.y, enemy.width, enemy.height)} )
     self = this;
     requestAnimationFrame(function () {
       self.draw();
     });
+    
+    // console.log(this.character.x);
+    
   }
 }

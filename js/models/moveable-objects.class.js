@@ -1,4 +1,4 @@
-class moveableObject {
+class MoveableObject {
     x = 50;
     y = 300;
     img;
@@ -10,8 +10,8 @@ class moveableObject {
         this.img = new Image();
         this.img.src = path;
     }
-    moveRight(){
-        x += 10;
-    };
+
+    
+
     moveLeft(){};
 }
