@@ -1,5 +1,5 @@
 class Character extends MoveableObject{
-    y = 250;
+    y = 300;
 constructor(){
     super().loadImg('img/2_character_pepe/2_walk/W-21.png')
 }

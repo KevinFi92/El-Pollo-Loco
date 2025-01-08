@@ -1,17 +1,13 @@
-class MoveableObject {
-    x = 50;
-    y = 360;
+class Background{
+    x;
+    y;
     img;
-    height = 150;
-    width = 100;
+    height;
+    width;
 
     constructor(){};
     loadImg(path){
         this.img = new Image();
         this.img.src = path;
     }
-
-    
-
-    moveLeft(){};
 }
