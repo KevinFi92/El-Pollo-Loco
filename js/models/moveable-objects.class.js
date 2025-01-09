@@ -2,8 +2,8 @@ class MoveableObject {
     x = 50;
     y = 360;
     img;
-    height = 150;
-    width = 100;
+    height;
+    width;
 
     constructor(){};
     loadImg(path){
@@ -11,7 +11,9 @@ class MoveableObject {
         this.img.src = path;
     }
 
-    
-
-    moveLeft(){};
+    animation(){
+        setInterval (() => {
+            this.x -= 0.15;
+        }, 1000/60)
+    }
 }
