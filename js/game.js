@@ -14,6 +14,6 @@ document.addEventListener('keydown', function(event) {
   if (event.key === "ArrowRight") {
       // Die Funktion ausführen
       character.moveRight();
-      world.draw();
+      character.walkingAnimation();
   }
 });
