@@ -8,12 +8,19 @@ class World {
   sky = new Sky();
   ctx;
   canvas;
+  keyboard;
 
-  constructor(canvas) {
+  constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
     this.canvas = canvas;
     this.draw();
+    this.keyboard = keyboard;
+    this.setWorld();
   }
+
+  setWorld(){
+    this.character.world = this ;
+  };
 
   creatObject(object) {
     this.ctx.drawImage(

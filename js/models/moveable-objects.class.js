@@ -11,9 +11,17 @@ class MoveableObject {
         this.img.src = path;
     }
 
-    animation(){
+    movementLeft(){
         setInterval (() => {
-            this.x -= 0.15;
+            this.x -= this.speed;
         }, 1000/60)
     }
-}
+
+    movingAnimation() {
+        setInterval(() => {
+          let i = this.currentImg % this.movingImg.length;
+          this.loadImg(this.movingImg[i]);
+          this.currentImg++;
+        }, 300);
+      }
+    }
