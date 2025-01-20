@@ -9,6 +9,8 @@ class World {
   ctx;
   canvas;
   keyboard;
+  camera_x = 0;
+  world_x = 0;
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -18,11 +20,14 @@ class World {
     this.setWorld();
   }
 
-  setWorld(){
-    this.character.world = this ;
-  };
+  setWorld() {
+    this.character.world = this;
+  }
 
   creatObject(object) {
+    if(object.otherDirection){
+      this.mirrowImg(object);
+    }
     this.ctx.drawImage(
       object.img,
       object.x,
@@ -30,23 +35,20 @@ class World {
       object.width,
       object.height
     );
+    if(object.otherDirection){
+      this.mirrowReset(object);
+    }
   }
 
-  createObjectsFromArray(objects){
+  createObjectsFromArray(objects) {
     objects.forEach((o) => {
-      this.ctx.drawImage(
-        o.img,
-        o.x,
-        o.y,
-        o.width,
-        o.height
-      );
+      this.ctx.drawImage(o.img, o.x, o.y, o.width, o.height);
     });
-  };
+  }
 
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
+    this.ctx.translate(this.camera_x, 0)
     this.creatObject(this.sky);
     this.creatObject(this.thirdlayer);
     this.creatObject(this.secondlayer);
@@ -54,12 +56,24 @@ class World {
     this.creatObject(this.character);
     this.createObjectsFromArray(this.enemies);
     this.createObjectsFromArray(this.clouds);
+    this.ctx.translate(-this.camera_x, 0)
 
     self = this;
     requestAnimationFrame(function () {
       self.draw();
     });
 
-    // console.log(this.character.x);
+  }
+
+  mirrowImg(object){
+    this.ctx.save();
+    this.ctx.translate(object.width, 0);
+    this.ctx.scale(-1, 1);
+    object.x = object.x * -1;
+  }
+
+  mirrowReset(object){
+    object.x = object.x * -1;
+    this.ctx.restore();
   }
 }

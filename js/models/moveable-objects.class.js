@@ -4,6 +4,7 @@ class MoveableObject {
     img;
     height;
     width;
+    otherDirection = false;
 
     constructor(){};
     loadImg(path){
