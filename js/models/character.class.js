@@ -11,6 +11,8 @@ class Character extends MoveableObject {
   ];
   currentImg = 0;
   world;
+  speed = 5;
+ 
 
   constructor() {
     super().loadImg("img/2_character_pepe/2_walk/W-21.png"); 
@@ -20,12 +22,15 @@ class Character extends MoveableObject {
   }
 
   moveRight() {
-    this.x += 10;
-    console.log(this.x);
+    setInterval (() => {
+      this.x += this.speed;
+  }, 1000/60)
+  
   }
   walkingAnimation() {
     setInterval(() => {
       if (this.world.keyboard.right){
+      this.moveRight()
       let i = this.currentImg % this.animationImgs.length;
       this.loadImg(this.animationImgs[i]);
       this.currentImg++;
