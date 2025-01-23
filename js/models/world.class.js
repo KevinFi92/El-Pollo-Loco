@@ -1,31 +1,6 @@
 class World {
   character = new Character();
-  enemies = [new chicken(), new chicken(), new chicken()];
-  clouds = [
-    new Clouds("img/5_background/layers/4_clouds/1.png"),
-    new Clouds("img/5_background/layers/4_clouds/2.png"),
-  ];
-  firstlayer = [
-    new FirstLayer("img/5_background/layers/1_first_layer/2.png", -719),
-    new FirstLayer("img/5_background/layers/1_first_layer/1.png", 0),
-    new FirstLayer("img/5_background/layers/1_first_layer/2.png", 719),
-  ];
-  secondlayer = [
-    new SecondLayer("img/5_background/layers/2_second_layer/2.png", -719),
-    new SecondLayer("img/5_background/layers/2_second_layer/1.png", 0),
-    new SecondLayer("img/5_background/layers/2_second_layer/2.png", 719),
-  ];
-  thirdlayer = [
-    new ThirdLayer("img/5_background/layers/3_third_layer/2.png", -719),
-    new ThirdLayer("img/5_background/layers/3_third_layer/1.png", 0),
-    new ThirdLayer("img/5_background/layers/3_third_layer/2.png", 719),
-  ];
-  sky = [
-    new Sky("img/5_background/layers/air.png", -719),
-    new Sky("img/5_background/layers/air.png", 0),
-    new Sky("img/5_background/layers/air.png", 719),
-  ];
-
+  lvl = level_1;
   ctx;
   canvas;
   keyboard;
@@ -69,13 +44,13 @@ class World {
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.ctx.translate(this.camera_x, 0);
-    this.createObjectsFromArray(this.sky);
-    this.createObjectsFromArray(this.thirdlayer);
-    this.createObjectsFromArray(this.secondlayer);
-    this.createObjectsFromArray(this.firstlayer);
+    this.createObjectsFromArray(this.lvl.sky);
+    this.createObjectsFromArray(this.lvl.thirdlayer);
+    this.createObjectsFromArray(this.lvl.secondlayer);
+    this.createObjectsFromArray(this.lvl.firstlayer);
     this.creatObject(this.character);
-    this.createObjectsFromArray(this.enemies);
-    this.createObjectsFromArray(this.clouds);
+    this.createObjectsFromArray(this.lvl.enemies);
+    this.createObjectsFromArray(this.lvl.clouds);
     this.ctx.translate(-this.camera_x, 0);
 
     self = this;
