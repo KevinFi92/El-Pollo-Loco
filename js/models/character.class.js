@@ -1,5 +1,5 @@
 class Character extends MoveableObject {
-  y = 150;
+  y = 80;
   x = 100;
   animationImgs = [
     "img/2_character_pepe/2_walk/W-21.png",
@@ -9,13 +9,25 @@ class Character extends MoveableObject {
     "img/2_character_pepe/2_walk/W-25.png",
     "img/2_character_pepe/2_walk/W-26.png",
   ];
+  jumpingImgs = [
+    "img/2_character_pepe/3_jump/J-31.png",
+    "img/2_character_pepe/3_jump/J-32.png",
+    "img/2_character_pepe/3_jump/J-33.png",
+    "img/2_character_pepe/3_jump/J-34.png",
+    "img/2_character_pepe/3_jump/J-35.png",
+    "img/2_character_pepe/3_jump/J-36.png",
+    "img/2_character_pepe/3_jump/J-37.png",
+    "img/2_character_pepe/3_jump/J-38.png",
+    "img/2_character_pepe/3_jump/J-39.png",
+  ];
+
   currentImg = 0;
   world;
   speed = 5;
   intervalId;
-  walking_sounds = new Audio('audio/walking.mp3');
-  keyboard;
-  
+  jumpingInterval;
+  walking_sounds = new Audio("audio/walking.mp3");
+  jumping_sound = new Audio("audio/jump.mp3");
 
   constructor() {
     super().loadImg("img/2_character_pepe/2_walk/W-21.png");
@@ -23,7 +35,7 @@ class Character extends MoveableObject {
     this.width = 150;
     this.walkingAnimation();
     this.walking_sounds.playbackRate = 2.5;
-    
+    this.applyGravity();
   }
 
   walkLeft() {
@@ -38,7 +50,6 @@ class Character extends MoveableObject {
   }
 
   walkRight() {
-    
     clearInterval(this.intervalId);
     this.intervalId = setInterval(() => {
       if (this.world.keyboard.right && this.x < this.world.lvl.level_end_x) {
@@ -46,8 +57,26 @@ class Character extends MoveableObject {
         this.otherDirection = false;
         this.walking_sounds.play();
       }
-      
     }, 1000 / 60);
+  }
+
+  jump() {
+    if (this.isOnGround) {
+      this.jumping_sound.play()
+      this.speedY = 20;
+    }
+
+  }
+
+  jumpingAnimation() {
+    clearInterval(this.jumpingInterval);
+    this.jumpingInterval = setInterval(() => {
+      if (this.isAboveGround) {
+        let i = this.currentImg % this.jumpingImgs.length;
+        this.loadImg(this.jumpingImgs[i]);
+        this.currentImg++;
+      }
+    }, 60);
   }
 
   walkingAnimation() {
@@ -64,10 +93,15 @@ class Character extends MoveableObject {
         this.loadImg(this.animationImgs[i]);
         this.currentImg++;
       }
+      if (this.world.keyboard.up) {
+        this.jump();
+        let i = this.currentImg % this.jumpingImgs.length;
+        this.loadImg(this.jumpingImgs[i]);
+        this.currentImg++;
+        
+      }
       this.world.camera_x = -this.x + 150;
       this.world.world_x = -this.x;
     }, 50);
   }
-
-  jump() {}
 }
