@@ -1,5 +1,5 @@
 class Character extends MoveableObject {
-  y = 80;
+  y = 155;
   x = 100;
   animationImgs = [
     "img/2_character_pepe/2_walk/W-21.png",
@@ -61,10 +61,11 @@ class Character extends MoveableObject {
   }
 
   jump() {
-    if (this.isOnGround) {
-      this.jumping_sound.play()
+    console.log(this.y);
+    
+      this.jumping_sound.play();
       this.speedY = 20;
-    }
+   
 
   }
 
@@ -93,12 +94,11 @@ class Character extends MoveableObject {
         this.loadImg(this.animationImgs[i]);
         this.currentImg++;
       }
-      if (this.world.keyboard.up) {
+      if (this.world.keyboard.up && !this.isAboveGround) {
         this.jump();
         let i = this.currentImg % this.jumpingImgs.length;
         this.loadImg(this.jumpingImgs[i]);
-        this.currentImg++;
-        
+        this.currentImg++;  
       }
       this.world.camera_x = -this.x + 150;
       this.world.world_x = -this.x;

@@ -43,7 +43,7 @@ class MoveableObject {
       }
       
       isOnGround(){
-        return this.y > 155
+        return this.y === 155
       }
 
       
