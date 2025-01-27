@@ -61,10 +61,8 @@ class Character extends MoveableObject {
   }
 
   jump() {
-    console.log(this.y);
-    
       this.jumping_sound.play();
-      this.speedY = 20;
+      this.speedY = 30;
    
 
   }
@@ -94,7 +92,7 @@ class Character extends MoveableObject {
         this.loadImg(this.animationImgs[i]);
         this.currentImg++;
       }
-      if (this.world.keyboard.up && !this.isAboveGround) {
+      if (this.world.keyboard.up && !this.isAboveGround()) {
         this.jump();
         let i = this.currentImg % this.jumpingImgs.length;
         this.loadImg(this.jumpingImgs[i]);
