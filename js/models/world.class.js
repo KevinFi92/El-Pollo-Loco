@@ -30,6 +30,11 @@ class World {
       object.width,
       object.height
     );
+    this.drawRectangles(      
+      object.x,
+      object.y,
+      object.width,
+      object.height);
     if (object.otherDirection) {
       this.mirrowReset(object);
     }
@@ -38,6 +43,11 @@ class World {
   createObjectsFromArray(objects) {
     objects.forEach((o) => {
       this.ctx.drawImage(o.img, o.x, o.y, o.width, o.height);
+      this.drawRectangles(      
+        o.x,
+        o.y,
+        o.width,
+        o.height);
     });
   }
 
@@ -52,7 +62,6 @@ class World {
     this.createObjectsFromArray(this.lvl.enemies);
     this.createObjectsFromArray(this.lvl.clouds);
     this.ctx.translate(-this.camera_x, 0);
-
     self = this;
     requestAnimationFrame(function () {
       self.draw();
@@ -69,5 +78,14 @@ class World {
   mirrowReset(object) {
     object.x = object.x * -1;
     this.ctx.restore();
+  }
+
+  drawRectangles(x, y, width, height){
+    this.ctx.beginPath();
+    this.ctx.lineWidth = '5';
+    this.ctx.strokeStyle = "blue";
+    this.ctx.rect(x, y, width, height);
+    this.ctx.stroke();
+
   }
 }

@@ -33,7 +33,7 @@ class Character extends MoveableObject {
     super().loadImg("img/2_character_pepe/2_walk/W-21.png");
     this.height = 300;
     this.width = 150;
-    this.walkingAnimation();
+    this.charMovement()
     this.walking_sounds.playbackRate = 2.5;
     this.applyGravity();
   }
@@ -44,7 +44,8 @@ class Character extends MoveableObject {
       if (this.world.keyboard.left && this.x > 0) {
         this.x -= this.speed;
         this.otherDirection = true;
-        this.walking_sounds.play();
+        this.walking_sounds.play();        
+
       }
     }, 1000 / 60);
   }
@@ -61,42 +62,29 @@ class Character extends MoveableObject {
   }
 
   jump() {
-      this.jumping_sound.play();
-      this.speedY = 30;
-   
-
+    this.jumping_sound.play();
+    this.speedY = 30;
   }
 
-  jumpingAnimation() {
-    clearInterval(this.jumpingInterval);
-    this.jumpingInterval = setInterval(() => {
-      if (this.isAboveGround) {
-        let i = this.currentImg % this.jumpingImgs.length;
-        this.loadImg(this.jumpingImgs[i]);
-        this.currentImg++;
-      }
-    }, 60);
+  movementAnimation(movement) {
+    let i = this.currentImg % movement.length;
+    this.loadImg(movement[i]);
+    this.currentImg++;
   }
 
-  walkingAnimation() {
+  charMovement() {
     setInterval(() => {
       if (this.world.keyboard.right) {
         this.walkRight();
-        let i = this.currentImg % this.animationImgs.length;
-        this.loadImg(this.animationImgs[i]);
-        this.currentImg++;
+        this.movementAnimation(this.animationImgs);
       }
       if (this.world.keyboard.left) {
         this.walkLeft();
-        let i = this.currentImg % this.animationImgs.length;
-        this.loadImg(this.animationImgs[i]);
-        this.currentImg++;
+        this.movementAnimation(this.animationImgs);
       }
       if (this.world.keyboard.up && !this.isAboveGround()) {
         this.jump();
-        let i = this.currentImg % this.jumpingImgs.length;
-        this.loadImg(this.jumpingImgs[i]);
-        this.currentImg++;  
+        this.movementAnimation(this.jumpingImgs);
       }
       this.world.camera_x = -this.x + 150;
       this.world.world_x = -this.x;
