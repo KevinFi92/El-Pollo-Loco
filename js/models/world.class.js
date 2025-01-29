@@ -30,11 +30,7 @@ class World {
       object.width,
       object.height
     );
-    this.drawRectangles(      
-      object.x,
-      object.y,
-      object.width,
-      object.height);
+    this.drawRectangles(object.x, object.y, object.width, object.height, object);
     if (object.otherDirection) {
       this.mirrowReset(object);
     }
@@ -43,11 +39,8 @@ class World {
   createObjectsFromArray(objects) {
     objects.forEach((o) => {
       this.ctx.drawImage(o.img, o.x, o.y, o.width, o.height);
-      this.drawRectangles(      
-        o.x,
-        o.y,
-        o.width,
-        o.height);
+      this.drawRectangles(o.x, o.y, o.width, o.height, o);
+    
     });
   }
 
@@ -80,12 +73,22 @@ class World {
     this.ctx.restore();
   }
 
-  drawRectangles(x, y, width, height){
-    this.ctx.beginPath();
-    this.ctx.lineWidth = '5';
-    this.ctx.strokeStyle = "blue";
-    this.ctx.rect(x, y, width, height);
-    this.ctx.stroke();
+  drawRectangles(x, y, width, height, o){
+    if (o instanceof Character || o instanceof chicken){
+      this.ctx.beginPath();
+      this.ctx.lineWidth = '5';
+      this.ctx.strokeStyle = "blue";
+      this.ctx.rect(x, y, width, height);
+      this.ctx.stroke();
+    }
+
 
   }
+
+  isColliding(obj) {
+    return (this.X + this.width) >= obj.X && this.X <= (obj.X + obj.width) && 
+            (this.Y + this.offsetY + this.height) >= obj.Y &&
+            (this.Y + this.offsetY) <= (obj.Y + obj.height)
+          }
+
 }
