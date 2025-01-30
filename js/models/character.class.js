@@ -20,7 +20,17 @@ class Character extends MoveableObject {
     "img/2_character_pepe/3_jump/J-38.png",
     "img/2_character_pepe/3_jump/J-39.png",
   ];
+  deathImgs = [
+    'img/2_character_pepe/5_dead/D-51.png',
+    'img/2_character_pepe/5_dead/D-52.png',
+    'img/2_character_pepe/5_dead/D-53.png',
+    'img/2_character_pepe/5_dead/D-54.png',
+    'img/2_character_pepe/5_dead/D-55.png',
+    'img/2_character_pepe/5_dead/D-56.png',
+    'img/2_character_pepe/5_dead/D-57.png'
+  ]
 
+  isDead = false;
   currentImg = 0;
   world;
   speed = 5;
@@ -36,6 +46,7 @@ class Character extends MoveableObject {
     this.charMovement()
     this.walking_sounds.playbackRate = 2.5;
     this.applyGravity();
+    this.checkLife();
   }
 
   walkLeft() {

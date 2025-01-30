@@ -13,6 +13,7 @@ class World {
     this.draw();
     this.keyboard = keyboard;
     this.setWorld();
+    this.checkCollision();
   }
 
   setWorld() {
@@ -85,10 +86,17 @@ class World {
 
   }
 
-  isColliding(obj) {
-    return (this.X + this.width) >= obj.X && this.X <= (obj.X + obj.width) && 
-            (this.Y + this.offsetY + this.height) >= obj.Y &&
-            (this.Y + this.offsetY) <= (obj.Y + obj.height)
-          }
+  checkCollision(){
+    setInterval(() =>{
+      this.lvl.enemies.forEach((enemy) =>{
+        if (this.character.isColliding(enemy)) {
+          this.character.life -= 10;
+          
+        }
+      });
+    }, 1000);
+  }
+
+
 
 }

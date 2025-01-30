@@ -1,12 +1,14 @@
 class MoveableObject {
     x = 50;
     y = 360;
+    offsetY;
     img;
     height;
     width;
     otherDirection = false;
     speedY = 0;
     acceleration = 2;
+    life = 100;
 
     constructor(){};
     loadImg(path){
@@ -46,6 +48,37 @@ class MoveableObject {
         return this.y === 155
       }
 
+      isColliding (obj) {
+        return (
+          this.x < obj.x + obj.width &&  
+          this.x + this.width > obj.x &&  
+          this.y < obj.y + obj.height && 
+          this.y + this.height > obj.y    
+      );
+}
+
+checkLife() {
+  const interval = setInterval(() => {
       
-      
+
+      if (this.life <= 0) {
+          this.isDead = true;  
+          this.deathAnimation(this.deathImgs);  
+          clearInterval(interval);
+          console.log("Spieler ist tot. Intervall gestoppt.");
+      }
+  }, 1000/60);
+}
+
+deathAnimation(death){
+  const interval = setInterval(() => {
+    let i = this.currentImg % death.length;
+    this.loadImg(death[i]);
+    this.currentImg++;
+    if (i <= death.length) {
+      clearInterval(interval); 
+    }
+    
+  }, 100);}
+
       }
