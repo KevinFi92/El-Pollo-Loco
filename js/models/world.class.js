@@ -56,6 +56,8 @@ class World {
     this.createObjectsFromArray(this.lvl.enemies);
     this.createObjectsFromArray(this.lvl.clouds);
     this.ctx.translate(-this.camera_x, 0);
+    if (this.character.life == 0) {
+      this.gameOver(this.lvl.gameover);}
     self = this;
     requestAnimationFrame(function () {
       self.draw();
@@ -90,13 +92,23 @@ class World {
     setInterval(() =>{
       this.lvl.enemies.forEach((enemy) =>{
         if (this.character.isColliding(enemy)) {
-          this.character.life -= 10;
-          
+        this.character.hit();
         }
       });
     }, 1000);
   }
 
-
+gameOver(object){
+  
+  this.ctx.drawImage(
+    object.img,
+    object.x,
+    object.y,
+    object.width,
+    object.height
+  );
+    
+  
+};
 
 }

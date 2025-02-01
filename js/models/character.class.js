@@ -29,8 +29,13 @@ class Character extends MoveableObject {
     'img/2_character_pepe/5_dead/D-56.png',
     'img/2_character_pepe/5_dead/D-57.png'
   ]
+  hurtImgs = [
+    'img/2_character_pepe/4_hurt/H-41.png',
+    'img/2_character_pepe/4_hurt/H-42.png',
+    'img/2_character_pepe/4_hurt/H-43.png'
+  ]
 
-  isDead = false;
+  charDead = "img/2_character_pepe/5_dead/D-57.png";
   currentImg = 0;
   world;
   speed = 5;
@@ -96,6 +101,9 @@ class Character extends MoveableObject {
       if (this.world.keyboard.up && !this.isAboveGround()) {
         this.jump();
         this.movementAnimation(this.jumpingImgs);
+      }
+      if (this.isHurt()) {
+        this.movementAnimation(this.hurtImgs);
       }
       this.world.camera_x = -this.x + 150;
       this.world.world_x = -this.x;

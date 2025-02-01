@@ -1,84 +1,85 @@
 class MoveableObject {
-    x = 50;
-    y = 360;
-    offsetY;
-    img;
-    height;
-    width;
-    otherDirection = false;
-    speedY = 0;
-    acceleration = 2;
-    life = 100;
+  x = 50;
+  y = 360;
+  offsetY;
+  img;
+  height;
+  width;
+  otherDirection = false;
+  speedY = 0;
+  acceleration = 2;
+  life = 100;
 
-    constructor(){};
-    loadImg(path){
-        this.img = new Image();
-        this.img.src = path;
-    }
-
-    movementLeft(){
-        setInterval (() => {
-            this.x -= this.speed;
-        }, 1000/60)
-    }
-
-    movingAnimation() {
-        setInterval(() => {
-          let i = this.currentImg % this.movingImg.length;
-          this.loadImg(this.movingImg[i]);
-          this.currentImg++;
-        }, 300);
-      }
-
-      applyGravity(){
-        setInterval (() => {
-          if (this.isAboveGround() || this.speedY > 0){
-            this.y -= this.speedY;
-            this.speedY -= this.acceleration;
-          }
-      }, 1000/60);
+  constructor() {}
+  loadImg(path) {
+    this.img = new Image();
+    this.img.src = path;
   }
-      
 
-      isAboveGround(){
-        return this.y < 155
+  movementLeft() {
+    setInterval(() => {
+      this.x -= this.speed;
+    }, 1000 / 60);
+  }
+
+  movingAnimation() {
+    setInterval(() => {
+      let i = this.currentImg % this.movingImg.length;
+      this.loadImg(this.movingImg[i]);
+      this.currentImg++;
+    }, 300);
+  }
+
+  applyGravity() {
+    setInterval(() => {
+      if (this.isAboveGround() || this.speedY > 0) {
+        this.y -= this.speedY;
+        this.speedY -= this.acceleration;
       }
-      
-      isOnGround(){
-        return this.y === 155
-      }
+    }, 1000 / 60);
+  }
 
-      isColliding (obj) {
-        return (
-          this.x < obj.x + obj.width &&  
-          this.x + this.width > obj.x &&  
-          this.y < obj.y + obj.height && 
-          this.y + this.height > obj.y    
-      );
-}
+  isAboveGround() {
+    return this.y < 155;
+  }
 
-checkLife() {
-  const interval = setInterval(() => {
-      
+  isOnGround() {
+    return this.y === 155;
+  }
 
+  isColliding(obj) {
+    return (
+      this.x < obj.x + obj.width &&
+      this.x + this.width > obj.x &&
+      this.y < obj.y + obj.height &&
+      this.y + this.height > obj.y
+    );
+  }
+
+  checkLife() {
+    const interval = setInterval(() => {
       if (this.life <= 0) {
-          this.isDead = true;  
-          this.deathAnimation(this.deathImgs);  
+        this.movementAnimation(this.deathImgs);
+        if (this.img.src.includes(this.charDead)) {
           clearInterval(interval);
-          console.log("Spieler ist tot. Intervall gestoppt.");
+        }
       }
-  }, 1000/60);
-}
+    }, 100);
+  }
 
-deathAnimation(death){
-  const interval = setInterval(() => {
-    let i = this.currentImg % death.length;
-    this.loadImg(death[i]);
-    this.currentImg++;
-    if (i <= death.length) {
-      clearInterval(interval); 
+  hit(){
+    this.life -= 10;
+    if (this.life < 0) {
+      this.life = 0;
+    } else{
+      this.lastHit = new Date().getTime();
     }
-    
-  }, 100);}
+  };
 
-      }
+  isHurt(){
+    let timepassed = new Date().getTime() - this.lastHit;
+    timepassed = timepassed / 1000;
+    return timepassed < 1;
+  }
+
+}
