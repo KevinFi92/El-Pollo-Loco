@@ -61,7 +61,6 @@ class Character extends MoveableObject {
         this.x -= this.speed;
         this.otherDirection = true;
         this.walking_sounds.play();        
-
       }
     }, 1000 / 60);
   }

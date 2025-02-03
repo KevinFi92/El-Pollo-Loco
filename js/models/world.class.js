@@ -59,7 +59,9 @@ class World {
     this.createObjectsFromArray(this.lvl.secondlayer);
     this.createObjectsFromArray(this.lvl.firstlayer);
     this.creatObject(this.character);
+    this.ctx.translate(-this.camera_x, 0);
     this.creatObject(this.statusBar);
+    this.ctx.translate(this.camera_x, 0);
     this.createObjectsFromArray(this.lvl.enemies);
     this.createObjectsFromArray(this.lvl.clouds);
     this.ctx.translate(-this.camera_x, 0);
@@ -98,6 +100,7 @@ class World {
       this.lvl.enemies.forEach((enemy) => {
         if (this.character.isColliding(enemy)) {
           this.character.hit();
+          this.statusBar.setPercentage(this.character.life)
         }
       });
     }, 1000);
