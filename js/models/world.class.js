@@ -6,6 +6,7 @@ class World {
   keyboard;
   camera_x = 0;
   world_x = 0;
+  statusBar = new StatusBar();
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -31,7 +32,13 @@ class World {
       object.width,
       object.height
     );
-    this.drawRectangles(object.x, object.y, object.width, object.height, object);
+    this.drawRectangles(
+      object.x,
+      object.y,
+      object.width,
+      object.height,
+      object
+    );
     if (object.otherDirection) {
       this.mirrowReset(object);
     }
@@ -41,7 +48,6 @@ class World {
     objects.forEach((o) => {
       this.ctx.drawImage(o.img, o.x, o.y, o.width, o.height);
       this.drawRectangles(o.x, o.y, o.width, o.height, o);
-    
     });
   }
 
@@ -53,11 +59,12 @@ class World {
     this.createObjectsFromArray(this.lvl.secondlayer);
     this.createObjectsFromArray(this.lvl.firstlayer);
     this.creatObject(this.character);
+    this.creatObject(this.statusBar);
     this.createObjectsFromArray(this.lvl.enemies);
     this.createObjectsFromArray(this.lvl.clouds);
     this.ctx.translate(-this.camera_x, 0);
-    if (this.character.life == 0) {
-      this.gameOver(this.lvl.gameover);}
+    // if (this.character.life == 0) {
+    //   this.gameOver(this.lvl.gameover);}
     self = this;
     requestAnimationFrame(function () {
       self.draw();
@@ -76,39 +83,35 @@ class World {
     this.ctx.restore();
   }
 
-  drawRectangles(x, y, width, height, o){
-    if (o instanceof Character || o instanceof chicken){
+  drawRectangles(x, y, width, height, o) {
+    if (o instanceof Character || o instanceof chicken) {
       this.ctx.beginPath();
-      this.ctx.lineWidth = '5';
+      this.ctx.lineWidth = "5";
       this.ctx.strokeStyle = "blue";
       this.ctx.rect(x, y, width, height);
       this.ctx.stroke();
     }
-
-
   }
 
-  checkCollision(){
-    setInterval(() =>{
-      this.lvl.enemies.forEach((enemy) =>{
+  checkCollision() {
+    setInterval(() => {
+      this.lvl.enemies.forEach((enemy) => {
         if (this.character.isColliding(enemy)) {
-        this.character.hit();
+          this.character.hit();
         }
       });
     }, 1000);
   }
 
-gameOver(object){
-  
-  this.ctx.drawImage(
-    object.img,
-    object.x,
-    object.y,
-    object.width,
-    object.height
-  );
-    
-  
-};
+  // gameOver(object){
 
+  //   this.ctx.drawImage(
+  //     object.img,
+  //     object.x,
+  //     object.y,
+  //     object.width,
+  //     object.height
+  //   );
+
+  // };
 }

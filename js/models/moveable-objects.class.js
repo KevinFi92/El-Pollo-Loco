@@ -1,20 +1,16 @@
-class MoveableObject {
+class MoveableObject extends DrawableObject  {
   x = 50;
   y = 360;
   offsetY;
-  img;
-  height;
-  width;
   otherDirection = false;
   speedY = 0;
   acceleration = 2;
   life = 100;
 
-  constructor() {}
-  loadImg(path) {
-    this.img = new Image();
-    this.img.src = path;
+  constructor(path){
+    super().loadImg(path) 
   }
+
 
   movementLeft() {
     setInterval(() => {
@@ -67,19 +63,18 @@ class MoveableObject {
     }, 100);
   }
 
-  hit(){
+  hit() {
     this.life -= 10;
     if (this.life < 0) {
       this.life = 0;
-    } else{
+    } else {
       this.lastHit = new Date().getTime();
     }
-  };
+  }
 
-  isHurt(){
+  isHurt() {
     let timepassed = new Date().getTime() - this.lastHit;
     timepassed = timepassed / 1000;
     return timepassed < 1;
   }
-
 }
