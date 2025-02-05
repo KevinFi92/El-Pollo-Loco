@@ -7,6 +7,7 @@ class World {
   camera_x = 0;
   world_x = 0;
   statusBar = new StatusBar();
+  
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -58,6 +59,7 @@ class World {
     this.createObjectsFromArray(this.lvl.thirdlayer);
     this.createObjectsFromArray(this.lvl.secondlayer);
     this.createObjectsFromArray(this.lvl.firstlayer);
+    this.createObjectsFromArray(this.lvl.coin);
     this.creatObject(this.character);
     this.ctx.translate(-this.camera_x, 0);
     this.creatObject(this.statusBar);

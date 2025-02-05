@@ -28,7 +28,7 @@ const level_1 = new Level(
     new Sky("img/5_background/layers/air.png", 719),
     new Sky("img/5_background/layers/air.png", 719*2)
   ],
-  [
-    new Gameover("img/9_intro_outro_screens/game_over/game over.png")
-  ]
+ [
+  new Coin(), new Coin(), new Coin(), new Coin(), new Coin(),
+ ]
 );

@@ -52,6 +52,7 @@ class Character extends MoveableObject {
     this.walking_sounds.playbackRate = 2.5;
     this.applyGravity();
     this.checkLife();
+    
   }
 
   walkLeft() {
