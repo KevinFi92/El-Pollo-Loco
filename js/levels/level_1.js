@@ -30,5 +30,8 @@ const level_1 = new Level(
   ],
  [
   new Coin(), new Coin(), new Coin(), new Coin(), new Coin(),
- ]
+ ],
+  [
+    new Salsa(), new Salsa(), new Salsa(), new Salsa(),
+  ]
 );

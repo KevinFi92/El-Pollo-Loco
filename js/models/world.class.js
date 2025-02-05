@@ -60,6 +60,7 @@ class World {
     this.createObjectsFromArray(this.lvl.secondlayer);
     this.createObjectsFromArray(this.lvl.firstlayer);
     this.createObjectsFromArray(this.lvl.coin);
+    this.createObjectsFromArray(this.lvl.salsa);
     this.creatObject(this.character);
     this.ctx.translate(-this.camera_x, 0);
     this.creatObject(this.statusBar);
