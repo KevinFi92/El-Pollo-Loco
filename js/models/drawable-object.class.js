@@ -1,20 +1,22 @@
-class DrawableObject{
-    img;
-    height;
-    width;
-    x;
-    y;
+class DrawableObject {
+  img;
+  height;
+  width;
+  x;
+  y;
+  amount = 0;
 
-    constructor(path){
+  constructor() {}
 
+  loadImg(path) {
+    this.img = new Image();
+    this.img.src = path;
+  }
+
+  collect() {
+    this.amount += 20;
+    if (this.amount === 100) {
+      this.amount = 100;
     }
-
-    loadImg(path) {
-        this.img = new Image();
-        this.img.src = path;
-    }
-
-
+  }
 }
-
-

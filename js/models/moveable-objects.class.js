@@ -1,4 +1,4 @@
-class MoveableObject extends DrawableObject  {
+class MoveableObject extends DrawableObject {
   x = 50;
   y = 360;
   offsetY;
@@ -7,10 +7,9 @@ class MoveableObject extends DrawableObject  {
   acceleration = 2;
   life = 100;
 
-  constructor(path){
-    super().loadImg(path) 
+  constructor(path) {
+    super().loadImg(path);
   }
-
 
   movementLeft() {
     setInterval(() => {

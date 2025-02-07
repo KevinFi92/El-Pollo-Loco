@@ -1,6 +1,7 @@
 class Salsa extends MoveableObject {
   height = 80;
   width = 80;
+  amount = 0;
 
   salsaBottleImg = "img/6_salsa_bottle/salsa_bottle.png";
 

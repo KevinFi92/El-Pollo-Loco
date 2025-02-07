@@ -6,8 +6,27 @@ class World {
   keyboard;
   camera_x = 0;
   world_x = 0;
-  statusBar = new StatusBar();
-  
+  statusBar = new StatusBar(
+    10,
+    10,
+    70,
+    200,
+    "img/7_statusbars/1_statusbar/2_statusbar_health/green/100.png"
+  );
+  coinBar = new StatusBar(
+    210,
+    10,
+    70,
+    200,
+    "img/7_statusbars/1_statusbar/1_statusbar_coin/blue/0.png"
+  );
+  salsaBar = new StatusBar(
+    410,
+    10,
+    70,
+    200,
+    "img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/0.png"
+  );
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -15,7 +34,7 @@ class World {
     this.draw();
     this.keyboard = keyboard;
     this.setWorld();
-    this.checkCollision();
+    this.checkCollisions();
   }
 
   setWorld() {
@@ -47,9 +66,10 @@ class World {
 
   createObjectsFromArray(objects) {
     objects.forEach((o) => {
+      if (!o.collected) {
       this.ctx.drawImage(o.img, o.x, o.y, o.width, o.height);
       this.drawRectangles(o.x, o.y, o.width, o.height, o);
-    });
+  }});
   }
 
   draw() {
@@ -64,12 +84,12 @@ class World {
     this.creatObject(this.character);
     this.ctx.translate(-this.camera_x, 0);
     this.creatObject(this.statusBar);
+    this.creatObject(this.coinBar);
+    this.creatObject(this.salsaBar);
     this.ctx.translate(this.camera_x, 0);
     this.createObjectsFromArray(this.lvl.enemies);
     this.createObjectsFromArray(this.lvl.clouds);
     this.ctx.translate(-this.camera_x, 0);
-    // if (this.character.life == 0) {
-    //   this.gameOver(this.lvl.gameover);}
     self = this;
     requestAnimationFrame(function () {
       self.draw();
@@ -98,26 +118,48 @@ class World {
     }
   }
 
-  checkCollision() {
+  checkCollisions() {
     setInterval(() => {
-      this.lvl.enemies.forEach((enemy) => {
-        if (this.character.isColliding(enemy)) {
-          this.character.hit();
-          this.statusBar.setPercentage(this.character.life)
-        }
-      });
+      this.collisionEnemy();
+      this.collisionSalsas();
+      this.collisionCoins();
     }, 1000);
   }
 
-  // gameOver(object){
+  collisionEnemy() {
+    this.lvl.enemies.forEach((enemy) => {
+      if (this.character.isColliding(enemy)) {
+        this.character.hit();
+        this.statusBar.setPercentage(
+          this.character.life,
+          this.statusBar.lifeBar
+        );
+      }
+    });
+  }
 
-  //   this.ctx.drawImage(
-  //     object.img,
-  //     object.x,
-  //     object.y,
-  //     object.width,
-  //     object.height
-  //   );
+  collisionCoins() {
+    this.lvl.coin.forEach((coin, i) => {
+      if (this.character.isColliding(coin)) {
+        this.coinBar.collect();
+        this.coinBar.setPercentage(this.coinBar.amount, this.coinBar.coinBar);
+        this.lvl.coin[i].collected = true;
+      }
+    });
+  }
 
-  // };
+  collisionSalsas() {
+    this.lvl.salsa.forEach((salsa, i) => {
+      if (this.character.isColliding(salsa)) {
+        this.salsaBar.collect();
+        this.salsaBar.setPercentage(
+          this.salsaBar.amount,
+          this.salsaBar.salsaBar
+        );
+        this.lvl.salsa[i].collected = true;
+      }
+    });
+  }
+
+  takeCoin() {}
 }

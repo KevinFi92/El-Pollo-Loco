@@ -21,19 +21,19 @@ class Character extends MoveableObject {
     "img/2_character_pepe/3_jump/J-39.png",
   ];
   deathImgs = [
-    'img/2_character_pepe/5_dead/D-51.png',
-    'img/2_character_pepe/5_dead/D-52.png',
-    'img/2_character_pepe/5_dead/D-53.png',
-    'img/2_character_pepe/5_dead/D-54.png',
-    'img/2_character_pepe/5_dead/D-55.png',
-    'img/2_character_pepe/5_dead/D-56.png',
-    'img/2_character_pepe/5_dead/D-57.png'
-  ]
+    "img/2_character_pepe/5_dead/D-51.png",
+    "img/2_character_pepe/5_dead/D-52.png",
+    "img/2_character_pepe/5_dead/D-53.png",
+    "img/2_character_pepe/5_dead/D-54.png",
+    "img/2_character_pepe/5_dead/D-55.png",
+    "img/2_character_pepe/5_dead/D-56.png",
+    "img/2_character_pepe/5_dead/D-57.png",
+  ];
   hurtImgs = [
-    'img/2_character_pepe/4_hurt/H-41.png',
-    'img/2_character_pepe/4_hurt/H-42.png',
-    'img/2_character_pepe/4_hurt/H-43.png'
-  ]
+    "img/2_character_pepe/4_hurt/H-41.png",
+    "img/2_character_pepe/4_hurt/H-42.png",
+    "img/2_character_pepe/4_hurt/H-43.png",
+  ];
 
   charDead = "img/2_character_pepe/5_dead/D-57.png";
   currentImg = 0;
@@ -48,11 +48,10 @@ class Character extends MoveableObject {
     super().loadImg("img/2_character_pepe/2_walk/W-21.png");
     this.height = 300;
     this.width = 150;
-    this.charMovement()
+    this.charMovement();
     this.walking_sounds.playbackRate = 2.5;
     this.applyGravity();
     this.checkLife();
-    
   }
 
   walkLeft() {
@@ -61,7 +60,7 @@ class Character extends MoveableObject {
       if (this.world.keyboard.left && this.x > 0) {
         this.x -= this.speed;
         this.otherDirection = true;
-        this.walking_sounds.play();        
+        this.walking_sounds.play();
       }
     }, 1000 / 60);
   }
