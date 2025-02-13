@@ -4,13 +4,14 @@ class Coin extends DrawableObject {
   img;
   currentImg = 0;
   coinImgs = ["img/8_coin/coin_1.png", "img/8_coin/coin_2.png"];
+  collected = false;
+
 
   constructor() {
     super().loadImg("img/8_coin/coin_1.png");
     this.pulsation();
     this.x = 200 + Math.random() * 1400;
     this.y = 80 + Math.random() * 300;
-    console.log(this.y);
   }
 
   pulsation() {
@@ -20,7 +21,7 @@ class Coin extends DrawableObject {
       this.currentImg++;
     }, 800);
   }
-}
+}  
 
 // Idee: für jeden Backgrouind der geladen wird wir auch ein neues chicken,
 // coin etc erstellt!

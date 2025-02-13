@@ -1,7 +1,7 @@
 let canvas;
 let world;
-let character = new Character;
-let keyboard = new Keyboard;
+let character = new Character();
+let keyboard = new Keyboard();
 
 function init() {
   canvas = document.getElementById("canvas");
@@ -9,31 +9,31 @@ function init() {
 }
 
 document.addEventListener('keydown', function(event) {
-  if (event.key === "ArrowRight") {
+  if (event.code === "ArrowRight") {
     keyboard.right = true;
   }
-  if (event.key === "ArrowLeft") {
+  if (event.code === "ArrowLeft") {
     keyboard.left = true;
   }
-  if (event.key === "ArrowUp") {
+  if (event.code === "ArrowUp") {
     keyboard.up = true;
   }
-  if (event.key === "Space") {
+  if (event.code === "Space") {
     keyboard.space = true;
   }
 });
 
 document.addEventListener('keyup', function(event) {
-  if (event.key === "ArrowRight") {
+  if (event.code === "ArrowRight") {
     keyboard.right = false;
   }
-  if (event.key === "ArrowLeft") {
+  if (event.code === "ArrowLeft") {
     keyboard.left = false;
   }
-  if (event.key === "ArrowUp") {
+  if (event.code === "ArrowUp") {
     keyboard.up = false;
   }
-  if (event.key === "Space") {
+  if (event.code === "Space") {
     keyboard.space = false;
   }
 });

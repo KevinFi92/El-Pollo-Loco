@@ -1,4 +1,4 @@
-class Salsa extends MoveableObject {
+class Salsa extends DrawableObject {
   height = 80;
   width = 80;
   amount = 0;
@@ -21,9 +21,14 @@ class Salsa extends MoveableObject {
     "img/6_salsa_bottle/bottle_rotation/bottle_splash/6_bottle_splash.png",
   ];
 
-  constructor() {
+  constructor(x, y) {
     super().loadImg("img/6_salsa_bottle/salsa_bottle.png");
     this.x = 200 + Math.random() * 1400;
     this.y = 80 + Math.random() * 300;
   }
+
+
+
+
+
 }

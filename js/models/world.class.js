@@ -27,6 +27,8 @@ class World {
     200,
     "img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/0.png"
   );
+  lastCoin;
+  throwable = [];
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -34,7 +36,7 @@ class World {
     this.draw();
     this.keyboard = keyboard;
     this.setWorld();
-    this.checkCollisions();
+    this.run(0);
   }
 
   setWorld() {
@@ -66,7 +68,7 @@ class World {
 
   createObjectsFromArray(objects) {
     objects.forEach((o) => {
-      if (!o.collected) {
+      if (!o.collected) { 
       this.ctx.drawImage(o.img, o.x, o.y, o.width, o.height);
       this.drawRectangles(o.x, o.y, o.width, o.height, o);
   }});
@@ -81,6 +83,7 @@ class World {
     this.createObjectsFromArray(this.lvl.firstlayer);
     this.createObjectsFromArray(this.lvl.coin);
     this.createObjectsFromArray(this.lvl.salsa);
+    this.createObjectsFromArray(this.throwable);
     this.creatObject(this.character);
     this.ctx.translate(-this.camera_x, 0);
     this.creatObject(this.statusBar);
@@ -118,12 +121,14 @@ class World {
     }
   }
 
-  checkCollisions() {
-    setInterval(() => {
+  run(i) {
+    setInterval(() => {            
+      this.throwBottle();
       this.collisionEnemy();
+      if (!this.lvl.coin[i].collected) {
       this.collisionSalsas();
       this.collisionCoins();
-    }, 1000);
+  }}, 500);
   }
 
   collisionEnemy() {
@@ -144,6 +149,9 @@ class World {
         this.coinBar.collect();
         this.coinBar.setPercentage(this.coinBar.amount, this.coinBar.coinBar);
         this.lvl.coin[i].collected = true;
+        this.lvl.coin[i].index = i;
+        console.log(this.lvl.coin[i].index);
+        this.run(this.lvl.coin[i].index)
       }
     });
   }
@@ -161,5 +169,13 @@ class World {
     });
   }
 
-  takeCoin() {}
+
+  throwBottle(){
+    if (this.keyboard.space){
+      let bottle = new Throwable(this.character.x +100, this.character.y +100)
+      this.throwable.push(bottle);
+    }
+  }
+
 }
+ 
