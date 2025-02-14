@@ -59,4 +59,5 @@ class StatusBar extends DrawableObject {
   }
 }
 
-// refactor this class so it can be used for different statusbars like coins and salsas
+
+ 

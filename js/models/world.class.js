@@ -171,7 +171,9 @@ class World {
 
 
   throwBottle(){
-    if (this.keyboard.space){
+    if (this.keyboard.space && this.salsaBar.amount > 0){
+      this.salsaBar.amount -= 20;
+      this.salsaBar.setPercentage(this.salsaBar.amount, this.salsaBar.salsaBar);
       let bottle = new Throwable(this.character.x +100, this.character.y +100)
       this.throwable.push(bottle);
     }
