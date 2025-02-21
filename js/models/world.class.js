@@ -121,14 +121,13 @@ class World {
     }
   }
 
-  run(i) {
+  run() {
     setInterval(() => {            
       this.throwBottle();
       this.collisionEnemy();
-      if (!this.lvl.coin[i].collected) {
       this.collisionSalsas();
       this.collisionCoins();
-  }}, 500);
+  }, 500);
   }
 
   collisionEnemy() {
@@ -149,9 +148,6 @@ class World {
         this.coinBar.collect();
         this.coinBar.setPercentage(this.coinBar.amount, this.coinBar.coinBar);
         this.lvl.coin[i].collected = true;
-        this.lvl.coin[i].index = i;
-        console.log(this.lvl.coin[i].index);
-        this.run(this.lvl.coin[i].index)
       }
     });
   }
@@ -174,7 +170,6 @@ class World {
       this.salsaBar.setPercentage(this.salsaBar.amount, this.salsaBar.salsaBar);
       let bottle = new Throwable(this.character.x +100, this.character.y +100)
       this.throwable.push(bottle);
-      console.log(this.throwable.length);
     }
 
   }
