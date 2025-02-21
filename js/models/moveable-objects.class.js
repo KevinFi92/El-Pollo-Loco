@@ -6,7 +6,7 @@ class MoveableObject extends DrawableObject {
   speedY = 0;
   acceleration = 2;
   life = 100;
-
+  currentImg = 0;
   constructor(path) {
     super().loadImg(path);
   }
@@ -17,10 +17,10 @@ class MoveableObject extends DrawableObject {
     }, 1000 / 60);
   }
 
-  movingAnimation() {
+  movingAnimation(movingImg) {
     setInterval(() => {
-      let i = this.currentImg % this.movingImg.length;
-      this.loadImg(this.movingImg[i]);
+      let i = this.currentImg % movingImg.length;
+      this.loadImg(movingImg[i]);
       this.currentImg++;
     }, 300);
   }

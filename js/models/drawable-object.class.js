@@ -5,6 +5,7 @@ class DrawableObject {
   x;
   y;
   amount = 0;
+  imageCache = {};
 
   constructor() {}
 

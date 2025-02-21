@@ -145,7 +145,7 @@ class World {
 
   collisionCoins() {
     this.lvl.coin.forEach((coin, i) => {
-      if (this.character.isColliding(coin)) {
+      if (this.character.isColliding(coin) && !this.lvl.coin[i].collected) {
         this.coinBar.collect();
         this.coinBar.setPercentage(this.coinBar.amount, this.coinBar.coinBar);
         this.lvl.coin[i].collected = true;
@@ -158,13 +158,10 @@ class World {
 
   collisionSalsas() {
     this.lvl.salsa.forEach((salsa, i) => {
-      if (this.character.isColliding(salsa)) {
+      if (this.character.isColliding(salsa) && !this.lvl.salsa[i].collected) {
         this.salsaBar.collect();
-        this.salsaBar.setPercentage(
-          this.salsaBar.amount,
-          this.salsaBar.salsaBar
-        );
         this.lvl.salsa[i].collected = true;
+        this.salsaBar.setPercentage(this.salsaBar.amount,this.salsaBar.salsaBar);
       }
     });
   }
@@ -172,11 +169,14 @@ class World {
 
   throwBottle(){
     if (this.keyboard.space && this.salsaBar.amount > 0){
+      this.throwable = [];
       this.salsaBar.amount -= 20;
       this.salsaBar.setPercentage(this.salsaBar.amount, this.salsaBar.salsaBar);
       let bottle = new Throwable(this.character.x +100, this.character.y +100)
       this.throwable.push(bottle);
+      console.log(this.throwable.length);
     }
+
   }
 
 }
