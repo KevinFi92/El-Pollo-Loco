@@ -132,13 +132,19 @@ class World {
 
   collisionEnemy() {
     this.lvl.enemies.forEach((enemy) => {
-      if (this.character.isColliding(enemy)) {
+      if (this.character.isColliding(enemy) && this.character.life > 0) {
         this.character.hit();
-        this.statusBar.setPercentage(
-          this.character.life,
-          this.statusBar.lifeBar
-        );
+        this.statusBar.setPercentage(this.character.life, this.statusBar.lifeBar);
       }
+      if (this.character.landsOntop(enemy)) {
+        enemy.loadImg("img/3_enemies_chicken/chicken_normal/2_dead/dead.png");
+      } 
+      // this.throwable.forEach((bottle) => {
+      //   if (bottle.isColliding(enemy)) {
+      //     enemy.hit();
+      //     bottle.bottleSplash();
+      //   }
+      // });
     });
   }
 
@@ -174,5 +180,12 @@ class World {
 
   }
 
+  collisionThrowable() {
+    this.throwable.forEach((bottle) => {
+      if (bottle.isColliding(enemy)) {
+        enemy.hit();
+        bottle.bottleSplash();
+      }
+    });
 }
- 
+}

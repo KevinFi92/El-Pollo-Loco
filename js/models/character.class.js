@@ -51,7 +51,6 @@ class Character extends MoveableObject {
     this.charMovement();
     this.walking_sounds.playbackRate = 2.5;
     this.applyGravity();
-    this.checkLife();
   }
 
   walkLeft() {
@@ -99,7 +98,7 @@ class Character extends MoveableObject {
       }
       if (this.world.keyboard.up && !this.isAboveGround()) {
         this.jump();
-        this.movementAnimation(this.jumpingImgs);
+        this.movingAnimation(this.jumpingImgs);
       }
       if (this.isHurt()) {
         this.movementAnimation(this.hurtImgs);

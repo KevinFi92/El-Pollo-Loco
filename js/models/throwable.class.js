@@ -31,10 +31,7 @@ class Throwable extends MoveableObject {
     }
     this.speedY = 30;
     this.applyGravity();
-    this.movingAnimation(this.salsaRotationImgs);
-    if (this.y === 120) {
-      this.bottleSplash();
-    }   
+    this.movingAnimation(this.salsaRotationImgs);  
     setInterval(() => {
       if (world.character.otherDirection) {
         this.x -= 10;
@@ -46,8 +43,6 @@ class Throwable extends MoveableObject {
 
   bottleSplash(){
     this.movingAnimation(this.salsaSplashImgs);
-    setTimeout(() => {
-      this.remove();
-    }, 1000);
-  }
+    this.speedY = 0;
+}
 }

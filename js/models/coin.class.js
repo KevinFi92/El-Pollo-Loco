@@ -23,5 +23,5 @@ class Coin extends DrawableObject {
   }
 }  
 
-// Idee: für jeden Backgrouind der geladen wird wir auch ein neues chicken,
+// Idee: für jeden Background der geladen wird wir auch ein neues chicken,
 // coin etc erstellt!

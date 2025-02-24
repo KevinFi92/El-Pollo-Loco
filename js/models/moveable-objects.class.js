@@ -18,11 +18,14 @@ class MoveableObject extends DrawableObject {
   }
 
   movingAnimation(movingImg) {
-    setInterval(() => {
+    let movementInterval = setInterval(() => {
       let i = this.currentImg % movingImg.length;
       this.loadImg(movingImg[i]);
       this.currentImg++;
-    }, 300);
+      if (i == movingImg.length - 1) {
+        clearInterval(movementInterval);
+      }
+    }, 50);
   }
 
   applyGravity() {
@@ -54,21 +57,20 @@ class MoveableObject extends DrawableObject {
     );
   }
 
-  checkLife() {
-    const interval = setInterval(() => {
-      if (this.life <= 0) {
-        this.movementAnimation(this.deathImgs);
-        if (this.img.src.includes(this.charDead)) {
-          clearInterval(interval);
-        }
-      }
-    }, 100);
+  landsOntop(obj) {
+    return (
+      this.y + this.height <= obj.y + 10 && 
+      this.y + this.height >= obj.y && 
+      this.x + this.width > obj.x && 
+      this.x < obj.x + obj.width 
+    );
   }
 
   hit() {
     this.life -= 10;
-    if (this.life < 0) {
+    if (this.life <= 0) {
       this.life = 0;
+      this.movingAnimation(this.deathImgs);
     } else {
       this.lastHit = new Date().getTime();
     }
