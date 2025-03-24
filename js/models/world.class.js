@@ -127,6 +127,7 @@ class World {
       this.collisionEnemy();
       this.collisionSalsas();
       this.collisionCoins();
+      this.collisionThrowable();
   }, 500);
   }
 
@@ -139,12 +140,6 @@ class World {
       if (this.character.landsOntop(enemy)) {
         enemy.loadImg("img/3_enemies_chicken/chicken_normal/2_dead/dead.png");
       } 
-      // this.throwable.forEach((bottle) => {
-      //   if (bottle.isColliding(enemy)) {
-      //     enemy.hit();
-      //     bottle.bottleSplash();
-      //   }
-      // });
     });
   }
 
@@ -181,11 +176,16 @@ class World {
   }
 
   collisionThrowable() {
-    this.throwable.forEach((bottle) => {
-      if (bottle.isColliding(enemy)) {
-        enemy.hit();
-        bottle.bottleSplash();
-      }
+    setInterval(() => {
+      this.lvl.enemies.forEach((enemy) => {
+        this.throwable.forEach((bottle) => {
+          if (bottle.isColliding(enemy)) {
+            enemy.hit();
+            bottle.bottleSplash();
+          }
+        });
     });
+    }, 100);
 }
+
 }

@@ -88,11 +88,11 @@ class Character extends MoveableObject {
 
   charMovement() {
     setInterval(() => {
-      if (this.world.keyboard.right) {
+      if (this.world.keyboard.right && this.isOnGround() ) {
         this.walkRight();
         this.movementAnimation(this.animationImgs);
       }
-      if (this.world.keyboard.left) {
+      if (this.world.keyboard.left && this.isOnGround() ) {
         this.walkLeft();
         this.movementAnimation(this.animationImgs);
       }

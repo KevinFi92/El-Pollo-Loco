@@ -12,9 +12,14 @@ class MoveableObject extends DrawableObject {
   }
 
   movementLeft() {
-    setInterval(() => {
+  let movinginterval =  setInterval(() => {
       this.x -= this.speed;
+      if (this.life == 0) {
+        clearInterval(movinginterval);
+      }
     }, 1000 / 60);
+
+
   }
 
   movingAnimation(movingImg) {

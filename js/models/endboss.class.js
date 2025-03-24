@@ -9,7 +9,12 @@ class Endboss extends MoveableObject{
         "img/4_enemie_boss_chicken/2_alert/G11.png",
         "img/4_enemie_boss_chicken/2_alert/G12.png",
       ];
-
+      deathImgs = [
+        "img/4_enemie_boss_chicken/5_dead/G24.png",
+        "img/4_enemie_boss_chicken/5_dead/G25.png",
+        "img/4_enemie_boss_chicken/5_dead/G26.png"
+      ];
+      
       constructor(){
         super().loadImg("img/4_enemie_boss_chicken/1_walk/G1.png");
         this.movingAnimation(this.movingImg);
@@ -17,5 +22,6 @@ class Endboss extends MoveableObject{
         this.y = 130;
         this.height = 350;
         this.width = 200;
+        this.life = 50;
       }
 }

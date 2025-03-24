@@ -21,8 +21,6 @@ class Throwable extends MoveableObject {
     this.height = 80;
     this.width = 80;
     this.throw();
-
-    
   }
 
   throw() {
@@ -38,11 +36,17 @@ class Throwable extends MoveableObject {
       } else {
         this.x += 10;
       }
+      if (this.isOnGround - 50) {
+        this.bottleSplash();
+      }
     }, 25);
   }
 
   bottleSplash(){
-    this.movingAnimation(this.salsaSplashImgs);
-    this.speedY = 0;
+      this.movingAnimation(this.salsaSplashImgs);
+      this.speedY = 0;
 }
+
+
+
 }
