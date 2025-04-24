@@ -44,9 +44,15 @@ class Throwable extends MoveableObject {
 
   bottleSplash(){
       this.movingAnimation(this.salsaSplashImgs);
-      this.speedY = 0;
+      this.speedY = 0;     
 }
 
 
 
+}
+
+if (condition) {
+  
+} else {
+  
 }

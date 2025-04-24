@@ -17,8 +17,21 @@ class chicken extends MoveableObject {
     this.width = 80;
     this.life = 10;
     this.x = 200 + Math.random() * 500;
-    this.movingAnimation(this.movingImg);
+    this.chickenMoving(this.movingImg);
     this.movementLeft();
   }
 
+  chickenMoving(movingImg) {
+   let Interval =setInterval(() => {
+      let i = this.currentImg % movingImg.length;
+      this.loadImg(movingImg[i]);
+      this.currentImg++;
+      if (this.dead) {
+        clearInterval(Interval);
+      }
+
+    }, 200);
+  }
+
 }
+

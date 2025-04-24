@@ -41,6 +41,7 @@ class World {
 
   setWorld() {
     this.character.world = this;
+    this.character.keyboard = this.keyboard;
   }
 
   creatObject(object) {
@@ -133,12 +134,13 @@ class World {
 
   collisionEnemy() {
     this.lvl.enemies.forEach((enemy) => {
-      if (this.character.isColliding(enemy) && this.character.life > 0) {
+      if (this.character.isColliding(enemy) && this.character.life > 0 && enemy.life > 0) {
         this.character.hit();
         this.statusBar.setPercentage(this.character.life, this.statusBar.lifeBar);
       }
       if (this.character.landsOntop(enemy)) {
-        enemy.loadImg("img/3_enemies_chicken/chicken_normal/2_dead/dead.png");
+        console.log("landed on enemy");
+        enemy.hit();
       } 
     });
   }
@@ -176,11 +178,12 @@ class World {
   }
 
   collisionThrowable() {
-    setInterval(() => {
+   let throwInterval = setInterval(() => {
       this.lvl.enemies.forEach((enemy) => {
-        this.throwable.forEach((bottle) => {
-          if (bottle.isColliding(enemy)) {
+        this.throwable.forEach((bottle) => {    
+          if(bottle.isColliding(enemy) && enemy.life >= 0) {
             enemy.hit();
+            
             bottle.bottleSplash();
           }
         });

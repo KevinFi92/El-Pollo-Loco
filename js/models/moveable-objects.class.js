@@ -7,27 +7,28 @@ class MoveableObject extends DrawableObject {
   acceleration = 2;
   life = 100;
   currentImg = 0;
+  dead = false;
   constructor(path) {
     super().loadImg(path);
   }
 
   movementLeft() {
-  let movinginterval =  setInterval(() => {
+    let movinginterval = setInterval(() => {
       this.x -= this.speed;
       if (this.life == 0) {
         clearInterval(movinginterval);
       }
     }, 1000 / 60);
-
-
   }
+
+
 
   movingAnimation(movingImg) {
     let movementInterval = setInterval(() => {
       let i = this.currentImg % movingImg.length;
       this.loadImg(movingImg[i]);
       this.currentImg++;
-      if (i == movingImg.length - 1) {
+      if (i == movingImg.length - 1 && !(this instanceof Throwable)) {
         clearInterval(movementInterval);
       }
     }, 50);
@@ -43,11 +44,12 @@ class MoveableObject extends DrawableObject {
   }
 
   isAboveGround() {
-    if (this instanceof Throwable){
+    if (this instanceof Throwable) {
       return true;
-    } else{
-    return this.y < 155;
-  }}
+    } else {
+      return this.y < 155;
+    }
+  }
 
   isOnGround() {
     return this.y === 155;
@@ -64,10 +66,8 @@ class MoveableObject extends DrawableObject {
 
   landsOntop(obj) {
     return (
-      this.y + this.height <= obj.y + 10 && 
-      this.y + this.height >= obj.y && 
-      this.x + this.width > obj.x && 
-      this.x < obj.x + obj.width 
+    this.y + this.height <= obj.y && 
+    this.x == obj.x
     );
   }
 
