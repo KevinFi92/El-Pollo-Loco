@@ -1,4 +1,5 @@
 class World {
+  gameStarted; 
   character = new Character();
   lvl = level_1;
   ctx;
@@ -129,17 +130,17 @@ class World {
       this.collisionSalsas();
       this.collisionCoins();
       this.collisionThrowable();
-  }, 500);
+      this.gameover();
+  }, 100);
   }
 
   collisionEnemy() {
     this.lvl.enemies.forEach((enemy) => {
-      if (this.character.isColliding(enemy) && this.character.life > 0 && enemy.life > 0) {
+      if (this.character.isColliding(enemy) && this.character.life > 0 && enemy.life > 0 && !this.character.isHurt()) {
         this.character.hit();
         this.statusBar.setPercentage(this.character.life, this.statusBar.lifeBar);
       }
-      if (this.character.landsOntop(enemy)) {
-        console.log("landed on enemy");
+      if (this.character.landsOntop(enemy) && enemy.life > 0) {
         enemy.hit();
       } 
     });
@@ -178,17 +179,25 @@ class World {
   }
 
   collisionThrowable() {
-   let throwInterval = setInterval(() => {
+   setInterval(() => {
       this.lvl.enemies.forEach((enemy) => {
-        this.throwable.forEach((bottle) => {    
-          if(bottle.isColliding(enemy) && enemy.life >= 0) {
+        this.throwable.forEach((bottle, i) => {    
+          if(bottle.isColliding(enemy) && enemy.life >= 0 && !enemy.isHurt()) {
             enemy.hit();
-            
             bottle.bottleSplash();
+            setTimeout(() => {
+              this.throwable.splice(i, 1); 
+            }, 100);
           }
         });
     });
-    }, 100);
+    }, 50);0
 }
 
+gameover(){
+  if (this.character.life <= 0) 
+    document.getElementById("gameover").style.display = "block";
+    gameStarted = false;
+  }
 }
+

@@ -87,6 +87,9 @@ class Character extends MoveableObject {
   }
 
   charMovement() {
+    if (gameStarted) {
+      
+    
     setInterval(() => {
       if (this.world.keyboard.right && this.isOnGround() ) {
         this.walkRight();
@@ -106,5 +109,6 @@ class Character extends MoveableObject {
       this.world.camera_x = -this.x + 150;
       this.world.world_x = -this.x;
     }, 50);
+  }
   }
 }

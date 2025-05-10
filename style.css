@@ -13,8 +13,19 @@ body{
     background-size: cover;
 }
 
+h2{
+    font-family: 'durango_western', sans-serif;
+    font-size: 54px;
+}
+
+h3{
+    font-family: 'durango_western', sans-serif;
+    font-size: 36px;
+}
+
 canvas{
     background-color: black;
+    display: none;
 }
 
 @font-face {
@@ -22,4 +33,42 @@ canvas{
     src: url('fonts/durango_western.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
+}
+
+.menu{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    z-index: 50;
+}
+.menu button{
+    font-family: 'durango_western', sans-serif;
+    background-color: rgba(74, 40, 11, 0);
+    color: rgb(74,40,11); 
+    font-size: 32px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    margin: 5px;
+}
+.menu button:hover{
+    color: whitesmoke;
+}
+
+.gameover{
+    height: 480px;
+    width: 720px;
+    position: absolute;
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    z-index: 10; 
+    background-color: rgba(0, 0, 0, 0.486); 
+    color: white;
+    text-align: center;
+    display: none;
+    margin-top: 67px;
 }

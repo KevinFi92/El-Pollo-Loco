@@ -31,7 +31,7 @@ class MoveableObject extends DrawableObject {
       if (i == movingImg.length - 1 && !(this instanceof Throwable)) {
         clearInterval(movementInterval);
       }
-    }, 50);
+    }, 100);
   }
 
   applyGravity() {
@@ -66,8 +66,10 @@ class MoveableObject extends DrawableObject {
 
   landsOntop(obj) {
     return (
-    this.y + this.height <= obj.y && 
-    this.x == obj.x
+      this.y + this.height >= obj.y && // Unterer Rand des Charakters berührt oberen Rand des Gegners
+      this.y + this.height <= obj.y + obj.height / 2 && // Charakter ist im oberen Bereich des Gegners
+      this.x + this.width > obj.x && // Rechter Rand des Charakters ist rechts vom linken Rand des Gegners
+      this.x < obj.x + obj.width // Linker Rand des Charakters ist links vom rechten Rand des Gegners
     );
   }
 

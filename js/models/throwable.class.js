@@ -51,8 +51,3 @@ class Throwable extends MoveableObject {
 
 }
 
-if (condition) {
-  
-} else {
-  
-}

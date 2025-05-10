@@ -28,10 +28,17 @@
     <link rel="icon" href="./img/10_favicon/favicon.ico" type="image/png">
     <title>El Pollo Loco</title>
 </head>
-<body onload="init()">
+<body>
     <h1>El Pollo Loco</h1>
+    <div class="menu" id="ui">
+        <button onclick="init()">start game</button>
+        <button onclick="">impressum</button>
+    </div>
+    <div class="gameover" id="gameover">
+        <h2>game over!</h2>
+        <h3 class="restart" onclick="restartGame()">restart game</h3>
+    </div>
     <canvas id="canvas" height="480" width="720">
-
     </canvas>
     
 </body>

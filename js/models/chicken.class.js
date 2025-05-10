@@ -26,7 +26,7 @@ class chicken extends MoveableObject {
       let i = this.currentImg % movingImg.length;
       this.loadImg(movingImg[i]);
       this.currentImg++;
-      if (this.dead) {
+      if (this.life == 0) {
         clearInterval(Interval);
       }
 
