@@ -31,7 +31,8 @@ class World {
   lastCoin;
   throwable = [];
 
-  constructor(canvas, keyboard) {
+  constructor(canvas, keyboard, gameStarted) {
+    this.gameStarted = gameStarted;
     this.ctx = canvas.getContext("2d");
     this.canvas = canvas;
     this.draw();
@@ -196,8 +197,12 @@ class World {
 
 gameover(){
   if (this.character.life <= 0) 
-    document.getElementById("gameover").style.display = "block";
-    gameStarted = false;
-  }
+    document.getElementById("restart").style.display = "block";
+    this.character.gameStarted = false;
+ }
+
+
+
+
 }
 

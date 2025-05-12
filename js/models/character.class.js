@@ -43,6 +43,7 @@ class Character extends MoveableObject {
   jumpingInterval;
   walking_sounds = new Audio("audio/walking.mp3");
   jumping_sound = new Audio("audio/jump.mp3");
+  gameStarted = true;
 
   constructor() {
     super().loadImg("img/2_character_pepe/2_walk/W-21.png");
@@ -61,24 +62,35 @@ class Character extends MoveableObject {
         this.otherDirection = true;
         this.walking_sounds.play();
       }
+      if (this.life == 0) {
+ this.stopSounds(this.walking_sounds)
+      }
+
     }, 1000 / 60);
   }
 
   walkRight() {
     clearInterval(this.intervalId);
-    this.intervalId = setInterval(() => {
+   this.intervalId = setInterval(() => {
       if (this.world.keyboard.right && this.x < this.world.lvl.level_end_x) {
         this.x += this.speed;
         this.otherDirection = false;
         this.walking_sounds.play();
       }
+      if (this.life == 0) {
+      this.stopSounds(this.walking_sounds)
+      }
+
     }, 1000 / 60);
+    
   }
 
   jump() {
     this.jumping_sound.play();
     this.speedY = 30;
-  }
+    if(this.life == 0) {
+      this.stopSounds(this.jumping_sound)
+  }}
 
   movementAnimation(movement) {
     let i = this.currentImg % movement.length;
@@ -87,19 +99,17 @@ class Character extends MoveableObject {
   }
 
   charMovement() {
-    if (gameStarted) {
-      
-    
+    if (this.gameStarted) {
     setInterval(() => {
-      if (this.world.keyboard.right && this.isOnGround() ) {
+      if (this.world.keyboard.right && this.isOnGround() ) { 
         this.walkRight();
         this.movementAnimation(this.animationImgs);
       }
-      if (this.world.keyboard.left && this.isOnGround() ) {
+      if (this.world.keyboard.left && this.isOnGround() ) {  
         this.walkLeft();
         this.movementAnimation(this.animationImgs);
       }
-      if (this.world.keyboard.up && !this.isAboveGround()) {
+      if (this.world.keyboard.up && !this.isAboveGround()) { 
         this.jump();
         this.movingAnimation(this.jumpingImgs);
       }
@@ -109,6 +119,8 @@ class Character extends MoveableObject {
       this.world.camera_x = -this.x + 150;
       this.world.world_x = -this.x;
     }, 50);
+    
   }
+  
   }
 }

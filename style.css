@@ -72,3 +72,8 @@ canvas{
     display: none;
     margin-top: 67px;
 }
+
+.restart:hover{
+    cursor: pointer;
+    color: rgb(156, 48, 49)
+}

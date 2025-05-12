@@ -9,6 +9,7 @@ function init() {
   startGame();
   canvas = document.getElementById("canvas");
   world = new World(canvas, keyboard, gameStarted);
+  this.world.character.gameStarted = true;
 }
 
 document.addEventListener('keydown', function(event) {
@@ -42,7 +43,7 @@ document.addEventListener('keyup', function(event) {
 });
 
 function startGame() {
-  gameStarted = true;
+  
   document.getElementById("canvas").style.display = "block";
   document.getElementById("ui").style.display = "none";
 }
@@ -52,11 +53,45 @@ function hideCanvas() {
 }
 
 function restartGame() {
-  world = null;
-  document.getElementById("gameover").style.display = "none";
-  canvas = document.getElementById("canvas");
-  world = new World(canvas, keyboard);
   gameStarted = true;
-  world.lvl = null;
-  world.lvl = level_1;
+  console.log(document.getElementById("restart"));
+  document.getElementById("restart").style.visibility = "hidden";
+  console.log(document.getElementById("restart"));
+  world = new World(canvas, keyboard);
+  world.lvl = resetLevel();
+}
+
+function resetLevel() {
+  const enemies = [new chicken(), new chicken(), new Endboss()];
+  const clouds = [new Clouds("img/5_background/layers/4_clouds/1.png"), new Clouds("img/5_background/layers/4_clouds/2.png")];
+  const coins = [new Coin(), new Coin()];
+  const salsa = [new Salsa(), new Salsa()];
+  const firstLayer = [
+    new FirstLayer("img/5_background/layers/1_first_layer/2.png", -719),
+    new FirstLayer("img/5_background/layers/1_first_layer/1.png", 0),
+    new FirstLayer("img/5_background/layers/1_first_layer/2.png", 719),
+    new FirstLayer("img/5_background/layers/1_first_layer/1.png", 719 * 2),
+  ];
+  const secondLayer = [
+    new SecondLayer("img/5_background/layers/2_second_layer/2.png", -719),
+    new SecondLayer("img/5_background/layers/2_second_layer/1.png", 0),
+    new SecondLayer("img/5_background/layers/2_second_layer/2.png", 719),
+    new SecondLayer("img/5_background/layers/2_second_layer/1.png", 719 * 2),
+  ];
+  const thirdLayer = [
+    new ThirdLayer("img/5_background/layers/3_third_layer/2.png", -719),
+    new ThirdLayer("img/5_background/layers/3_third_layer/1.png", 0),
+    new ThirdLayer("img/5_background/layers/3_third_layer/2.png", 719),
+    new ThirdLayer("img/5_background/layers/3_third_layer/1.png", 719 * 2),
+  ];
+  const sky = [
+    new Sky("img/5_background/layers/air.png", -719),
+    new Sky("img/5_background/layers/air.png", 0),
+    new Sky("img/5_background/layers/air.png", 719),
+    new Sky("img/5_background/layers/air.png", 719 * 2),
+  ];
+
+  const level = new Level(enemies, clouds, firstLayer, secondLayer, thirdLayer, sky, coins, salsa);
+  world.lvl = level;
+  return level;
 }

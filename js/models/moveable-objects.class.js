@@ -8,17 +8,21 @@ class MoveableObject extends DrawableObject {
   life = 100;
   currentImg = 0;
   dead = false;
+  world;
   constructor(path) {
     super().loadImg(path);
+
   }
 
   movementLeft() {
     let movinginterval = setInterval(() => {
       this.x -= this.speed;
-      if (this.life == 0) {
+      if (this.life == 0 ) 
+       {
         clearInterval(movinginterval);
       }
     }, 1000 / 60);
+  
   }
 
 
@@ -87,5 +91,10 @@ class MoveableObject extends DrawableObject {
     let timepassed = new Date().getTime() - this.lastHit;
     timepassed = timepassed / 1000;
     return timepassed < 1;
+  }
+
+  stopSounds(sound){
+    sound.pause();
+    sound.currentTime = 0;
   }
 }

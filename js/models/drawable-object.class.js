@@ -6,8 +6,9 @@ class DrawableObject {
   y;
   amount = 0;
   imageCache = {};
-
-  constructor() {}
+  world;
+  constructor() {
+  }
 
   loadImg(path) {
     this.img = new Image();
