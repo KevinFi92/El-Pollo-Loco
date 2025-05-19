@@ -17,14 +17,14 @@ class Endboss extends MoveableObject{
       hurtImgs = [
         "img/4_enemie_boss_chicken/4_hurt/G21.png",
         "img/4_enemie_boss_chicken/4_hurt/G22.png",
-        "img/4_enemie_boss_chicken/4_hurt/G23.png",
-        "img/4_enemie_boss_chicken/1_walk/G2.png"
+        "img/4_enemie_boss_chicken/4_hurt/G23.png"
       ];
+      
       
       constructor(){
         super().loadImg("img/4_enemie_boss_chicken/1_walk/G1.png");
         this.movingAnimation(this.movingImg);
-        this.x = 500;
+        this.x = 1600;
         this.y = 130;
         this.height = 350;
         this.width = 200;

@@ -1,15 +1,16 @@
-let gameStarted = false;
 let canvas;
 let world;
-let character = new Character();
-let keyboard = new Keyboard();
+let character;
+let keyboard;
 
 
 function init() {
   startGame();
   canvas = document.getElementById("canvas");
-  world = new World(canvas, keyboard, gameStarted);
-  this.world.character.gameStarted = true;
+  character = new Character();
+  keyboard = new Keyboard();
+  world = new World(canvas, keyboard, character);
+  
 }
 
 document.addEventListener('keydown', function(event) {
@@ -54,15 +55,14 @@ function hideCanvas() {
 
 function restartGame() {
   gameStarted = true;
-  console.log(document.getElementById("restart"));
   document.getElementById("restart").style.visibility = "hidden";
-  console.log(document.getElementById("restart"));
-  world = new World(canvas, keyboard);
+  character = new Character();
+  world = new World(canvas, keyboard, character);
   world.lvl = resetLevel();
 }
 
 function resetLevel() {
-  const enemies = [new chicken(), new chicken(), new Endboss()];
+  const enemies = [new chicken(), new chicken(), new chicken(), new Chick(), new Chick(), new Chick(), new Endboss()];
   const clouds = [new Clouds("img/5_background/layers/4_clouds/1.png"), new Clouds("img/5_background/layers/4_clouds/2.png")];
   const coins = [new Coin(), new Coin()];
   const salsa = [new Salsa(), new Salsa()];

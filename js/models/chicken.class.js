@@ -29,7 +29,6 @@ class chicken extends MoveableObject {
       if (this.life == 0) {
         clearInterval(Interval);
       }
-
     }, 200);
   }
 

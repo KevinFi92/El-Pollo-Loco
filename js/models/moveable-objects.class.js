@@ -14,6 +14,7 @@ class MoveableObject extends DrawableObject {
 
   }
 
+
   movementLeft() {
     let movinginterval = setInterval(() => {
       this.x -= this.speed;
@@ -26,17 +27,17 @@ class MoveableObject extends DrawableObject {
   }
 
 
-
   movingAnimation(movingImg) {
     let movementInterval = setInterval(() => {
       let i = this.currentImg % movingImg.length;
       this.loadImg(movingImg[i]);
       this.currentImg++;
       if (i == movingImg.length - 1 && !(this instanceof Throwable)) {
-        clearInterval(movementInterval);
+        clearInterval(movementInterval);  
       }
     }, 100);
   }
+
 
   applyGravity() {
     setInterval(() => {
@@ -47,6 +48,7 @@ class MoveableObject extends DrawableObject {
     }, 1000 / 60);
   }
 
+
   isAboveGround() {
     if (this instanceof Throwable) {
       return true;
@@ -55,9 +57,11 @@ class MoveableObject extends DrawableObject {
     }
   }
 
+
   isOnGround() {
     return this.y === 155;
   }
+
 
   isColliding(obj) {
     return (
@@ -68,6 +72,7 @@ class MoveableObject extends DrawableObject {
     );
   }
 
+
   landsOntop(obj) {
     return (
       this.y + this.height >= obj.y && // Unterer Rand des Charakters berührt oberen Rand des Gegners
@@ -76,6 +81,7 @@ class MoveableObject extends DrawableObject {
       this.x < obj.x + obj.width // Linker Rand des Charakters ist links vom rechten Rand des Gegners
     );
   }
+
 
   hit() {
     this.life -= 10;
@@ -87,11 +93,13 @@ class MoveableObject extends DrawableObject {
     }
   }
 
+
   isHurt() {
     let timepassed = new Date().getTime() - this.lastHit;
-    timepassed = timepassed / 1000;
-    return timepassed < 1;
+    timepassed = timepassed / 500;
+    return timepassed < 0.5;
   }
+
 
   stopSounds(sound){
     sound.pause();

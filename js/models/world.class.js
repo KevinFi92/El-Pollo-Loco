@@ -1,12 +1,13 @@
 class World {
-  gameStarted; 
-  character = new Character();
+  character;
+  endboss;
   lvl = level_1;
   ctx;
   canvas;
   keyboard;
   camera_x = 0;
   world_x = 0;
+  gameStarted = false; 
   statusBar = new StatusBar(
     10,
     10,
@@ -31,19 +32,20 @@ class World {
   lastCoin;
   throwable = [];
 
-  constructor(canvas, keyboard, gameStarted) {
-    this.gameStarted = gameStarted;
+  constructor(canvas, keyboard, character) {
     this.ctx = canvas.getContext("2d");
     this.canvas = canvas;
-    this.draw();
+    this.character = character;
     this.keyboard = keyboard;
     this.setWorld();
-    this.run(0);
+    this.draw();
+    this.run();
   }
 
   setWorld() {
     this.character.world = this;
     this.character.keyboard = this.keyboard;
+    this.endboss = this.lvl.enemies.find((e) => e instanceof Endboss);
   }
 
   creatObject(object) {
@@ -125,14 +127,21 @@ class World {
   }
 
   run() {
-    setInterval(() => {            
+    this.gameStarted = true;
+    if(this.gameStarted) {
+   let run = setInterval(() => {            
       this.throwBottle();
       this.collisionEnemy();
       this.collisionSalsas();
       this.collisionCoins();
       this.collisionThrowable();
+      this.winnerWinnerChickenDinner()
       this.gameover();
-  }, 100);
+      if(!this.gameStarted) {
+        clearInterval(run);
+      }
+  }, 50);
+}
   }
 
   collisionEnemy() {
@@ -196,13 +205,22 @@ class World {
 }
 
 gameover(){
-  if (this.character.life <= 0) 
+  if (this.character.life <= 0) {
     document.getElementById("restart").style.display = "block";
-    this.character.gameStarted = false;
+    this.gameStarted = false;
+  }
  }
 
-
-
-
+ winnerWinnerChickenDinner() {
+if(this.endboss.life <= 0) {
+  document.getElementById("restart").style.display = "block";
+  document.getElementById("restart").innerHTML = "";
+  document.getElementById("restart").innerHTML += `
+  <h2>You won!</h2>
+  <h3 class="restart" onclick="restartGame()">restart game</h3>
+  <h3 class="restart" onclick="restartGame()">back to menu</h3>`;
+  this.gameStarted = false;
 }
-
+}
+}
+ 
