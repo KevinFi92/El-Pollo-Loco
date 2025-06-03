@@ -60,7 +60,7 @@ class Character extends MoveableObject {
       if (this.world.keyboard.left && this.x > 0) {
         this.x -= this.speed;
         this.otherDirection = true;
-        this.walking_sounds.play();
+        this.playSounds();
       }
       if (this.life <= 0) {
           this.stopSounds(this.walking_sounds)
@@ -121,6 +121,11 @@ class Character extends MoveableObject {
     }, 50);
   }
   
+  playSounds(){
+    if(this.world.soundOn){
+      this.walking_sounds.play();
+    }
+  }
   
   }
 

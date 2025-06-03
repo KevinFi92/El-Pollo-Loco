@@ -23,6 +23,10 @@ class StatusBar extends DrawableObject {
     "img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/20.png",
     "img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/0.png",
   ];
+  soundIcon = [
+    "img/11_icons/sound_muted.png",
+    "img/11_icons/sound_unmuted.png"
+  ];
 
   percentage = 100;
 
