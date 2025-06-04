@@ -2,7 +2,7 @@ let canvas;
 let world;
 let character;
 let keyboard;
-
+let soundMuted;
 
 function init() {
   startGame();
@@ -10,10 +10,9 @@ function init() {
   character = new Character();
   keyboard = new Keyboard();
   world = new World(canvas, keyboard, character);
-  
 }
 
-document.addEventListener('keydown', function(event) {
+document.addEventListener("keydown", function (event) {
   if (event.code === "ArrowRight") {
     keyboard.right = true;
   }
@@ -28,7 +27,7 @@ document.addEventListener('keydown', function(event) {
   }
 });
 
-document.addEventListener('keyup', function(event) {
+document.addEventListener("keyup", function (event) {
   if (event.code === "ArrowRight") {
     keyboard.right = false;
   }
@@ -44,7 +43,6 @@ document.addEventListener('keyup', function(event) {
 });
 
 function startGame() {
-  
   document.getElementById("canvas").style.display = "block";
   document.getElementById("ui").style.display = "none";
 }
@@ -62,8 +60,19 @@ function restartGame() {
 }
 
 function resetLevel() {
-  const enemies = [new chicken(), new chicken(), new chicken(), new Chick(), new Chick(), new Chick(), new Endboss()];
-  const clouds = [new Clouds("img/5_background/layers/4_clouds/1.png"), new Clouds("img/5_background/layers/4_clouds/2.png")];
+  const enemies = [
+    new chicken(),
+    new chicken(),
+    new chicken(),
+    new Chick(),
+    new Chick(),
+    new Chick(),
+    new Endboss(),
+  ];
+  const clouds = [
+    new Clouds("img/5_background/layers/4_clouds/1.png"),
+    new Clouds("img/5_background/layers/4_clouds/2.png"),
+  ];
   const coins = [new Coin(), new Coin()];
   const salsa = [new Salsa(), new Salsa()];
   const firstLayer = [
@@ -91,7 +100,27 @@ function resetLevel() {
     new Sky("img/5_background/layers/air.png", 719 * 2),
   ];
 
-  const level = new Level(enemies, clouds, firstLayer, secondLayer, thirdLayer, sky, coins, salsa);
+  const level = new Level(
+    enemies,
+    clouds,
+    firstLayer,
+    secondLayer,
+    thirdLayer,
+    sky,
+    coins,
+    salsa
+  );
   world.lvl = level;
   return level;
+}
+
+function muteSound() {
+  let muteBtn = document.getElementById("mute").querySelector("img");
+  if (muteBtn.src.includes("sound_unmuted.png")) {
+    muteBtn.src = "img/11_icons/sound_muted.png";
+    world.soundMuted = true;
+  } else {
+    muteBtn.src = "img/11_icons/sound_unmuted.png";
+    world.soundMuted = false;
+  }
 }

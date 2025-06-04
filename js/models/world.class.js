@@ -8,7 +8,7 @@ class World {
   camera_x = 0;
   world_x = 0;
   gameStarted = false; 
-  soundOn = true;
+  soundMuted;
   statusBar = new StatusBar(
     10,
     10,
@@ -30,22 +30,15 @@ class World {
     200,
     "img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/0.png"
   );
-  soundIcon = new StatusBar(
-    650,
-    30,
-    50,
-    50,
-    "img/11_icons/sound_unmuted.png"
-
-  )
   lastCoin;
   throwable= [];
 
-  constructor(canvas, keyboard, character) {
+  constructor(canvas, keyboard, character, soundMuted) {
     this.ctx = canvas.getContext("2d");
     this.canvas = canvas;
     this.character = character;
     this.keyboard = keyboard;
+    this.soundMuted = soundMuted;
     this.setWorld();
     this.draw();
     this.run();
@@ -103,7 +96,6 @@ class World {
     this.creatObject(this.statusBar);
     this.creatObject(this.coinBar);
     this.creatObject(this.salsaBar);
-    this.creatObject(this.soundIcon);
     this.ctx.translate(this.camera_x, 0);
     this.createObjectsFromArray(this.lvl.enemies);
     this.createObjectsFromArray(this.lvl.clouds);

@@ -60,9 +60,9 @@ class Character extends MoveableObject {
       if (this.world.keyboard.left && this.x > 0) {
         this.x -= this.speed;
         this.otherDirection = true;
-        this.playSounds();
+        this.walking_sounds.play();
       }
-      if (this.life <= 0) {
+      if (this.life == 0 || this.world.soundMuted) {
           this.stopSounds(this.walking_sounds)
       }
 
@@ -75,9 +75,9 @@ class Character extends MoveableObject {
       if (this.world.keyboard.right && this.x < this.world.lvl.level_end_x) {
         this.x += this.speed;
         this.otherDirection = false;
-        this.walking_sounds.play();
+        this.walking_sounds.play(); 
       }
-      if (this.life == 0) {
+      if (this.life == 0 || this.world.soundMuted) {
       this.stopSounds(this.walking_sounds)
       }
 
@@ -88,7 +88,7 @@ class Character extends MoveableObject {
   jump() {
     this.jumping_sound.play();
     this.speedY = 30;
-    if(this.life == 0) {
+    if(this.life == 0 || this.world.soundMuted) {
       this.stopSounds(this.jumping_sound)
   }}
 

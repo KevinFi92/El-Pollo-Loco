@@ -77,3 +77,16 @@ canvas{
     cursor: pointer;
     color: rgb(156, 48, 49)
 }
+
+.mutebtn{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: rgba(74, 40, 11, 0);
+    color: rgb(74,40,11); 
+    font-size: 32px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+}
