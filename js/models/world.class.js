@@ -7,7 +7,8 @@ class World {
   keyboard;
   camera_x = 0;
   world_x = 0;
-  gameStarted = false; 
+  gameStarted = true;
+  music = new Audio("audio/western-theme.wav");
   soundMuted;
   statusBar = new StatusBar(
     10,
@@ -30,8 +31,8 @@ class World {
     200,
     "img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/0.png"
   );
-  lastCoin;
   throwable= [];
+  intervals = [];
 
   constructor(canvas, keyboard, character, soundMuted) {
     this.ctx = canvas.getContext("2d");
@@ -129,7 +130,6 @@ class World {
   }
 
   run() {
-    this.gameStarted = true;
     if(this.gameStarted) {
    let run = setInterval(() => {            
       this.throwBottle();
@@ -139,6 +139,8 @@ class World {
       this.collisionThrowable();
       this.winnerWinnerChickenDinner()
       this.gameover();
+      this.backgroundMusic();
+      this.intervals.push(run);
       if(!this.gameStarted) {
         clearInterval(run);
       }
@@ -208,8 +210,10 @@ class World {
 
 gameover(){
   if (this.character.life <= 0) {
+    this.stopSounds(this.music);
     document.getElementById("restart").style.display = "block";
     this.gameStarted = false;
+
   }
  }
 
@@ -225,7 +229,19 @@ if(this.endboss.life <= 0) {
 }
 }
 
+  backgroundMusic(){
+    if (this.soundMuted) {
+      this.music.pause();
+    } else {
+      this.music.volume = 0.1;
+      this.music.play();
+    }
+  }
 
 
+  stopSounds(sound){
+    sound.pause();
+    sound.currentTime = 0;
+  }
 }
  

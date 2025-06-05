@@ -40,7 +40,6 @@ class Character extends MoveableObject {
   world;
   speed = 5;
   intervalId;
-  jumpingInterval;
   walking_sounds = new Audio("audio/walking.mp3");
   jumping_sound = new Audio("audio/jump.mp3");
   
@@ -63,7 +62,7 @@ class Character extends MoveableObject {
         this.walking_sounds.play();
       }
       if (this.life == 0 || this.world.soundMuted) {
-          this.stopSounds(this.walking_sounds)
+        world.stopSounds(this.walking_sounds);
       }
 
     }, 1000 / 60);
@@ -78,18 +77,18 @@ class Character extends MoveableObject {
         this.walking_sounds.play(); 
       }
       if (this.life == 0 || this.world.soundMuted) {
-      this.stopSounds(this.walking_sounds)
+     world.stopSounds(this.walking_sounds)
       }
 
     }, 1000 / 60);
-    
+
   }
 
   jump() {
     this.jumping_sound.play();
     this.speedY = 30;
     if(this.life == 0 || this.world.soundMuted) {
-      this.stopSounds(this.jumping_sound)
+      world.stopSounds(this.jumping_sound)
   }}
 
   movementAnimation(movement) {
@@ -121,11 +120,7 @@ class Character extends MoveableObject {
     }, 50);
   }
   
-  playSounds(){
-    if(this.world.soundOn){
-      this.walking_sounds.play();
-    }
-  }
+
   
   }
 

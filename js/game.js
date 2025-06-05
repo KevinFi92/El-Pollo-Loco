@@ -2,14 +2,15 @@ let canvas;
 let world;
 let character;
 let keyboard;
-let soundMuted;
+
+
 
 function init() {
-  startGame();
   canvas = document.getElementById("canvas");
   character = new Character();
   keyboard = new Keyboard();
   world = new World(canvas, keyboard, character);
+  startGame();
 }
 
 document.addEventListener("keydown", function (event) {
@@ -45,6 +46,7 @@ document.addEventListener("keyup", function (event) {
 function startGame() {
   document.getElementById("canvas").style.display = "block";
   document.getElementById("ui").style.display = "none";
+
 }
 
 function hideCanvas() {
@@ -52,11 +54,7 @@ function hideCanvas() {
 }
 
 function restartGame() {
-  gameStarted = true;
-  document.getElementById("restart").style.visibility = "hidden";
-  character = new Character();
-  world = new World(canvas, keyboard, character);
-  world.lvl = resetLevel();
+location.reload();
 }
 
 function resetLevel() {
@@ -124,3 +122,5 @@ function muteSound() {
     world.soundMuted = false;
   }
 }
+
+

@@ -101,8 +101,5 @@ class MoveableObject extends DrawableObject {
   }
 
 
-  stopSounds(sound){
-    sound.pause();
-    sound.currentTime = 0;
-  }
+
 }
