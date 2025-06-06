@@ -140,7 +140,7 @@ class World {
                 this.collisionCoins();
                 this.collisionThrowable();
                 this.winnerWinnerChickenDinner()
-                this.gameover();
+                this.gameOver();
                 this.playSound(this.music);
                 this.intervals.push(run);
                 if (!this.gameStarted) {
@@ -212,12 +212,11 @@ class World {
         0
     }
 
-    gameover() {
+    gameOver() {
         if (this.character.life <= 0) {
             this.stopSounds(this.music);
             document.getElementById("restart").style.display = "block";
             this.gameStarted = false;
-
         }
     }
 

@@ -1,6 +1,6 @@
-body{
+body {
     font-family: 'durango_western', sans-serif;
-    color: rgb(74,40,11);
+    color: rgb(74, 40, 11);
     font-size: 36px;
     margin: 0;
     display: flex;
@@ -13,17 +13,18 @@ body{
     background-size: cover;
 }
 
-h2{
+h2 {
     font-family: 'durango_western', sans-serif;
     font-size: 54px;
 }
 
-h3{
+h3 {
     font-family: 'durango_western', sans-serif;
     font-size: 36px;
 }
 
-canvas{
+canvas {
+    position: relative;
     background-color: black;
     display: none;
 }
@@ -35,7 +36,7 @@ canvas{
     font-style: normal;
 }
 
-.menu{
+.menu {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -43,10 +44,11 @@ canvas{
     margin-top: 20px;
     z-index: 50;
 }
-.menu button{
+
+.menu button {
     font-family: 'durango_western', sans-serif;
     background-color: rgba(74, 40, 11, 0);
-    color: rgb(74,40,11); 
+    color: rgb(74, 40, 11);
     font-size: 32px;
     padding: 10px 20px;
     border: none;
@@ -54,39 +56,62 @@ canvas{
     cursor: pointer;
     margin: 5px;
 }
-.menu button:hover{
+
+.menu button:hover {
     color: whitesmoke;
 }
 
-.gameover{
+.gameover {
     height: 480px;
     width: 720px;
     position: absolute;
-    top: 50%; 
-    left: 50%; 
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 10; 
-    background-color: rgba(0, 0, 0, 0.486); 
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.486);
     color: white;
     text-align: center;
     display: none;
     margin-top: 67px;
 }
 
-.restart:hover{
+.restart:hover {
     cursor: pointer;
     color: rgb(156, 48, 49)
 }
 
-.mutebtn{
+.mutebtn {
     position: absolute;
     top: 20px;
     right: 20px;
     background-color: rgba(74, 40, 11, 0);
-    color: rgb(74,40,11); 
+    color: rgb(74, 40, 11);
     font-size: 32px;
     padding: 10px 20px;
     border: none;
     border-radius: 15px;
     cursor: pointer;
+}
+
+@media only screen and (max-width: 720px) {
+    canvas {
+        width: 100%;
+    }
+
+    gameover {
+        width: 100%;
+    }
+
+
+    @media only screen and (max-height: 480px) {
+        canvas {
+            height: 100vh;
+        }
+
+        gameover {
+            height: 100vh;
+        }
+    }
+
 }
