@@ -2,16 +2,22 @@ let canvas;
 let world;
 let character;
 let keyboard;
+let soundMuted = JSON.parse(localStorage.getItem("status"));
 
+function setMuteBtn() {
+    document.getElementById("muteImg").src = localStorage.getItem("src");
+
+}
 
 function init() {
     initLevel();
     canvas = document.getElementById("canvas");
     character = new Character();
     keyboard = new Keyboard();
-    world = new World(canvas, keyboard, character);
+    world = new World(canvas, keyboard, character, soundMuted);
     startGame();
 }
+
 
 document.addEventListener("keydown", function (event) {
     if (event.code === "ArrowRight") {
@@ -28,6 +34,7 @@ document.addEventListener("keydown", function (event) {
     }
 });
 
+
 document.addEventListener("keyup", function (event) {
     if (event.code === "ArrowRight") {
         keyboard.right = false;
@@ -43,15 +50,13 @@ document.addEventListener("keyup", function (event) {
     }
 });
 
+
 function startGame() {
     document.getElementById("canvas").style.display = "block";
     document.getElementById("ui").style.display = "none";
 
 }
 
-function hideCanvas() {
-    document.getElementById("canvas").style.display = "none";
-}
 
 function restartGame() {
     world.stopSounds(world.music);
@@ -60,15 +65,33 @@ function restartGame() {
 }
 
 
+function backToMenu() {
+    window.location.reload();
+}
+
+
 function muteSound() {
     let muteBtn = document.getElementById("mute").querySelector("img");
-    if (muteBtn.src.includes("sound_unmuted.png")) {
+    let muteStatus = localStorage.getItem("src");
+    if (muteStatus === "img/11_icons/sound_unmuted.png") {
         muteBtn.src = "img/11_icons/sound_muted.png";
         world.soundMuted = true;
+        saveInLocalStorage("status", true);
+        saveInLocalStorage("src", "img/11_icons/sound_muted.png");
     } else {
         muteBtn.src = "img/11_icons/sound_unmuted.png";
         world.soundMuted = false;
+        saveInLocalStorage("status", false);
+        saveInLocalStorage("src", "img/11_icons/sound_unmuted.png");
     }
 }
 
+
+function saveInLocalStorage(key, value) {
+    if (value === false || value === true) {
+        localStorage.setItem(key, JSON.stringify(value));
+    } else {
+        localStorage.setItem(key, value);
+    }
+}
 

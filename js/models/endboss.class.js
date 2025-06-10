@@ -19,31 +19,68 @@ class Endboss extends MoveableObject {
         "img/4_enemie_boss_chicken/4_hurt/G22.png",
         "img/4_enemie_boss_chicken/4_hurt/G23.png"
     ];
+    attackImgs = [
+        "img/4_enemie_boss_chicken/3_attack/G13.png",
+        "img/4_enemie_boss_chicken/3_attack/G14.png",
+        "img/4_enemie_boss_chicken/3_attack/G15.png",
+        "img/4_enemie_boss_chicken/3_attack/G16.png",
+        "img/4_enemie_boss_chicken/3_attack/G17.png",
+        "img/4_enemie_boss_chicken/3_attack/G18.png",
+        "img/4_enemie_boss_chicken/3_attack/G19.png",
+        "img/4_enemie_boss_chicken/3_attack/G20.png",
+    ]
     hit_sound = new Audio("audio/boss_hit.mp3");
 
     constructor() {
         super().loadImg("img/4_enemie_boss_chicken/1_walk/G1.png");
-        this.movingAnimation(this.movingImg);
+        this.bossAlert();
+        this.bossHurt(this.hurtImgs);
+        this.bossAttack();
         this.x = 1600;
         this.y = 130;
         this.height = 350;
         this.width = 200;
         this.life = 50;
-        this.bossHurt(this.hurtImgs);
+
     }
 
 
     bossHurt(movingImg) {
-        let i = this.currentImg % movingImg.length;
+        let i;
         let Interval = setInterval(() => {
-
-            this.loadImg(movingImg[i]);
-            this.currentImg++;
-            if (i == movingImg.length - 1 || this.life == 0) {
-                clearInterval(Interval);
+            if (this.isHurt() && this.life > 0) {
+                let i = this.currentImg % movingImg.length;
+                this.loadImg(movingImg[i]);
+                this.currentImg++;
             }
+            if (i == movingImg.length - 1 || this.life == 0) {
 
+                clearInterval(Interval);
+
+            }
         }, 100);
+    }
 
+    bossAlert() {
+        let alert = setInterval(() => {
+            if (world.character.x >= 1100) {
+                this.movingAnimation(this.movingImg);
+                clearInterval(alert);
+            }
+        }, 1000);
+    }
+
+    bossAttack() {
+        let attack = setInterval(() => {
+            if (world.character.x > (this.x - 250) && !this.hadAttacked()) {
+                this.movingAnimation(this.attackImgs);
+                world.character.hit();
+                world.statusBar.setPercentage(world.character.life, world.statusBar.lifeBar);
+                world.playSound(character.hit_sound);
+            }
+            if (world.character.life == 0 || this.life == 0) {
+                clearInterval(attack);
+            }
+        }, 1000)
     }
 }

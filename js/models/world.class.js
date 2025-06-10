@@ -11,7 +11,7 @@ class World {
     music = new Audio("audio/western-theme.wav");
     coinSound = new Audio("audio/coins.wav");
     salsaCollectSound = new Audio("audio/bottle_collect.mp3");
-    soundMuted;
+    soundMuted = Boolean(localStorage.getItem("status"));
     statusBar = new StatusBar(
         10,
         10,
@@ -153,9 +153,10 @@ class World {
 
     collisionEnemy() {
         this.lvl.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy) && this.character.life > 0 && enemy.life > 0 && !this.character.isHurt()) {
+            if (this.character.isColliding(enemy) && this.character.life > 0 && enemy.life > 0 && !this.character.isHurt() && this.character.landsOntop) {
                 this.character.hit();
                 this.statusBar.setPercentage(this.character.life, this.statusBar.lifeBar);
+                this.playSound(character.hit_sound);
             }
             if (this.character.landsOntop(enemy) && enemy.life > 0) {
                 enemy.hit();
@@ -231,7 +232,7 @@ class World {
             document.getElementById("restart").innerHTML += `
   <h2>You won!</h2>
   <h3 class="restart" onclick="restartGame()">restart game</h3>
-  <h3 class="restart" onclick="restartGame()">back to menu</h3>`;
+  <h3 class="restart" onclick="backToMenu()">back to menu</h3>`;
             this.gameStarted = false;
         }
     }

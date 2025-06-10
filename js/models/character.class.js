@@ -57,6 +57,7 @@ class Character extends MoveableObject {
     walking_sounds = new Audio("audio/walking.mp3");
     jumping_sound = new Audio("audio/jump.mp3");
     snoringSound = new Audio("audio/snoring.mp3");
+    hit_sound = new Audio("audio/pepe_hit.mp3");
 
 
     constructor() {
@@ -134,16 +135,16 @@ class Character extends MoveableObject {
             if (time >= 5) {
                 this.movementAnimation(this.idleImgs);
                 world.playSound(this.snoringSound);
-                time = 0;
             }
-            if (this.isOnGround()) {}
-            if (world.keyboard.right || world.keyboard.left || world.keyboard.up) {
+            if (world.keyboard.right || world.keyboard.left || world.keyboard.up || world.keyboard.space) {
                 clearInterval(idle);
                 this.setIdleTimer();
                 world.stopSounds(this.snoringSound)
-                            }
+            }
+            if(!world.gameStarted){
+                clearInterval(idle);
+            }
         }, 100);
-
     }
 }
 

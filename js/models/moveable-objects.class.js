@@ -7,7 +7,6 @@ class MoveableObject extends DrawableObject {
     acceleration = 2;
     life = 100;
     currentImg = 0;
-    dead = false;
     world;
 
     constructor(path) {
@@ -17,7 +16,7 @@ class MoveableObject extends DrawableObject {
 
 
     chickenMoving(movingImg) {
-        let Interval =setInterval(() => {
+        let Interval = setInterval(() => {
             let i = this.currentImg % movingImg.length;
             this.loadImg(movingImg[i]);
             this.currentImg++;
@@ -28,6 +27,7 @@ class MoveableObject extends DrawableObject {
 
         }, 200);
     }
+
 
     movementLeft() {
         let movinginterval = setInterval(() => {
@@ -48,7 +48,7 @@ class MoveableObject extends DrawableObject {
             if (i == movingImg.length - 1 && !(this instanceof Throwable)) {
                 clearInterval(movementInterval);
             }
-        }, 100);
+        }, 50);
     }
 
 
@@ -90,14 +90,14 @@ class MoveableObject extends DrawableObject {
         return (
             this.y + this.height >= obj.y && // Unterer Rand des Charakters berührt oberen Rand des Gegners
             this.y + this.height <= obj.y + obj.height / 2 && // Charakter ist im oberen Bereich des Gegners
-            this.x + this.width -50 > obj.x && // Rechter Rand des Charakters ist rechts vom linken Rand des Gegners
+            this.x + this.width - 50 > obj.x && // Rechter Rand des Charakters ist rechts vom linken Rand des Gegners
             this.x < obj.x + obj.width // Linker Rand des Charakters ist links vom rechten Rand des Gegners
         );
     }
 
 
     hit() {
-        this.life -= 10;
+        this.life -= 20;
         if (this.life <= 0) {
             this.life = 0;
             this.movingAnimation(this.deathImgs);
@@ -109,8 +109,15 @@ class MoveableObject extends DrawableObject {
 
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit;
-        timepassed = timepassed / 500;
-        return timepassed < 0.5;
+        timepassed = timepassed / 1000;
+        return timepassed < 1.0;
+    }
+
+
+    hadAttacked() {
+        let timepassed = new Date().getTime() - this.lastHit;
+        timepassed = timepassed / 2000;
+        return timepassed < 2.0;
     }
 
 

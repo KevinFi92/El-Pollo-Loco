@@ -29,9 +29,9 @@
     <link rel="icon" href="./img/10_favicon/favicon.ico" type="image/png">
     <title>El Pollo Loco</title>
 </head>
-<body>
+<body onload="setMuteBtn()">
 <h1>El Pollo Loco</h1>
-<button onclick="muteSound()" id="mute" class="mutebtn"><img src="img/11_icons/sound_unmuted.png" alt=""></button>
+<button onclick="muteSound()" id="mute" class="mutebtn"><img id="muteImg" src="img/11_icons/sound_unmuted.png" alt=""></button>
 <div class="menu" id="ui">
     <button onclick="init()">start game</button>
     <button onclick="">impressum</button>
