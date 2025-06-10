@@ -159,6 +159,7 @@ class World {
             }
             if (this.character.landsOntop(enemy) && enemy.life > 0) {
                 enemy.hit();
+                this.playSound(enemy.hit_sound);
             }
         });
     }
@@ -203,6 +204,7 @@ class World {
                 this.throwable.forEach((bottle, i) => {
                     if (bottle.isColliding(enemy) && enemy.life >= 0 && !enemy.isHurt()) {
                         enemy.hit();
+                        this.playSound(enemy.hit_sound);
                         bottle.bottleSplash();
                         setTimeout(() => {
                             this.throwable.splice(i, 1);
