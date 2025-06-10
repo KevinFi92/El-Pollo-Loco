@@ -16,6 +16,19 @@ class MoveableObject extends DrawableObject {
     }
 
 
+    chickenMoving(movingImg) {
+        let Interval =setInterval(() => {
+            let i = this.currentImg % movingImg.length;
+            this.loadImg(movingImg[i]);
+            this.currentImg++;
+            if (this.life == 0) {
+                clearInterval(Interval);
+                this.loadImg(this.deathImgs)
+            }
+
+        }, 200);
+    }
+
     movementLeft() {
         let movinginterval = setInterval(() => {
             this.x -= this.speed;
@@ -77,7 +90,7 @@ class MoveableObject extends DrawableObject {
         return (
             this.y + this.height >= obj.y && // Unterer Rand des Charakters berührt oberen Rand des Gegners
             this.y + this.height <= obj.y + obj.height / 2 && // Charakter ist im oberen Bereich des Gegners
-            this.x + this.width > obj.x && // Rechter Rand des Charakters ist rechts vom linken Rand des Gegners
+            this.x + this.width -50 > obj.x && // Rechter Rand des Charakters ist rechts vom linken Rand des Gegners
             this.x < obj.x + obj.width // Linker Rand des Charakters ist links vom rechten Rand des Gegners
         );
     }

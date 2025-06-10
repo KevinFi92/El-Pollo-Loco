@@ -10,6 +10,7 @@ class World {
     gameStarted = true;
     music = new Audio("audio/western-theme.wav");
     coinSound = new Audio("audio/coins.wav");
+    salsaCollectSound = new Audio("audio/bottle_collect.mp3");
     soundMuted;
     statusBar = new StatusBar(
         10,
@@ -179,6 +180,7 @@ class World {
                 this.salsaBar.collect();
                 this.lvl.salsa[i].collected = true;
                 this.salsaBar.setPercentage(this.salsaBar.amount, this.salsaBar.salsaBar);
+                this.playSound(this.salsaCollectSound);
             }
         });
     }

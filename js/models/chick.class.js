@@ -21,17 +21,7 @@ class Chick extends MoveableObject {
     this.movementLeft();
   }
 
-  chickenMoving(movingImg) {
-   let Interval =setInterval(() => {
-      let i = this.currentImg % movingImg.length;
-      this.loadImg(movingImg[i]);
-      this.currentImg++;
-      if (this.life == 0) {
-        clearInterval(Interval);
-      }
 
-    }, 200);
-  }
 
 }
 

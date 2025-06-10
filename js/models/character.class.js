@@ -56,6 +56,7 @@ class Character extends MoveableObject {
     intervalId;
     walking_sounds = new Audio("audio/walking.mp3");
     jumping_sound = new Audio("audio/jump.mp3");
+    snoringSound = new Audio("audio/snoring.mp3");
 
 
     constructor() {
@@ -132,11 +133,15 @@ class Character extends MoveableObject {
             time += 0.1;
             if (time >= 5) {
                 this.movementAnimation(this.idleImgs);
+                world.playSound(this.snoringSound);
+                time = 0;
             }
+            if (this.isOnGround()) {}
             if (world.keyboard.right || world.keyboard.left || world.keyboard.up) {
                 clearInterval(idle);
                 this.setIdleTimer();
-            }
+                world.stopSounds(this.snoringSound)
+                            }
         }, 100);
 
     }
