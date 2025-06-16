@@ -80,7 +80,7 @@ class MoveableObject extends DrawableObject {
         return (
             this.x < obj.x + obj.width &&
             this.x + this.width > obj.x &&
-            this.y < obj.y + obj.height &&
+            this.y < obj.y + obj.height  &&
             this.y + this.height > obj.y
         );
     }

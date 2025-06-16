@@ -31,17 +31,29 @@
 </head>
 <body onload="setMuteBtn()">
 <h1>El Pollo Loco</h1>
-<button onclick="muteSound()" id="mute" class="mutebtn"><img id="muteImg" src="img/11_icons/sound_unmuted.png" alt=""></button>
+<button onclick="muteSound()" id="mute" class="mutebtn"><img id="muteImg" src="img/11_icons/sound_unmuted.png" alt="">
+</button>
 <div class="menu" id="ui">
     <button onclick="init()">start game</button>
     <button onclick="">impressum</button>
 </div>
 <div class="gameover" id="restart">
-    <h2>game over!</h2>
-    <h3 class="restart" onclick="restartGame()">restart game</h3>
+    <div class="restart">
+        <button onclick="restartGame()">try again</button>
+        <button id="backBtn" onclick="backToMenu()">back to menu</button>
+    </div>
 </div>
 <canvas id="canvas" height="480" width="720">
 </canvas>
+<div class="controls" id="controls">
+    <button class="button up" data-dir="up"><img src="img/12_controlls/up_arrow.png" alt=""></button>
+    <button class="button space" data-dir="space"><img src="img/12_controlls/semicircle_right_arrow.png" alt="">
+    </button>
+    <button class="button left" data-dir="left"><img src="img/12_controlls/left_arrow.png" alt=""></button>
+    <button class="button right" data-dir="right"><img src="img/12_controlls/right_arrow.png" alt=""></button>
+</div>
 
 </body>
 </html>
+
+

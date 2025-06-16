@@ -4,9 +4,14 @@ let character;
 let keyboard;
 let soundMuted = JSON.parse(localStorage.getItem("status"));
 
-function setMuteBtn() {
-    document.getElementById("muteImg").src = localStorage.getItem("src");
 
+function setMuteBtn() {
+    let muteIcon = document.getElementById("muteImg");
+    if (soundMuted) {
+        muteIcon.src = localStorage.getItem("src");
+    }else{
+        muteIcon.src = "img/11_icons/sound_unmuted.png";
+    }
 }
 
 function init() {
@@ -17,6 +22,39 @@ function init() {
     world = new World(canvas, keyboard, character, soundMuted);
     startGame();
 }
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.controls .button');
+    buttons.forEach(btn => {
+        btn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            const dir = btn.dataset.dir;
+            if (dir) {
+                keyboard[dir] = true;
+            }
+        });
+        btn.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            const dir = btn.dataset.dir;
+            if (dir) {
+                keyboard[dir] = false;
+            }
+        });
+        btn.addEventListener('mousedown', (e) => {
+            const dir = btn.dataset.dir;
+            if (dir) {
+                keyboard[dir] = true;
+            }
+        });
+        btn.addEventListener('mouseup', (e) => {
+            const dir = btn.dataset.dir;
+            if (dir) {
+                keyboard[dir] = false;
+            }
+        });
+    });
+});
 
 
 document.addEventListener("keydown", function (event) {
@@ -94,4 +132,3 @@ function saveInLocalStorage(key, value) {
         localStorage.setItem(key, value);
     }
 }
-

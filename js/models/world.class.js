@@ -11,6 +11,8 @@ class World {
     music = new Audio("audio/western-theme.wav");
     coinSound = new Audio("audio/coins.wav");
     salsaCollectSound = new Audio("audio/bottle_collect.mp3");
+    gameOverSound = new Audio("audio/game_over.mp3");
+    youWinSound = new Audio("audio/you_won.mp3");
     soundMuted = Boolean(localStorage.getItem("status"));
     statusBar = new StatusBar(
         10,
@@ -151,9 +153,10 @@ class World {
         }
     }
 
+    /* TODO: Character sollte keinen schaden bekommen bei landsOnTop */
     collisionEnemy() {
         this.lvl.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy) && this.character.life > 0 && enemy.life > 0 && !this.character.isHurt() && this.character.landsOntop) {
+            if (this.character.isColliding(enemy) && this.character.life > 0 && enemy.life > 0 && !this.character.isHurt() && !this.character.landsOntop) {
                 this.character.hit();
                 this.statusBar.setPercentage(this.character.life, this.statusBar.lifeBar);
                 this.playSound(character.hit_sound);
@@ -219,21 +222,27 @@ class World {
 
     gameOver() {
         if (this.character.life <= 0) {
+            this.playSound(this.gameOverSound);
             this.stopSounds(this.music);
             document.getElementById("restart").style.display = "block";
             this.gameStarted = false;
         }
     }
 
+
     winnerWinnerChickenDinner() {
         if (this.endboss.life <= 0) {
+            this.playSound(this.youWinSound)
+            this.gameStarted = false;
+            document.getElementById("restart").style.backgroundImage = "url(img/9_intro_outro_screens/win/won_2.png)";
             document.getElementById("restart").style.display = "block";
             document.getElementById("restart").innerHTML = "";
             document.getElementById("restart").innerHTML += `
-  <h2>You won!</h2>
-  <h3 class="restart" onclick="restartGame()">restart game</h3>
-  <h3 class="restart" onclick="backToMenu()">back to menu</h3>`;
-            this.gameStarted = false;
+<div class="restart">
+  <button  id="restartBtn" onclick="restartGame()">restart game</button>
+  <button  id="backBtn" onclick="backToMenu()">back to menu</button>
+</div>`;
+
         }
     }
 

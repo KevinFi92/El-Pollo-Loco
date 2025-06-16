@@ -1,4 +1,9 @@
 body {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
     font-family: 'durango_western', sans-serif;
     color: rgb(74, 40, 11);
     font-size: 36px;
@@ -10,17 +15,21 @@ body {
     background-image: url('./img/0_html_background/cactus.png');
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100%;
+    bottom: 0;
 }
 
 h2 {
     font-family: 'durango_western', sans-serif;
     font-size: 54px;
+    margin: 0;
 }
 
 h3 {
     font-family: 'durango_western', sans-serif;
     font-size: 36px;
+    margin: 0;
+    margin-top: 25px;
 }
 
 canvas {
@@ -62,6 +71,10 @@ canvas {
 }
 
 .gameover {
+    background-image: url('img/9_intro_outro_screens/game_over/game over.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
     height: 480px;
     width: 720px;
     position: absolute;
@@ -73,12 +86,33 @@ canvas {
     color: white;
     text-align: center;
     display: none;
-    margin-top: 67px;
+    margin-top: 109px;
 }
 
-.restart:hover {
+.restart{
+    color: rgb(255, 202, 0);
+    margin-top: 365px;
+}
+
+.restart button{
+    background-color: transparent;
+    color: white;
+    font-size: 32px;
+    font-family: 'durango_western', sans-serif;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 15px;
+}
+
+.restart button:hover {
     cursor: pointer;
     color: rgb(156, 48, 49)
+}
+
+.wonImg {
+    margin-top: 50px;
+    height: 64px;
+    width: 680px;
 }
 
 .mutebtn {
@@ -94,12 +128,68 @@ canvas {
     cursor: pointer;
 }
 
+.controls {
+    position: relative;
+    width: 720px;
+    height: 100px;
+    display: block;
+}
+
+.controls button:hover {
+    cursor: pointer;
+}
+
+.controls img {
+    width: 60px;
+    height: 60px;
+}
+
+.button {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background-color: rgb(218, 151, 93);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    user-select: none;
+    border-radius: 10px;
+}
+
+
+.up {
+    top: 0;
+    left: 660px;
+}
+
+.left {
+    top: 0;
+    left: 0;
+}
+
+.right {
+    top: 0;
+    right: 600px;
+}
+
+.space {
+    top: 0;
+    left: 600px;
+}
+
+
+.button:active {
+    background-color: rgb(125, 38, 56);
+}
+
 @media only screen and (max-width: 720px) {
     canvas {
         width: 100%;
     }
 
-    gameover {
+    .gameover {
         width: 100%;
     }
 
@@ -109,9 +199,13 @@ canvas {
             height: 100vh;
         }
 
-        gameover {
+        .gameover {
             height: 100vh;
         }
     }
 
 }
+
+/* TODO: responsive design */
+/* TODO: add impressum + steuerungs anleitung  */
+/* TODO: komplette Doku  */
