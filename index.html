@@ -29,31 +29,36 @@
     <link rel="icon" href="./img/10_favicon/favicon.ico" type="image/png">
     <title>El Pollo Loco</title>
 </head>
-<body onload="setMuteBtn()">
+<body class="mainpage" onload="setMuteBtn()">
 <h1>El Pollo Loco</h1>
 <button onclick="muteSound()" id="mute" class="mutebtn"><img id="muteImg" src="img/11_icons/sound_unmuted.png" alt="">
 </button>
 <div class="menu" id="ui">
     <button onclick="init()">start game</button>
-    <button onclick="">impressum</button>
+    <a href="impressum.html">
+        <button>impressum</button>
+    </a>
 </div>
-<div class="game-container">
-<div class="gameover" id="restart">
-    <div class="restart">
-        <button onclick="restartGame()">try again</button>
-        <button id="backBtn" onclick="backToMenu()">back to menu</button>
+<div class="gamecontainer">
+    <div class="gameover" id="restart">
+        <div class="restart">
+            <button onclick="restartGame()">try again</button>
+            <button id="backBtn" onclick="backToMenu()">back to menu</button>
+        </div>
     </div>
-</div>
-
-<canvas id="canvas" height="480" width="720">
-</canvas>
+    <canvas id="canvas" height="480" width="720">
+    </canvas>
 </div>
 <div class="controls" id="controls">
-    <button class="button up" data-dir="up"><img src="img/12_controlls/up_arrow.png" alt=""></button>
-    <button class="button space" data-dir="space"><img src="img/12_controlls/semicircle_right_arrow.png" alt="">
-    </button>
-    <button class="button left" data-dir="left"><img src="img/12_controlls/left_arrow.png" alt=""></button>
-    <button class="button right" data-dir="right"><img src="img/12_controlls/right_arrow.png" alt=""></button>
+    <div class="controler">
+        <button class="button up" data-dir="up"><img src="img/12_controlls/up_arrow.png" alt=""></button>
+        <button class="button space" data-dir="space"><img src="img/12_controlls/semicircle_right_arrow.png" alt="">
+        </button>
+    </div>
+    <div class="controler">
+        <button class="button left" data-dir="left"><img src="img/12_controlls/left_arrow.png" alt=""></button>
+        <button class="button right" data-dir="right"><img src="img/12_controlls/right_arrow.png" alt=""></button>
+    </div>
 </div>
 
 </body>

@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.addEventListener('touchstart', (e) => {
             e.preventDefault();
             const dir = btn.dataset.dir;
-            if (dir) {
+            if (dir && world.gameStarted) {
                 keyboard[dir] = true;
             }
         });
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         btn.addEventListener('mousedown', (e) => {
             const dir = btn.dataset.dir;
-            if (dir) {
+            if (dir && world.gameStarted) {
                 keyboard[dir] = true;
             }
         });
@@ -58,16 +58,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 document.addEventListener("keydown", function (event) {
-    if (event.code === "ArrowRight") {
+    if (event.code === "ArrowRight" && world.gameStarted) {
         keyboard.right = true;
     }
-    if (event.code === "ArrowLeft") {
+    if (event.code === "ArrowLeft" && world.gameStarted) {
         keyboard.left = true;
     }
-    if (event.code === "ArrowUp") {
+    if (event.code === "ArrowUp" && world.gameStarted) {
         keyboard.up = true;
     }
-    if (event.code === "Space") {
+    if (event.code === "Space" && world.gameStarted) {
         keyboard.space = true;
     }
 });
@@ -132,3 +132,4 @@ function saveInLocalStorage(key, value) {
         localStorage.setItem(key, value);
     }
 }
+

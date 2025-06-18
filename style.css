@@ -1,4 +1,4 @@
-body {
+.mainpage {
     height: 100vh;
     width: 100vw;
     margin: 0;
@@ -7,7 +7,6 @@ body {
     font-family: 'durango_western', sans-serif;
     color: rgb(74, 40, 11);
     font-size: 36px;
-    margin: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -19,6 +18,12 @@ body {
 
 }
 
+.impressum {
+    font-size: 16px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
 h2 {
     font-family: 'durango_western', sans-serif;
     font-size: 54px;
@@ -28,8 +33,13 @@ h2 {
 h3 {
     font-family: 'durango_western', sans-serif;
     font-size: 36px;
-    margin: 0;
     margin-top: 25px;
+}
+
+h4{
+    font-size: 24px;
+    margin-top: 50px;
+    margin-bottom: 20px;
 }
 
 canvas {
@@ -71,7 +81,6 @@ canvas {
 }
 
 
-
 .gameover {
     background-image: url('img/9_intro_outro_screens/game_over/game over.png');
     background-repeat: no-repeat;
@@ -83,20 +92,20 @@ canvas {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 10;
+    z-index: 80;
     background-color: rgba(0, 0, 0, 0.486);
     color: white;
     text-align: center;
     display: none;
-    margin-top: 109px;
+    margin-top: 159px;
 }
 
-.restart{
+.restart {
     color: rgb(255, 202, 0);
     margin-top: 365px;
 }
 
-.restart button{
+.restart button {
     background-color: transparent;
     color: white;
     font-size: 32px;
@@ -128,13 +137,17 @@ canvas {
     border: none;
     border-radius: 15px;
     cursor: pointer;
+    z-index: 50;
 }
 
 .controls {
     position: relative;
+    display: none;
+    flex-direction: row;
+    justify-content: space-between;
     width: 720px;
     height: 100px;
-    display: block;
+    z-index: 50;
 }
 
 .controls button:hover {
@@ -146,8 +159,12 @@ canvas {
     height: 60px;
 }
 
+.controler{
+    display: flex;
+    flex-direction: row;
+}
+
 .button {
-    position: absolute;
     width: 60px;
     height: 60px;
     background-color: rgb(218, 151, 93);
@@ -161,25 +178,6 @@ canvas {
 }
 
 
-.up {
-    top: 0;
-    left: 660px;
-}
-
-.left {
-    top: 0;
-    left: 0;
-}
-
-.right {
-    top: 0;
-    right: 600px;
-}
-
-.space {
-    top: 0;
-    left: 600px;
-}
 
 
 .button:active {
@@ -195,19 +193,43 @@ canvas {
         width: 100%;
     }
 
+    .controls{
+        width: 100%;
+    }
+
 
     @media only screen and (max-height: 480px) {
         canvas {
             height: 100vh;
         }
 
-        .gameover {
-            height: 100vh;
-        }
     }
+
+    @media (max-width: 730px){
+        h1{
+            display: none;
+        }
+        .gameover {
+            margin-top: -50px;
+        }
+
+    }
+
+    @media (max-width: 720px){
+
+        .gameover {
+            margin-top: -50px;
+        }
+        .controls{
+            display: flex;
+        }
+
+    }
+
+
 
 }
 
-/* TODO: responsive design */
-/* TODO: add impressum + steuerungs anleitung  */
+/* TODO: responsive design: steuerungstasten über das canvas, overlay an canvas größe anpassen */
+/* TODO: Steuerungsanleitung  */
 /* TODO: komplette Doku  */

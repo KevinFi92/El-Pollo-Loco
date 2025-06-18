@@ -156,7 +156,7 @@ class World {
     /* TODO: Character sollte keinen schaden bekommen bei landsOnTop */
     collisionEnemy() {
         this.lvl.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy) && this.character.life > 0 && enemy.life > 0 && !this.character.isHurt() && !this.character.landsOntop) {
+            if (this.character.isColliding(enemy) && this.character.life > 0 && enemy.life > 0 && !this.character.isHurt()) {
                 this.character.hit();
                 this.statusBar.setPercentage(this.character.life, this.statusBar.lifeBar);
                 this.playSound(character.hit_sound);
