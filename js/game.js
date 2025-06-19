@@ -133,3 +133,12 @@ function saveInLocalStorage(key, value) {
     }
 }
 
+function toggleControls() {
+    let controls = document.getElementById("controlsInfo");
+    if (controls.style.display === "none") {
+        controls.style.display = "flex";
+    }else {
+        controls.style.display = "none";
+    }
+}
+

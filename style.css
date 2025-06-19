@@ -9,7 +9,6 @@
     font-size: 36px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     background-image: url('./img/0_html_background/cactus.png');
     background-position: center;
@@ -24,6 +23,23 @@
     padding-right: 50px;
 }
 
+.impressumBtn {
+    position: absolute;
+    bottom: 20px;
+    text-decoration: none;
+    font-family: 'durango_western', sans-serif;
+    color: white;
+    font-size: 16px;
+}
+
+.impressumBtn:hover {
+    cursor: pointer;
+}
+
+.impressumBtn:active {
+    color: rgb(125, 38, 56);
+}
+
 h2 {
     font-family: 'durango_western', sans-serif;
     font-size: 54px;
@@ -36,14 +52,17 @@ h3 {
     margin-top: 25px;
 }
 
-h4{
+h4 {
     font-size: 24px;
     margin-top: 50px;
     margin-bottom: 20px;
 }
 
 canvas {
-    position: relative;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     background-color: black;
     display: none;
 }
@@ -58,7 +77,7 @@ canvas {
 .menu {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     margin-top: 20px;
     z-index: 50;
@@ -80,6 +99,14 @@ canvas {
     color: whitesmoke;
 }
 
+.menu button:active {
+    color: rgb(125, 38, 56);
+}
+
+.menuBtn {
+    display: flex;
+    flex-direction: column;
+}
 
 .gameover {
     background-image: url('img/9_intro_outro_screens/game_over/game over.png');
@@ -97,7 +124,7 @@ canvas {
     color: white;
     text-align: center;
     display: none;
-    margin-top: 159px;
+
 }
 
 .restart {
@@ -141,13 +168,20 @@ canvas {
 }
 
 .controls {
-    position: relative;
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: none;
     flex-direction: row;
     justify-content: space-between;
     width: 720px;
-    height: 100px;
+    height: auto;
     z-index: 50;
+}
+
+.controls button{
+
 }
 
 .controls button:hover {
@@ -159,7 +193,7 @@ canvas {
     height: 60px;
 }
 
-.controler{
+.controler {
     display: flex;
     flex-direction: row;
 }
@@ -167,7 +201,7 @@ canvas {
 .button {
     width: 60px;
     height: 60px;
-    background-color: rgb(218, 151, 93);
+    background-color: rgba(218, 151, 93, 0);
     color: white;
     display: flex;
     justify-content: center;
@@ -178,10 +212,28 @@ canvas {
 }
 
 
-
-
 .button:active {
     background-color: rgb(125, 38, 56);
+}
+
+.controlsInfo {
+    display: none;
+    flex-direction: column;
+    font-size: 16px;
+    color: white;
+
+}
+
+.controlsInfo img {
+    width: 60px;
+    height: 60px;
+}
+
+.ctrl {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
 @media only screen and (max-width: 720px) {
@@ -189,11 +241,12 @@ canvas {
         width: 100%;
     }
 
-    .gameover {
+    .gameover{
         width: 100%;
     }
 
-    .controls{
+
+    .controls {
         width: 100%;
     }
 
@@ -205,27 +258,27 @@ canvas {
 
     }
 
-    @media (max-width: 730px){
-        h1{
+    @media (max-width: 730px) {
+        h1 {
             display: none;
-        }
-        .gameover {
-            margin-top: -50px;
         }
 
     }
 
-    @media (max-width: 720px){
+    @media (max-width: 720px) {
 
-        .gameover {
-            margin-top: -50px;
-        }
-        .controls{
+        .controls {
             display: flex;
         }
 
-    }
+        .mainpage{
+            justify-content: center;
+        }
 
+        canvas{
+            position: relative;
+        }
+    }
 
 
 }

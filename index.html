@@ -34,11 +34,25 @@
 <button onclick="muteSound()" id="mute" class="mutebtn"><img id="muteImg" src="img/11_icons/sound_unmuted.png" alt="">
 </button>
 <div class="menu" id="ui">
-    <button onclick="init()">start game</button>
-    <a href="impressum.html">
-        <button>impressum</button>
-    </a>
+
+    <div class="menuBtn">
+
+        <button onclick="init()">start game</button>
+        <button onclick="toggleControls()">controls</button>
+
+    </div>
+    <div class="controlsInfo" id="controlsInfo">
+        <div class="ctrl">
+            <p>walk left</p> <img src="img/12_controlls/left_arrow.png">
+        <img src="img/12_controlls/right_arrow.png"><p>walk right</p>
+        </div>
+        <div class="ctrl">
+            <p>throw</p> <img src="img/12_controlls/semicircle_right_arrow.png">
+        <img src="img/12_controlls/up_arrow.png"><p>jump</p>
+    </div>
+    </div>
 </div>
+<a class="impressumBtn" href="impressum.html">Impressum</a>
 <div class="gamecontainer">
     <div class="gameover" id="restart">
         <div class="restart">
