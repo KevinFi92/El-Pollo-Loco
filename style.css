@@ -66,6 +66,7 @@ canvas {
     transform: translate(-50%, -50%);
     background-color: black;
     display: none;
+    z-index: 60;
 }
 
 @font-face {
@@ -75,13 +76,14 @@ canvas {
     font-style: normal;
 }
 
+
 .menu {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     margin-top: 20px;
-    z-index: 50;
+    z-index: 80;
 }
 
 .menu button {
@@ -155,6 +157,7 @@ canvas {
 }
 
 .mutebtn {
+    display: none;
     position: absolute;
     top: 20px;
     right: 20px;
@@ -178,7 +181,7 @@ canvas {
     justify-content: space-between;
     width: 720px;
     height: auto;
-    z-index: 50;
+    z-index: 70;
 }
 
 .controls button {
@@ -237,16 +240,29 @@ canvas {
     justify-content: center;
 }
 
-@media screen and (max-width: 896px) {
+.closeOnMobile {
+    display: none;
+    color: white !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    font-size: 16px !important;
+    height: 50px !important;
+    width: 50px !important;
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+
+
+}
+
+@media screen and (max-width: 896px) and (max-height: 768px) {
     .controls {
         display: flex;
         top: 90%;
         width: 100%;
     }
 
-    h1 {
-        display: none;
-    }
 
     canvas {
         width: 100vw;
@@ -269,6 +285,28 @@ canvas {
         font-size: 28px;
     }
 }
+
+@media screen and (max-width: 896px) and (max-height: 426px) {
+    h1 {
+        display: none;
+    }
+
+    .controlsInfo {
+        position: absolute;
+        padding: 30px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(0, 0, 0, 0.34);
+        border-radius: 10px;
+        z-index: 50;
+    }
+
+    .closeOnMobile {
+        display: block;
+    }
+}
+
 
 @media screen and (max-width: 768px) {
     .controls {

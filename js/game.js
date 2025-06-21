@@ -91,7 +91,9 @@ document.addEventListener("keyup", function (event) {
 
 function startGame() {
     document.getElementById("canvas").style.display = "block";
+    document.getElementById("mute").style.display = "block";
     document.getElementById("ui").style.display = "none";
+    document.getElementById("headLine").style.display = "none";
 
 }
 
