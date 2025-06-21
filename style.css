@@ -18,7 +18,7 @@
 }
 
 .impressum {
-    font-size: 16px;
+    font-size: 24px;
     padding-left: 50px;
     padding-right: 50px;
 }
@@ -40,6 +40,23 @@
     color: rgb(125, 38, 56);
 }
 
+.back{
+    font-family: 'durango_western', sans-serif;
+    font-size: 24px;
+    color: rgb(125, 38, 56);
+    text-decoration: none;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: rgba(74, 40, 11, 0);
+    border: none;
+
+}
+
+.back:hover {
+    color: rgb(156, 48, 49);
+    cursor: pointer;
+}
 
 h2 {
     font-family: 'durango_western', sans-serif;

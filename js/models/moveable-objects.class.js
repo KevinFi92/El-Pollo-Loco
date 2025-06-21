@@ -14,7 +14,7 @@ class MoveableObject extends DrawableObject {
 
     }
 
-
+    /** Funktion bewegungsanimation */
     chickenMoving(movingImg) {
         let Interval = setInterval(() => {
             let i = this.currentImg % movingImg.length;
@@ -28,7 +28,7 @@ class MoveableObject extends DrawableObject {
         }, 200);
     }
 
-
+    /** Funktion setzt die Bewegungsgeschwindigkeit von Gegnern und Wolken */
     movementLeft() {
         let movinginterval = setInterval(() => {
             this.x -= this.speed;
@@ -39,7 +39,7 @@ class MoveableObject extends DrawableObject {
 
     }
 
-
+    /** Funktion für Animationen, stoppt automatisch, sobald die Animation einmal durchgelaufen ist */
     movingAnimation(movingImg) {
         let movementInterval = setInterval(() => {
             let i = this.currentImg % movingImg.length;
@@ -51,7 +51,7 @@ class MoveableObject extends DrawableObject {
         }, 50);
     }
 
-
+    /** Fügt dem Charakter und throwables Gravität hinzu */
     applyGravity() {
         setInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
@@ -61,7 +61,7 @@ class MoveableObject extends DrawableObject {
         }, 1000 / 60);
     }
 
-
+    /** Funktion prüft ob sich ein Objekt über dem Boden befindet */
     isAboveGround() {
         if (this instanceof Throwable) {
             return true;
@@ -70,12 +70,12 @@ class MoveableObject extends DrawableObject {
         }
     }
 
-
+    /** Funktion prüft ob sich ein Objekt auf dem Boden befindet */
     isOnGround() {
         return this.y === 155;
     }
 
-
+    /** Funktion prüft ob zwei Objekte miteinander kollidieren  */
     isColliding(obj) {
         return (
             this.x < obj.x + obj.width &&
@@ -85,7 +85,7 @@ class MoveableObject extends DrawableObject {
         );
     }
 
-
+    /** Funktion prüft ob der Charakter auf einem Gegner landet  */
     landsOntop(obj) {
         return (
             this.y + this.height >= obj.y && // Unterer Rand des Charakters berührt oberen Rand des Gegners
@@ -95,7 +95,7 @@ class MoveableObject extends DrawableObject {
         );
     }
 
-
+    /** Funktion fügt Schaden zu und prüft ober der Charakter/Gegner noch lebt, wenn nein wird die Todesanimation aufgerufen  */
     hit() {
         this.life -= 20;
         if (this.life <= 0) {
@@ -106,14 +106,14 @@ class MoveableObject extends DrawableObject {
         }
     }
 
-
+    /** Setzt einen Timer wenn der Charakter getroffen wird, um zu häufige Treffer zu vermeiden  */
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit;
         timepassed = timepassed / 1000;
         return timepassed < 1.0;
     }
 
-
+    /** Setzt einen Timer wenn der Charakter angegriffen hat, um zu häufige Angriffe zu vermeiden  */
     hadAttacked() {
         let timepassed = new Date().getTime() - this.lastHit;
         timepassed = timepassed / 2000;

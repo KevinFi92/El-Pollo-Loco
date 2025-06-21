@@ -14,6 +14,7 @@ class Coin extends DrawableObject {
     this.y = 80 + Math.random() * 300;
   }
 
+  /** Funktion lässt die Coins in der Welt, durch eine Animation, pulsieren*/
   pulsation() {
     setInterval(() => {
       let i = this.currentImg % this.coinImgs.length;
@@ -23,5 +24,4 @@ class Coin extends DrawableObject {
   }
 }  
 
-// Idee: für jeden Background der geladen wird wir auch ein neues chicken,
-// coin etc erstellt!
+

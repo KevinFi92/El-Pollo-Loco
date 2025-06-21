@@ -4,7 +4,7 @@ let character;
 let keyboard;
 let soundMuted = JSON.parse(localStorage.getItem("status"));
 
-
+/** Diese Funktion lädt den Status des MuteButtons aus dem Localstorage, wenn nicht vorhanden wird der Unmuted gesetzt */
 function setMuteBtn() {
     let muteIcon = document.getElementById("muteImg");
     if (soundMuted) {
@@ -14,6 +14,7 @@ function setMuteBtn() {
     }
 }
 
+/**Die Init Funktion führt alle wichtigen Funktionen zum Start des Spiels aus */
 function init() {
     initLevel();
     canvas = document.getElementById("canvas");
@@ -23,7 +24,7 @@ function init() {
     startGame();
 }
 
-
+/**Eventlistener für die Touch-Steuerung */
 document.addEventListener('DOMContentLoaded', () => {
     const buttons = document.querySelectorAll('.controls .button');
     buttons.forEach(btn => {
@@ -56,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-
+/**Eventlistener für die Tastatur-Steuerung */
 document.addEventListener("keydown", function (event) {
     if (event.code === "ArrowRight" && world.gameStarted) {
         keyboard.right = true;
@@ -72,7 +73,7 @@ document.addEventListener("keydown", function (event) {
     }
 });
 
-
+/**Eventlistener für die Tastatur-Steuerung */
 document.addEventListener("keyup", function (event) {
     if (event.code === "ArrowRight") {
         keyboard.right = false;
@@ -88,7 +89,7 @@ document.addEventListener("keyup", function (event) {
     }
 });
 
-
+/**Blendet das Startmenü aus und das Canvas ein */
 function startGame() {
     document.getElementById("canvas").style.display = "block";
     document.getElementById("mute").style.display = "block";
@@ -97,19 +98,19 @@ function startGame() {
 
 }
 
-
+/**Die Welt wird zurückgesetzt */
 function restartGame() {
     world.stopSounds(world.music);
     document.getElementById("restart").style.display = "none";
     init();
 }
 
-
+/**Nach Spielende wieder zurück ins Hauptmenü*/
 function backToMenu() {
     window.location.reload();
 }
 
-
+/**Sound wird ein bzw. aus geschaltet */
 function muteSound() {
     let muteBtn = document.getElementById("mute").querySelector("img");
     let muteStatus = localStorage.getItem("src");
@@ -126,7 +127,7 @@ function muteSound() {
     }
 }
 
-
+/**Funktion speichert ein key/value paar in den Localstorage. In diesem Fall den Pfad zum Mutebtn Bild und ob das Spiel gemuted ist oder nicht*/
 function saveInLocalStorage(key, value) {
     if (value === false || value === true) {
         localStorage.setItem(key, JSON.stringify(value));
@@ -135,6 +136,7 @@ function saveInLocalStorage(key, value) {
     }
 }
 
+/**Blendet im Hauptmenü die Erkärung der Steuerung ein bzw. aus*/
 function toggleControls() {
     let controls = document.getElementById("controlsInfo");
     if (controls.style.display === "none") {
@@ -142,5 +144,10 @@ function toggleControls() {
     }else {
         controls.style.display = "none";
     }
+}
+
+/**Zurück zum Hauptmenü aus dem Impressum */
+function backToMainPage(){
+    window.location.href = "index.html";
 }
 

@@ -15,6 +15,7 @@ class DrawableObject {
     this.img.src = path;
   }
 
+  /** Funktion erhöht einen Zähler, durch den die Statusbars aktualisiert werden */
   collect() {
     this.amount += 20;
     if (this.amount === 100) {

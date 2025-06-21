@@ -44,7 +44,7 @@ class Endboss extends MoveableObject {
 
     }
 
-
+    /** Funktion spielt eine Animation ab, wenn der Boss Schaden nimmt. Aber nur wenn eine bestimmte Zeit zwischen den Treffern vergangen ist */
     bossHurt(movingImg) {
         let i;
         let Interval = setInterval(() => {
@@ -61,6 +61,7 @@ class Endboss extends MoveableObject {
         }, 100);
     }
 
+    /** Funktion um Animationen dazustellen. Animation wird abgespielt, wenn der Character nah genug am Boss ost */
     bossAlert() {
         let alert = setInterval(() => {
             if (world.character.x >= 1100) {
@@ -70,6 +71,7 @@ class Endboss extends MoveableObject {
         }, 1000);
     }
 
+    /** Funktion Boss attakiert den Charakter sobald der sich nähert */
     bossAttack() {
         let attack = setInterval(() => {
             if (world.character.x > (this.x - 250) && !this.hadAttacked()) {

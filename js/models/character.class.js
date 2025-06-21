@@ -47,9 +47,6 @@ class Character extends MoveableObject {
         "img/2_character_pepe/1_idle/long_idle/I-20.png",
 
     ]
-
-    currentTimer = 0;
-
     currentImg = 0;
     world;
     speed = 5;
@@ -69,7 +66,7 @@ class Character extends MoveableObject {
         this.charMovement();
         this.setIdleTimer();
     }
-
+    /**Charakter läuft nach links. Bewegungssounds und Animationen werden abgespielt und der Charakter in die richtige Richtung gedreht */
     walkLeft() {
         clearInterval(this.intervalId);
         this.intervalId = setInterval(() => {
@@ -81,6 +78,7 @@ class Character extends MoveableObject {
         }, 1000 / 60);
     }
 
+    /**Charakter läuft nach rechts. Bewegungssounds und Animationen werden abgespielt und der Charakter in die richtige Richtung gedreht */
     walkRight() {
         clearInterval(this.intervalId);
         this.intervalId = setInterval(() => {
@@ -93,17 +91,20 @@ class Character extends MoveableObject {
 
     }
 
+    /**Charakter spring. Bewegungssounds und Animationen werden abgespielt */
     jump() {
         world.playSound(this.jumping_sound);
         this.speedY = 30;
     }
 
+    /** Funktion um Animationen dazustellen */
     movementAnimation(movement) {
         let i = this.currentImg % movement.length;
         this.loadImg(movement[i]);
         this.currentImg++;
     }
 
+    /** Funktion führt Charakterbewegungen aus, je nachdem welche Taste gedrückt wird */
     charMovement() {
 
         setInterval(() => {
@@ -127,7 +128,7 @@ class Character extends MoveableObject {
         }, 50);
     }
 
-
+    /** Funktion setzt einen Timer auf Null jedes Mal, wenn der Charakter sich bewegt, nach 10sek ohne Bewegung wird die IDle Animation ausgeführt */
     setIdleTimer() {
         let time = 0;
         let idle = setInterval(() => {

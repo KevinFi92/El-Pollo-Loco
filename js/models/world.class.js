@@ -55,6 +55,7 @@ class World {
         this.endboss = this.lvl.enemies.find((e) => e instanceof Endboss);
     }
 
+    /** erstellt einzelne Objekte und weist Koordinaten zu  */
     creatObject(object) {
         if (object.otherDirection) {
             this.mirrowImg(object);
@@ -66,27 +67,21 @@ class World {
             object.width,
             object.height
         );
-        this.drawRectangles(
-            object.x,
-            object.y,
-            object.width,
-            object.height,
-            object
-        );
         if (object.otherDirection) {
             this.mirrowReset(object);
         }
     }
 
+    /** erstellt mehrere Objekte und weist Koordinaten zu  */
     createObjectsFromArray(objects) {
         objects.forEach((o) => {
             if (!o.collected) {
                 this.ctx.drawImage(o.img, o.x, o.y, o.width, o.height);
-                this.drawRectangles(o.x, o.y, o.width, o.height, o);
             }
         });
     }
 
+    /** Alle Objekte in der Welt werden erstellt*/
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.translate(this.camera_x, 0);
@@ -112,6 +107,7 @@ class World {
         });
     }
 
+    /** Bild des Charakters wird gespiegelt, wenn er die Bewegungsrichtung von rechts nach links ändert  */
     mirrowImg(object) {
         this.ctx.save();
         this.ctx.translate(object.width, 0);
@@ -119,21 +115,13 @@ class World {
         object.x = object.x * -1;
     }
 
+    /** Bild des Charakters wird gespiegelt, wenn er die Bewegungsrichtung von links nach rechts ändert  */
     mirrowReset(object) {
         object.x = object.x * -1;
         this.ctx.restore();
     }
 
-    drawRectangles(x, y, width, height, o) {
-        if (o instanceof Character || o instanceof chicken) {
-            this.ctx.beginPath();
-            this.ctx.lineWidth = "5";
-            this.ctx.strokeStyle = "blue";
-            this.ctx.rect(x, y, width, height);
-            this.ctx.stroke();
-        }
-    }
-
+    /** Interval der wichtige Funktionen immer wieder aufruft  */
     run() {
         if (this.gameStarted) {
             let run = setInterval(() => {
@@ -153,7 +141,7 @@ class World {
         }
     }
 
-    /* TODO: Character sollte keinen schaden bekommen bei landsOnTop */
+    /** Collisionsabfrage mit Gegnern  */
     collisionEnemy() {
         this.lvl.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy) && this.character.life > 0 && enemy.life > 0 && !this.character.isHurt()) {
@@ -168,6 +156,7 @@ class World {
         });
     }
 
+    /** Collisionsabfrage mit Objecten die gesammelt werden  */
     collisionCoins() {
         this.lvl.coin.forEach((coin, i) => {
             if (this.character.isColliding(coin) && !this.lvl.coin[i].collected) {
@@ -179,6 +168,7 @@ class World {
         });
     }
 
+    /** Collisionsabfrage mit Objecten die gesammelt werden  */
     collisionSalsas() {
         this.lvl.salsa.forEach((salsa, i) => {
             if (this.character.isColliding(salsa) && !this.lvl.salsa[i].collected) {
@@ -190,7 +180,7 @@ class World {
         });
     }
 
-
+    /** Collisionsabfrage mit Objecten die gesammelt werden  */
     throwBottle() {
         if (this.keyboard.space && this.salsaBar.amount > 0) {
             this.throwable = [];
@@ -202,6 +192,7 @@ class World {
 
     }
 
+    /** Collisionsabfrage für die geworfene Flasche  */
     collisionThrowable() {
         setInterval(() => {
             this.lvl.enemies.forEach((enemy) => {
@@ -217,9 +208,10 @@ class World {
                 });
             });
         }, 50);
-        0
+
     }
 
+    /** Öffnet das GameOver overlay und spielt Sound ab*/
     gameOver() {
         if (this.character.life <= 0) {
             this.playSound(this.gameOverSound);
@@ -229,7 +221,7 @@ class World {
         }
     }
 
-
+    /** Öffnet das winner overlay und spielt Sound ab*/
     winnerWinnerChickenDinner() {
         if (this.endboss.life <= 0) {
             this.playSound(this.youWinSound)
@@ -246,6 +238,7 @@ class World {
         }
     }
 
+    /** spielt Sound ab*/
     playSound(sound) {
         if (this.soundMuted || !this.gameStarted) {
             sound.pause();
@@ -255,7 +248,7 @@ class World {
         }
     }
 
-
+    /** Stoppt das Abspielen von sounds*/
     stopSounds(sound) {
         sound.pause();
         sound.currentTime = 0;
