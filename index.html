@@ -30,6 +30,9 @@
     <title>El Pollo Loco</title>
 </head>
 <body class="mainpage" onload="setMuteBtn()">
+<div class="rotate-device-warning">
+    <p><b>Mobile users:</b> For the best experience, please hold your device in the landscape orientation.</p>
+</div>
 <h1>El Pollo Loco</h1>
 <button onclick="muteSound()" id="mute" class="mutebtn"><img id="muteImg" src="img/11_icons/sound_unmuted.png" alt="">
 </button>
@@ -53,7 +56,7 @@
     </div>
 </div>
 <a class="impressumBtn" href="impressum.html">Impressum</a>
-<div class="gamecontainer">
+
     <div class="gameover" id="restart">
         <div class="restart">
             <button onclick="restartGame()">try again</button>
@@ -62,7 +65,7 @@
     </div>
     <canvas id="canvas" height="480" width="720">
     </canvas>
-</div>
+
 <div class="controls" id="controls">
     <div class="controler">
         <button class="button up" data-dir="up"><img src="img/12_controlls/up_arrow.png" alt=""></button>

@@ -40,6 +40,7 @@
     color: rgb(125, 38, 56);
 }
 
+
 h2 {
     font-family: 'durango_western', sans-serif;
     font-size: 54px;
@@ -180,7 +181,7 @@ canvas {
     z-index: 50;
 }
 
-.controls button{
+.controls button {
 
 }
 
@@ -236,20 +237,94 @@ canvas {
     justify-content: center;
 }
 
+@media screen and (max-width: 896px) {
+    .controls {
+        display: flex;
+        top: 90%;
+        width: 100%;
+    }
+
+    h1 {
+        display: none;
+    }
+
+    canvas {
+        width: 100vw;
+        height: 100vh;
+    }
+
+    .gameover {
+        width: 100vw;
+        height: 100vh;
+    }
+
+    .restart {
+        position: absolute;
+        top: 75%;
+        left: 30%;
+        margin-top: 0;
+    }
+
+    .restart button {
+        font-size: 28px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .controls {
+        display: flex;
+        top: 75%;
+    }
+
+    h1 {
+        display: none;
+    }
+
+    .gameover {
+        width: 100%;
+    }
+
+    .restart {
+        position: absolute;
+        top: 93%;
+    }
+
+}
+
+@media screen and (orientation: landscape) {
+    .rotate-device-warning {
+        display: none;
+    }
+}
+
+@media screen and (orientation: portrait) {
+    .rotate-device-warning {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        background-color: lightyellow;
+        padding: 10px;
+        border: 2px solid red;
+        z-index: 99;
+    }
+}
+
 @media only screen and (max-width: 720px) {
     canvas {
         width: 100%;
     }
 
-    .gameover{
+    .gameover {
         width: 100%;
     }
-
 
     .controls {
         width: 100%;
     }
-
 
     @media only screen and (max-height: 480px) {
         canvas {
@@ -257,32 +332,7 @@ canvas {
         }
 
     }
-
-    @media (max-width: 730px) {
-        h1 {
-            display: none;
-        }
-
-    }
-
-    @media (max-width: 720px) {
-
-        .controls {
-            display: flex;
-        }
-
-        .mainpage{
-            justify-content: center;
-        }
-
-        canvas{
-            position: relative;
-        }
-    }
-
-
 }
 
 /* TODO: responsive design: steuerungstasten über das canvas, overlay an canvas größe anpassen */
-/* TODO: Steuerungsanleitung  */
 /* TODO: komplette Doku  */
