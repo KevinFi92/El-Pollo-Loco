@@ -15,8 +15,6 @@ class Throwable extends MoveableObject {
   ];
   salsaSplashSound = new Audio("audio/bottle_splash.mp3");
 
-
-
   constructor(x, y) {
     super().loadImg("img/6_salsa_bottle/salsa_bottle.png");
     this.x = x;

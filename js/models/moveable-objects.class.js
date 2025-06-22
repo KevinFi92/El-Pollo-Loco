@@ -11,7 +11,6 @@ class MoveableObject extends DrawableObject {
 
     constructor(path) {
         super().loadImg(path);
-
     }
 
     /** Funktion bewegungsanimation */
@@ -119,6 +118,4 @@ class MoveableObject extends DrawableObject {
         timepassed = timepassed / 2000;
         return timepassed < 2.0;
     }
-
-
 }

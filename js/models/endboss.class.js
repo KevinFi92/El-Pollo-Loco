@@ -41,7 +41,6 @@ class Endboss extends MoveableObject {
         this.height = 350;
         this.width = 200;
         this.life = 50;
-
     }
 
     /** Funktion spielt eine Animation ab, wenn der Boss Schaden nimmt. Aber nur wenn eine bestimmte Zeit zwischen den Treffern vergangen ist */

@@ -9,7 +9,7 @@ class DrawableObject {
   world;
   constructor() {
   }
-
+/** Erstellt ein neues Bild und üer gebt mit "path" die source des Bildes */
   loadImg(path) {
     this.img = new Image();
     this.img.src = path;
