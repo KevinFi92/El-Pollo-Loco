@@ -1,5 +1,11 @@
 class Endboss extends MoveableObject {
     movingImg = [
+        "img/4_enemie_boss_chicken/1_walk/G1.png",
+        "img/4_enemie_boss_chicken/1_walk/G2.png",
+        "img/4_enemie_boss_chicken/1_walk/G3.png",
+        "img/4_enemie_boss_chicken/1_walk/G4.png"
+    ];
+    alertImgs = [
         "img/4_enemie_boss_chicken/2_alert/G5.png",
         "img/4_enemie_boss_chicken/2_alert/G6.png",
         "img/4_enemie_boss_chicken/2_alert/G7.png",
@@ -8,7 +14,7 @@ class Endboss extends MoveableObject {
         "img/4_enemie_boss_chicken/2_alert/G10.png",
         "img/4_enemie_boss_chicken/2_alert/G11.png",
         "img/4_enemie_boss_chicken/2_alert/G12.png",
-    ];
+    ]
     deathImgs = [
         "img/4_enemie_boss_chicken/5_dead/G24.png",
         "img/4_enemie_boss_chicken/5_dead/G25.png",
@@ -28,7 +34,8 @@ class Endboss extends MoveableObject {
         "img/4_enemie_boss_chicken/3_attack/G18.png",
         "img/4_enemie_boss_chicken/3_attack/G19.png",
         "img/4_enemie_boss_chicken/3_attack/G20.png",
-    ]
+    ];
+    speed = 0.5;
     hit_sound = new Audio("audio/boss_hit.mp3");
 
     /**Weist dem Endboss alle nötigen Eigenschaften, wie Startposition, Größe und Lebenspunkte, zu.
@@ -64,7 +71,8 @@ class Endboss extends MoveableObject {
     bossAlert() {
         let alert = setInterval(() => {
             if (world.character.x >= 1100) {
-                this.movingAnimation(this.movingImg);
+                this.movingAnimation(this.alertImgs);
+                this.bossStartMoving();
                 clearInterval(alert);
             }
         }, 1000);
@@ -83,5 +91,11 @@ class Endboss extends MoveableObject {
                 clearInterval(attack);
             }
         }, 1000)
+    }
+
+    /** Startet die Vorwärtsbewegung und die Animation des BossChicken */
+    bossStartMoving(){
+        this.chickenMoving(this.movingImg);
+        this.movementLeft();
     }
 }
