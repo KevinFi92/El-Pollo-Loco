@@ -95,6 +95,9 @@ function startGame() {
     document.getElementById("mute").style.display = "block";
     document.getElementById("ui").style.display = "none";
     document.getElementById("headLine").style.display = "none";
+    if (isTouchDevice()) {
+        document.getElementById("controls").style.display = "flex";
+    }
 }
 
 /**Die Welt wird zurückgesetzt */
@@ -148,5 +151,12 @@ function toggleControls() {
 /**Zurück zum Hauptmenü aus dem Impressum */
 function backToMainPage(){
     window.location.href = "index.html";
+}
+
+/**Abfrage ob ein Gerät Touchscreen hat */
+function isTouchDevice() {
+    return (('ontouchstart' in window) ||
+        (navigator.maxTouchPoints > 0) ||
+        (navigator.msMaxTouchPoints > 0));
 }
 

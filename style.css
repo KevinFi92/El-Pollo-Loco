@@ -14,7 +14,6 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-
 }
 
 .impressum {
@@ -50,7 +49,6 @@
     right: 20px;
     background-color: rgba(74, 40, 11, 0);
     border: none;
-
 }
 
 .back:hover {
@@ -92,7 +90,6 @@ canvas {
     font-weight: normal;
     font-style: normal;
 }
-
 
 .menu {
     display: flex;
@@ -144,7 +141,6 @@ canvas {
     color: white;
     text-align: center;
     display: none;
-
 }
 
 .restart {
@@ -232,7 +228,6 @@ canvas {
     border-radius: 10px;
 }
 
-
 .button:active {
     background-color: rgb(125, 38, 56);
 }
@@ -242,7 +237,6 @@ canvas {
     flex-direction: column;
     font-size: 16px;
     color: white;
-
 }
 
 .controlsInfo img {
@@ -269,17 +263,13 @@ canvas {
     top: 0;
     right: 0;
     cursor: pointer;
-
-
 }
 
 @media screen and (max-width: 896px) and (max-height: 768px) {
     .controls {
-        display: flex;
         top: 90%;
         width: 100%;
     }
-
 
     canvas {
         width: 100vw;
@@ -327,7 +317,6 @@ canvas {
 
 @media screen and (max-width: 768px) {
     .controls {
-        display: flex;
         top: 75%;
     }
 
@@ -343,7 +332,6 @@ canvas {
         position: absolute;
         top: 93%;
     }
-
 }
 
 @media screen and (orientation: landscape) {
@@ -385,9 +373,5 @@ canvas {
         canvas {
             height: 100vh;
         }
-
     }
 }
-
-/* TODO: responsive design: steuerungstasten über das canvas, overlay an canvas größe anpassen */
-/* TODO: komplette Doku  */

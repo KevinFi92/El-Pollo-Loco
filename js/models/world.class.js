@@ -93,9 +93,9 @@ class World {
         this.drawCollectables()
         this.creatObject(this.character);
         this.ctx.translate(-this.camera_x, 0);
+        this.drawStatusbars();
         this.ctx.translate(this.camera_x, 0);
         this.createObjectsFromArray(this.lvl.enemies);
-        this.drawStatusbars();
         this.ctx.translate(-this.camera_x, 0);
         self = this;
         requestAnimationFrame(function () {
