@@ -141,10 +141,20 @@ function saveInLocalStorage(key, value) {
 /**Blendet im Hauptmenü die Erkärung der Steuerung ein bzw. aus*/
 function toggleControls() {
     let controls = document.getElementById("controlsInfo");
+    switchControlInfo();
     if (controls.style.display === "none") {
         controls.style.display = "flex";
     }else {
         controls.style.display = "none";
+    }
+}
+/**Passt die Steuerungserklärung zwischen Mobile und Desktop an */
+function switchControlInfo(){
+    let throwBtn = document.getElementById("throwImg");
+    if(isTouchDevice()){
+        throwBtn.src = "img/12_controlls/semicircle_right_arrow.png"
+    }else{
+        throwBtn.src = "img/12_controlls/spacebar.png";
     }
 }
 

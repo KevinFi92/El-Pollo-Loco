@@ -1,7 +1,6 @@
 class MoveableObject extends DrawableObject {
     x = 50;
     y = 360;
-    offsetY;
     otherDirection = false;
     speedY = 0;
     acceleration = 2;
@@ -78,9 +77,9 @@ class MoveableObject extends DrawableObject {
     isColliding(obj) {
         return (
             this.x < obj.x + obj.width &&
-            this.x + this.width > obj.x &&
+            this.x + this.width -50 > obj.x &&
             this.y < obj.y + obj.height  &&
-            this.y + this.height > obj.y
+            this.y  + this.height > obj.y
         );
     }
 
@@ -89,7 +88,7 @@ class MoveableObject extends DrawableObject {
         return (
             this.y + this.height >= obj.y && // Unterer Rand des Charakters berührt oberen Rand des Gegners
             this.y + this.height <= obj.y + obj.height / 2 && // Charakter ist im oberen Bereich des Gegners
-            this.x + this.width - 50 > obj.x && // Rechter Rand des Charakters ist rechts vom linken Rand des Gegners
+            this.x + this.width - 60 > obj.x && // Rechter Rand des Charakters ist rechts vom linken Rand des Gegners
             this.x < obj.x + obj.width // Linker Rand des Charakters ist links vom rechten Rand des Gegners
         );
     }
