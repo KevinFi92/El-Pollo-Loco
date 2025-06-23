@@ -5,10 +5,12 @@ class DrawableObject {
   x;
   y;
   amount = 0;
-  imageCache = {};
   world;
+
+  /** Setzt die wichtigsten Parameter, die alle Gegenstände in der Welt benötigen */
   constructor() {
   }
+
 /** Erstellt ein neues Bild und üer gebt mit "path" die source des Bildes */
   loadImg(path) {
     this.img = new Image();

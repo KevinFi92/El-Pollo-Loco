@@ -31,6 +31,8 @@ class Endboss extends MoveableObject {
     ]
     hit_sound = new Audio("audio/boss_hit.mp3");
 
+    /**Weist dem Endboss alle nötigen Eigenschaften, wie Startposition, Größe und Lebenspunkte, zu.
+     Und setzt fest, ab wann der Boss beginnt sich zu bewegen und anzugreifen */
     constructor() {
         super().loadImg("img/4_enemie_boss_chicken/1_walk/G1.png");
         this.bossAlert();
@@ -53,9 +55,7 @@ class Endboss extends MoveableObject {
                 this.currentImg++;
             }
             if (i == movingImg.length - 1 || this.life == 0) {
-
                 clearInterval(Interval);
-
             }
         }, 100);
     }
@@ -70,7 +70,7 @@ class Endboss extends MoveableObject {
         }, 1000);
     }
 
-    /** Funktion Boss attakiert den Charakter sobald der sich nähert */
+    /** Funktion Boss attackiert den Charakter, sobald der sich nähert */
     bossAttack() {
         let attack = setInterval(() => {
             if (world.character.x > (this.x - 250) && !this.hadAttacked()) {

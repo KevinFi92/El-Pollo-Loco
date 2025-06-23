@@ -10,6 +10,7 @@ class chicken extends MoveableObject {
   ];
   hit_sound = new Audio("audio/chicken_hit.mp3");
 
+  /**Weist den Hühnern ihre Bewegungsgeschwindigkeit und die Startposition zu, sowie Größe, Breite und Lebenspunkte */
   constructor() {
     super().loadImg("img/3_enemies_chicken/chicken_normal/1_walk/1_w.png");
     this.height = 100;

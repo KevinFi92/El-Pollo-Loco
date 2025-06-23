@@ -6,6 +6,7 @@ class Coin extends DrawableObject {
     coinImgs = ["img/8_coin/coin_1.png", "img/8_coin/coin_2.png"];
     collected = false;
 
+    /**Erstellt die Coins an einer zufälligen Position und lässt sie pulsieren */
     constructor() {
         super().loadImg("img/8_coin/coin_1.png");
         this.pulsation();

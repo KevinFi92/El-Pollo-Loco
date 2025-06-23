@@ -38,6 +38,7 @@ class World {
     throwable = [];
     intervals = [];
 
+/**Hier werden alle Elemente (Klassen) der Klasse "World" zugeordnet und in das Canvas "gemahlt".*/
     constructor(canvas, keyboard, character, soundMuted) {
         this.ctx = canvas.getContext("2d");
         this.canvas = canvas;
@@ -49,6 +50,9 @@ class World {
         this.run();
     }
 
+/**Die Funktion verknüpft den Charakter mit der "World" und dem "Keyboard"
+ und durchsucht das Array "enemies" nach einem Gegner, der eine Instanz der Klasse endboss ist, und weist diesen
+ der Welt zu*/
     setWorld() {
         this.character.world = this;
         this.character.keyboard = this.keyboard;
@@ -72,7 +76,7 @@ class World {
         }
     }
 
-    /** erstellt mehrere Objekte und weist Koordinaten zu  */
+    /** erstellt mehrere Objekte aus einem Array und weist Koordinaten, Bilder und Größe zu  */
     createObjectsFromArray(objects) {
         objects.forEach((o) => {
             if (!o.collected) {
@@ -85,26 +89,41 @@ class World {
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.translate(this.camera_x, 0);
-        this.createObjectsFromArray(this.lvl.sky);
-        this.createObjectsFromArray(this.lvl.thirdlayer);
-        this.createObjectsFromArray(this.lvl.secondlayer);
-        this.createObjectsFromArray(this.lvl.firstlayer);
-        this.createObjectsFromArray(this.lvl.coin);
-        this.createObjectsFromArray(this.lvl.salsa);
-        this.createObjectsFromArray(this.throwable);
+        this.drawBackground()
+        this.drawCollectables()
         this.creatObject(this.character);
         this.ctx.translate(-this.camera_x, 0);
-        this.creatObject(this.statusBar);
-        this.creatObject(this.coinBar);
-        this.creatObject(this.salsaBar);
         this.ctx.translate(this.camera_x, 0);
         this.createObjectsFromArray(this.lvl.enemies);
-        this.createObjectsFromArray(this.lvl.clouds);
+        this.drawStatusbars();
         this.ctx.translate(-this.camera_x, 0);
         self = this;
         requestAnimationFrame(function () {
             self.draw();
         });
+    }
+
+    /**Fast die Draw methode für den Hintergrund zusammen */
+    drawBackground() {
+        this.createObjectsFromArray(this.lvl.sky);
+        this.createObjectsFromArray(this.lvl.thirdlayer);
+        this.createObjectsFromArray(this.lvl.secondlayer);
+        this.createObjectsFromArray(this.lvl.firstlayer);
+        this.createObjectsFromArray(this.lvl.clouds);
+    }
+
+    /**Fast die Draw methode für die Statusbars zusammen */
+    drawStatusbars() {
+        this.creatObject(this.statusBar);
+        this.creatObject(this.coinBar);
+        this.creatObject(this.salsaBar);
+    }
+
+    /**Fast die Draw methode für die sammelbaren Gegenstände zusammen */
+    drawCollectables() {
+        this.createObjectsFromArray(this.lvl.coin);
+        this.createObjectsFromArray(this.lvl.salsa);
+        this.createObjectsFromArray(this.throwable);
     }
 
     /** Bild des Charakters wird gespiegelt, wenn er die Bewegungsrichtung von rechts nach links ändert  */
@@ -126,12 +145,8 @@ class World {
         if (this.gameStarted) {
             let run = setInterval(() => {
                 this.throwBottle();
-                this.collisionEnemy();
-                this.collisionSalsas();
-                this.collisionCoins();
-                this.collisionThrowable();
-                this.winnerWinnerChickenDinner()
-                this.gameOver();
+                this.runCollisions();
+                this.runGameOverlays()
                 this.playSound(this.music);
                 this.intervals.push(run);
                 if (!this.gameStarted) {
@@ -139,6 +154,20 @@ class World {
                 }
             }, 50);
         }
+    }
+
+    /**fasst alle Kollisionsbaufragen zusammen */
+    runCollisions() {
+        this.collisionEnemy();
+        this.collisionSalsas();
+        this.collisionCoins();
+        this.collisionThrowable();
+    }
+
+    /**fast die Funktionen zusammen, die ein Overlay öffnen */
+    runGameOverlays() {
+        this.winnerWinnerChickenDinner()
+        this.gameOver();
     }
 
     /** Collisionsabfrage mit Gegnern  */
@@ -186,10 +215,9 @@ class World {
             this.throwable = [];
             this.salsaBar.amount -= 20;
             this.salsaBar.setPercentage(this.salsaBar.amount, this.salsaBar.salsaBar);
-            let bottle = new Throwable(this.character.x + 100, this.character.y + 100)
+            let bottle = new Throwable(this.character.x + 100, this.character.y + 100, "img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png")
             this.throwable.push(bottle);
         }
-
     }
 
     /** Collisionsabfrage für die geworfene Flasche  */
@@ -234,7 +262,6 @@ class World {
   <button  id="restartBtn" onclick="restartGame()">restart game</button>
   <button  id="backBtn" onclick="backToMenu()">back to menu</button>
 </div>`;
-
         }
     }
 

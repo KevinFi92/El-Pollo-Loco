@@ -9,6 +9,9 @@ class Level {
   salsa;
   level_end_x = 1450;
 
+  /**
+   * Repräsentiert ein Level im Spiel. Enthält Gegner, Umgebungsobjekte, Hintergründe und Level-Begrenzung.
+   */
   constructor(
     enemies,
     clouds,

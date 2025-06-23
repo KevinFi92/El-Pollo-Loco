@@ -1,5 +1,6 @@
 class SecondLayer extends Background{
 
+    /**Setzt die Größe und Position des zweiten Layers des Hintergrundes */
     constructor(path, x){
         super().loadImg(path, x)
         this.x = x;

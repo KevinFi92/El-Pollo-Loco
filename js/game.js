@@ -95,7 +95,6 @@ function startGame() {
     document.getElementById("mute").style.display = "block";
     document.getElementById("ui").style.display = "none";
     document.getElementById("headLine").style.display = "none";
-
 }
 
 /**Die Welt wird zurückgesetzt */

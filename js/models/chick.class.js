@@ -10,12 +10,13 @@ class Chick extends MoveableObject {
     ];
     hit_sound = new Audio("audio/chick_hit.mp3");
 
+    /**Weist den Hühnchen ihre Bewegungsgeschwindigkeit und die Startposition zu, sowie Größe, Breite und Lebenspunkte */
     constructor() {
         super().loadImg("img/3_enemies_chicken/chicken_small/1_walk/1_w.png");
         this.height = 100;
         this.width = 80;
         this.life = 10;
-        this.x = 200 + Math.random() * 500;
+        this.x = 400 + Math.random() * 500;
         this.chickenMoving(this.movingImg);
         this.movementLeft();
     }

@@ -9,6 +9,7 @@ class MoveableObject extends DrawableObject {
     currentImg = 0;
     world;
 
+    /**Legt die Eigeschaften für alle beweglichen Objekte fest. Hier werden alle benötigten Funktionen erstellt */
     constructor(path) {
         super().loadImg(path);
     }
@@ -23,7 +24,6 @@ class MoveableObject extends DrawableObject {
                 clearInterval(Interval);
                 this.loadImg(this.deathImgs)
             }
-
         }, 200);
     }
 

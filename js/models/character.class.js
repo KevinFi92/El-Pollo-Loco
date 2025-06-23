@@ -17,7 +17,8 @@ class Character extends MoveableObject {
     snoringSound = new Audio("audio/snoring.mp3");
     hit_sound = new Audio("audio/pepe_hit.mp3");
 
-
+/**Klasse des Spielcharakters, weißte Eigenschaften wie Größe, Breite und Startkoordinaten zu. Außerdem erhält der Charakter
+  wird die Steuerung aktiv und Gravität zugewiesen. Nach einer bestimmten Zeit ohne Bewegung wird die Idle animation abgespielt  */
     constructor() {
         super().loadImg("img/2_character_pepe/2_walk/W-21.png");
         this.height = 300;
@@ -68,7 +69,6 @@ class Character extends MoveableObject {
 
     /** Funktion führt Charakterbewegungen aus, je nachdem welche Taste gedrückt wird */
     charMovement() {
-
         setInterval(() => {
             if (this.world.keyboard.right && this.isOnGround()) {
                 this.walkRight();
