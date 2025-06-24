@@ -63,6 +63,7 @@ class Endboss extends MoveableObject {
             }
             if (i == movingImg.length - 1 || this.life == 0) {
                 clearInterval(Interval);
+                this.loadImg("img/4_enemie_boss_chicken/5_dead/G26.png");
             }
         }, 100);
     }
@@ -95,7 +96,7 @@ class Endboss extends MoveableObject {
 
     /** Startet die Vorwärtsbewegung und die Animation des BossChicken */
     bossStartMoving(){
-        this.chickenMoving(this.movingImg);
+        this.chickenMoving(this.movingImg, 2);
         this.movementLeft();
     }
 }

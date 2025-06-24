@@ -178,7 +178,7 @@ class World {
                 this.statusBar.setPercentage(this.character.life, this.statusBar.lifeBar);
                 this.playSound(character.hit_sound);
             }
-            if (this.character.landsOntop(enemy) && enemy.life > 0 && !this.character.isOnGround()) {
+            if (this.character.landsOntop(enemy) && enemy.life > 0 ) {
                 enemy.hit();
                 this.playSound(enemy.hit_sound);
             }

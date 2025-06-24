@@ -17,7 +17,7 @@ class chicken extends MoveableObject {
     this.width = 80;
     this.life = 10;
     this.x = 600 + Math.random() * 500;
-    this.chickenMoving(this.movingImg);
+    this.chickenMoving(this.movingImg, 0);
     this.movementLeft();
   }
 

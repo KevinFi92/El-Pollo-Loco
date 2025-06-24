@@ -14,14 +14,14 @@ class MoveableObject extends DrawableObject {
     }
 
     /** Funktion bewegungsanimation */
-    chickenMoving(movingImg) {
+    chickenMoving(movingImg, n) {
         let Interval = setInterval(() => {
             let i = this.currentImg % movingImg.length;
             this.loadImg(movingImg[i]);
             this.currentImg++;
             if (this.life == 0) {
                 clearInterval(Interval);
-                this.loadImg(this.deathImgs)
+                this.loadImg(this.deathImgs[n])
             }
         }, 200);
     }
@@ -30,7 +30,7 @@ class MoveableObject extends DrawableObject {
     movementLeft() {
         let movinginterval = setInterval(() => {
             this.x -= this.speed;
-            if (this.life == 0) {
+            if (this.life <= 0) {
                 clearInterval(movinginterval);
             }
         }, 1000 / 60);
@@ -77,9 +77,9 @@ class MoveableObject extends DrawableObject {
     isColliding(obj) {
         return (
             this.x < obj.x + obj.width &&
-            this.x + this.width -50 > obj.x &&
-            this.y < obj.y + obj.height  &&
-            this.y  + this.height > obj.y
+            this.x + this.width - 50 > obj.x &&
+            this.y < obj.y + obj.height &&
+            this.y + this.height > obj.y
         );
     }
 
@@ -116,5 +116,18 @@ class MoveableObject extends DrawableObject {
         let timepassed = new Date().getTime() - this.lastHit;
         timepassed = timepassed / 2000;
         return timepassed < 2.0;
+    }
+
+
+    checkMovingDirection() {
+        let currentY = this.y;
+        setTimeout(() => {
+            let updatedY = this.y;
+            if ( currentY > updatedY){
+                return true;
+            }else {
+                return false;
+            }
+        }, 50)
     }
 }
