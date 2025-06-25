@@ -36,7 +36,7 @@ class MoveableObject extends DrawableObject {
         }, 1000 / 60);
     }
 
-    /** Function for animations, stops automatically once the animation has run through once */
+    /** Function for animations stops automatically once the animation has run through once */
     movingAnimation(movingImg) {
         let movementInterval = setInterval(() => {
             let i = this.currentImg % movingImg.length;
@@ -86,7 +86,7 @@ class MoveableObject extends DrawableObject {
     landsOntop(obj) {
         return (
             this.y + this.height >= obj.y && // Bottom edge of character touches top edge of enemy
-            this.y + this.height <= obj.y + obj.height / 2 && // Character is in the upper area of the enemy
+            this.y + this.height <= obj.y + obj.height && // Character is in the upper area of the enemy
             this.x + this.width - 60 > obj.x && // Right edge of character is right of the left edge of enemy
             this.x < obj.x + obj.width // Left edge of character is left of the right edge of enemy
         );
@@ -117,15 +117,10 @@ class MoveableObject extends DrawableObject {
         return timepassed < 2.0;
     }
 
-    checkMovingDirection() {
-        let currentY = this.y;
-        setTimeout(() => {
-            let updatedY = this.y;
-            if ( currentY > updatedY){
-                return true;
-            }else {
-                return false;
-            }
-        }, 50)
+    /**Returns true if the Character falls down */
+    movingDown() {
+        let movingDown = this.y > this.lastY;
+        this.lastY = this.y;
+        return movingDown;
     }
 }

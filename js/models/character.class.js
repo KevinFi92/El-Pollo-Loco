@@ -18,10 +18,10 @@ class Character extends MoveableObject {
         "img/2_character_pepe/1_idle/long_idle/I-19.png",
         "img/2_character_pepe/1_idle/long_idle/I-20.png",
     ]
+    lastY;
     currentImg = 0;
     world;
-    speed = 5;
-    intervalId;
+    speed = 8;
     walking_sounds = new Audio("audio/walking.mp3");
     jumping_sound = new Audio("audio/jump.mp3");
     snoringSound = new Audio("audio/snoring.mp3");
@@ -37,6 +37,7 @@ class Character extends MoveableObject {
         this.applyGravity();
         this.charMovement();
         this.setIdleTimer();
+        this.lastY = this.y;
     }
 
     /**Charakter läuft nach links. Bewegungssounds und Animationen werden abgespielt und der Charakter in die richtige Richtung gedreht */
@@ -82,6 +83,7 @@ class Character extends MoveableObject {
                 this.movementAnimation(this.animationImgs);
             }
             if (this.world.keyboard.up && !this.isAboveGround()) {
+                console.log(this.y);
                 this.jump();
                 this.movingAnimation(this.jumpingImgs);
             }
@@ -97,23 +99,36 @@ class Character extends MoveableObject {
         let time = 0;
         let idle = setInterval(() => {
             time += 0.1;
-            if (time >= 5) {
-                this.movementAnimation(this.idleLongImgs);
-                world.playSound(this.snoringSound);
-            }
-            if(time >= 0.2)
-            {
-                this.movementAnimation(this.idleImgs)
-            }
             if (world.keyboard.right || world.keyboard.left || world.keyboard.up || world.keyboard.space) {
                 clearInterval(idle);
-                this.setIdleTimer();
-                world.stopSounds(this.snoringSound)
+                this.resetIdleTimer();
+            }
+            if (time >= 5) {
+                this.playLongIdle()
+            } else {
+                this.movementAnimation(this.idleImgs)
             }
             if (!world.gameStarted) {
                 clearInterval(idle);
             }
         }, 100);
+    }
+
+    /**Resets the idle timer to 0 and stops the snoring sound */
+    resetIdleTimer() {
+        this.setIdleTimer();
+        world.stopSounds(this.snoringSound)
+    }
+
+    /**Starts the longIdle Animation and starts the snoring sound */
+    playLongIdle() {
+        this.movementAnimation(this.idleLongImgs);
+        world.playSound(this.snoringSound);
+    }
+
+    /**Tracks the Y-Position */
+    updateLastY() {
+        this.lastY = this.y;
     }
 }
 
