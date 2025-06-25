@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./js/models/keyboard.class.js"></script>
+    <script src="./js/models/drawable-object.class.js"></script>
+    <script src="./js/models/moveable-objects.class.js"></script>
+    <script src="./js/models/character.class.js"></script>
+    <script src="./js/models/chick.class.js"></script>
+    <script src="./js/models/chicken.class.js"></script>
+    <script src="./js/models/endboss.class.js"></script>
+    <script src="./js/models/clouds.class.js"></script>
+    <script src="./js/models/background.class.js"></script>
+    <script src="./js/models/firstlyer.class.js"></script>
+    <script src="./js/models/secondlayer.class.js"></script>
+    <script src="./js/models/thirdlayer.class.js"></script>
+    <script src="./js/models/sky.class.js"></script>
+    <script src="./js/models/coin.class.js"></script>
+    <script src="./js/models/salsa.class.js"></script>
+    <script src="./js/models/throwable.class.js"></script>
+    <script src="./js/models/world.class.js"></script>
+    <script src="./js/models/level.class.js"></script>
+    <script src="./js/models/statusbar.class.js"></script>
+    <script src="./js/levels/level_1.js"></script>
+    <script src="./js/game.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="./img/10_favicon/favicon.ico" type="image/png">
+    <title>El Pollo Loco</title>
+</head>
+<body class="mainpage" onload="setMuteBtn()">
+<div class="rotate-device-warning">
+    <p><b>Mobile users:</b> For the best experience, please hold your device in the landscape orientation.</p>
+</div>
+<h1 id="headLine">El Pollo Loco</h1>
+<button onclick="muteSound()" id="mute" class="mutebtn"><img id="muteImg" src="img/11_icons/sound_unmuted.png" alt="">
+</button>
+<div class="menu" id="ui">
+
+    <div class="menuBtn">
+        <button onclick="init()">start game</button>
+        <button onclick="toggleControls()">controls</button>
+    </div>
+    <div class="controlsInfo" id="controlsInfo">
+        <button class="closeOnMobile" id="closeOnMobile" onclick="toggleControls()">X</button>
+        <div class="ctrl">
+            <p>walk left</p> <img src="img/12_controlls/left_arrow.png">
+            <img src="img/12_controlls/right_arrow.png">
+            <p>walk right</p>
+        </div>
+        <div class="ctrl">
+            <p>throw</p> <img id="throwImg" src="">
+            <img src="img/12_controlls/up_arrow.png">
+            <p>jump</p>
+        </div>
+    </div>
+    <a class="impressumBtn" href="impressum.html">Impressum</a>
+</div>
+
+
+<div class="gameover" id="restart">
+    <div class="restart">
+        <button onclick="restartGame()">try again</button>
+        <button id="backBtn" onclick="backToMenu()">back to menu</button>
+    </div>
+</div>
+<canvas id="canvas" height="480" width="720">
+</canvas>
+
+<div class="controls" id="controls">
+    <div class="controler">
+        <button class="button up" data-dir="up"><img src="img/12_controlls/up_arrow.png" alt=""></button>
+        <button class="button space" data-dir="space"><img src="img/12_controlls/semicircle_right_arrow.png" alt="">
+        </button>
+    </div>
+    <div class="controler">
+        <button class="button left" data-dir="left"><img src="img/12_controlls/left_arrow.png" alt=""></button>
+        <button class="button right" data-dir="right"><img src="img/12_controlls/right_arrow.png" alt=""></button>
+    </div>
+</div>
+
+</body>
+</html>
+
+
