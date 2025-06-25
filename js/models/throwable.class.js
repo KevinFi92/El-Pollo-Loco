@@ -17,7 +17,8 @@ class Throwable extends MoveableObject {
 
     /**Legt die Eigenschaften der geworfenen Flasche fest */
     constructor(x, y, path) {
-        super().loadImg(path);
+        super();
+        this.loadImg(path);
         this.x = x;
         this.y = y;
         this.height = 80;

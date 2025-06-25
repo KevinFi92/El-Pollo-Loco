@@ -7,10 +7,17 @@ class MoveableObject extends DrawableObject {
     life = 100;
     currentImg = 0;
     world;
+    offset = {
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0
+    };
+
 
     /** Sets the properties for all movable objects. Here all required functions are created */
-    constructor(path) {
-        super().loadImg(path);
+    constructor() {
+        super();
     }
 
     /** Function for movement animation */
@@ -75,10 +82,10 @@ class MoveableObject extends DrawableObject {
     /** Function checks if two objects collide with each other */
     isColliding(obj) {
         return (
-            this.x < obj.x + obj.width &&
-            this.x + this.width - 50 > obj.x &&
-            this.y < obj.y + obj.height &&
-            this.y + this.height > obj.y
+            this.x + this.offset.left < obj.x + obj.width - (obj.offset?.right || 0) &&
+            this.x + this.width - this.offset.right > obj.x + (obj.offset?.left || 0) &&
+            this.y + this.offset.top < obj.y + obj.height - (obj.offset?.bottom || 0) &&
+            this.y + this.height - this.offset.bottom > obj.y + (obj.offset?.top || 0)
         );
     }
 

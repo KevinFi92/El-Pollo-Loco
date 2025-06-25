@@ -6,14 +6,13 @@ class World {
     canvas;
     keyboard;
     camera_x = 0;
-    world_x = 0;
     gameStarted = true;
     music = new Audio("audio/western-theme.wav");
     coinSound = new Audio("audio/coins.wav");
     salsaCollectSound = new Audio("audio/bottle_collect.mp3");
     gameOverSound = new Audio("audio/game_over.mp3");
     youWinSound = new Audio("audio/you_won.mp3");
-    soundMuted = Boolean(localStorage.getItem("status"));
+    soundMuted;
     statusBar = new StatusBar(
         10,
         10,
@@ -237,7 +236,6 @@ class World {
                 });
             });
         }, 50);
-
     }
 
     /** Öffnet das GameOver overlay und spielt Sound ab*/

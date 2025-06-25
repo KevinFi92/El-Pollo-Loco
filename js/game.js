@@ -21,6 +21,7 @@ function init() {
     character = new Character();
     keyboard = new Keyboard();
     world = new World(canvas, keyboard, character, soundMuted);
+    setMuteBtn();
     startGame();
 }
 
@@ -148,6 +149,7 @@ function toggleControls() {
         controls.style.display = "none";
     }
 }
+
 /**Passt die Steuerungserklärung zwischen Mobile und Desktop an */
 function switchControlInfo(){
     let throwBtn = document.getElementById("throwImg");

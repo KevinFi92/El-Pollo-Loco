@@ -41,7 +41,8 @@ class Endboss extends MoveableObject {
     /**Weist dem Endboss alle nötigen Eigenschaften, wie Startposition, Größe und Lebenspunkte, zu.
      Und setzt fest, ab wann der Boss beginnt sich zu bewegen und anzugreifen */
     constructor() {
-        super().loadImg("img/4_enemie_boss_chicken/1_walk/G1.png");
+        super();
+        this.loadImg("img/4_enemie_boss_chicken/1_walk/G1.png");
         this.bossAlert();
         this.bossHurt(this.hurtImgs);
         this.bossAttack();
@@ -50,6 +51,11 @@ class Endboss extends MoveableObject {
         this.height = 350;
         this.width = 200;
         this.life = 50;
+        this.offset = {
+            top: 50,
+            bottom: 10,
+            left: 10,
+            right: 10,}
     }
 
     /** Funktion spielt eine Animation ab, wenn der Boss Schaden nimmt. Aber nur wenn eine bestimmte Zeit zwischen den Treffern vergangen ist */
@@ -82,9 +88,9 @@ class Endboss extends MoveableObject {
     /** Funktion Boss attackiert den Charakter, sobald der sich nähert */
     bossAttack() {
         let attack = setInterval(() => {
-            if (world.character.x > (this.x - 250) && !this.hadAttacked()) {
+            if (world.character.x > (this.x - 150) && !this.hadAttacked()) {
                 this.movingAnimation(this.attackImgs);
-                this.x = world.character.x + 150;
+                this.x = world.character.x + 100;
                 world.character.hit();
                 world.statusBar.setPercentage(world.character.life, world.statusBar.lifeBar);
                 world.playSound(character.hit_sound);

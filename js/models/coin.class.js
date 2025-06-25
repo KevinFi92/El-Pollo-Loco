@@ -8,7 +8,8 @@ class Coin extends DrawableObject {
 
     /**Erstellt die Coins an einer zufälligen Position und lässt sie pulsieren */
     constructor() {
-        super().loadImg("img/8_coin/coin_1.png");
+        super();
+        this.loadImg("img/8_coin/coin_1.png");
         this.pulsation();
         this.x = 200 + Math.random() * 1400;
         this.y = 80 + Math.random() * 300;

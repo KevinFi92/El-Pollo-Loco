@@ -7,7 +7,8 @@ class Clouds extends MoveableObject {
 
     /**Weißt den Wolken ihre Startposition sowie Bewegungsgeschwindigkeit zu */
     constructor(path) {
-        super().loadImg(path)
+        super();
+        this.loadImg(path);
         this.x += Math.random() * 500;
         this.movementLeft();
     }

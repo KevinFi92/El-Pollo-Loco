@@ -3,7 +3,7 @@ let level_1;
 /**Erstellt die grundlegenden Elemente der Welt und weist ihnen ihr Bild zu und, wenn benötigt, eine X-Koordinate */
 function initLevel() {
   level_1 = new Level(
-      [new chicken(), new chicken(), new chicken(), new Chick, new Chick, new Chick, new Endboss()],
+      [new chicken(), new chicken(), new chicken(), new Chick(), new Chick(), new Chick(), new Endboss()],
       [
         new Clouds("img/5_background/layers/4_clouds/1.png"),
         new Clouds("img/5_background/layers/4_clouds/2.png"),

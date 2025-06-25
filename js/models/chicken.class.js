@@ -12,7 +12,8 @@ class chicken extends MoveableObject {
 
   /**Weist den Hühnern ihre Bewegungsgeschwindigkeit und die Startposition zu, sowie Größe, Breite und Lebenspunkte */
   constructor() {
-    super().loadImg("img/3_enemies_chicken/chicken_normal/1_walk/1_w.png");
+    super();
+    this.loadImg("img/3_enemies_chicken/chicken_normal/1_walk/1_w.png");
     this.height = 100;
     this.width = 80;
     this.life = 10;

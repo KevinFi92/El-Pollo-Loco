@@ -30,7 +30,8 @@ class Character extends MoveableObject {
     /**Klasse des Spielcharakters, weißte Eigenschaften wie Größe, Breite und Startkoordinaten zu. Außerdem erhält der Charakter
      wird die Steuerung aktiv und Gravität zugewiesen. Nach einer bestimmten Zeit ohne Bewegung wird die Idle animation abgespielt  */
     constructor() {
-        super().loadImg("img/2_character_pepe/2_walk/W-21.png");
+        super();
+        this.loadImg("img/2_character_pepe/2_walk/W-21.png");
         this.height = 300;
         this.width = 150;
         this.walking_sounds.playbackRate = 2.5;
@@ -38,6 +39,11 @@ class Character extends MoveableObject {
         this.charMovement();
         this.setIdleTimer();
         this.lastY = this.y;
+        this.offset = {
+            top: 100,
+            bottom: 0,
+            left: 0,
+            right: 60,}
     }
 
     /**Charakter läuft nach links. Bewegungssounds und Animationen werden abgespielt und der Charakter in die richtige Richtung gedreht */
@@ -83,7 +89,6 @@ class Character extends MoveableObject {
                 this.movementAnimation(this.animationImgs);
             }
             if (this.world.keyboard.up && !this.isAboveGround()) {
-                console.log(this.y);
                 this.jump();
                 this.movingAnimation(this.jumpingImgs);
             }

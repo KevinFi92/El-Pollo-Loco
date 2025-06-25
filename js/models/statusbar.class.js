@@ -27,7 +27,8 @@ class StatusBar extends DrawableObject {
 
   /**Legt die Größe und Positon der Statusbars fest*/
   constructor(x, y, h, w, path) {
-    super().loadImg(path);
+    super();
+    this.loadImg(path);
     this.x = x;
     this.y = y;
     this.height = h;
