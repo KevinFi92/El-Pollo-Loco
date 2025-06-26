@@ -13,11 +13,20 @@ class MoveableObject extends DrawableObject {
         bottom: 0,
         left: 0
     };
+    imageCache = {};
 
 
     /** Sets the properties for all movable objects. Here all required functions are created */
     constructor() {
         super();
+    }
+
+    loadImages(arr){
+        arr.forEach(path => {
+            let img = new Image();
+            img.src = path;
+            this.imageCache[path] = path;
+        })
     }
 
     /** Function for movement animation */

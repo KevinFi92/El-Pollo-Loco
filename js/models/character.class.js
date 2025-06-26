@@ -32,6 +32,7 @@ class Character extends MoveableObject {
     constructor() {
         super();
         this.loadImg("img/2_character_pepe/2_walk/W-21.png");
+        this.loadImages(this.animationImgs)
         this.height = 300;
         this.width = 150;
         this.walking_sounds.playbackRate = 2.5;

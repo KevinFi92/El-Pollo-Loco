@@ -87,19 +87,22 @@ class World {
     /** All objects in the world are created*/
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.ctx.save();
         this.ctx.translate(this.camera_x, 0);
-        this.drawBackground()
-        this.drawCollectables()
-        this.creatObject(this.character);
-        this.ctx.translate(-this.camera_x, 0);
+        this.drawWorld();
+        this.ctx.restore();
         this.drawStatusbars();
-        this.ctx.translate(this.camera_x, 0);
-        this.createObjectsFromArray(this.lvl.enemies);
-        this.ctx.translate(-this.camera_x, 0);
         self = this;
         requestAnimationFrame(function () {
             self.draw();
         });
+    }
+
+    drawWorld() {
+        this.drawBackground();
+        this.drawCollectables();
+        this.creatObject(this.character);
+        this.createObjectsFromArray(this.lvl.enemies);
     }
 
     /**Combines the draw method for the background */
