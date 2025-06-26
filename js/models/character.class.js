@@ -32,7 +32,8 @@ class Character extends MoveableObject {
     constructor() {
         super();
         this.loadImg("img/2_character_pepe/2_walk/W-21.png");
-        this.loadImages(this.animationImgs)
+        this.loadImages(this.idleImgs)
+        this.loadImages(this.idleLongImgs)
         this.height = 300;
         this.width = 150;
         this.walking_sounds.playbackRate = 2.5;
@@ -112,7 +113,7 @@ class Character extends MoveableObject {
             if (time >= 5) {
                 this.playLongIdle()
             } else {
-                this.movementAnimation(this.idleImgs)
+                this.animateIdle(this.idleImgs)
             }
             if (!world.gameStarted) {
                 clearInterval(idle);
@@ -128,12 +129,20 @@ class Character extends MoveableObject {
 
     /**Starts the longIdle Animation and starts the snoring sound */
     playLongIdle() {
-        this.movementAnimation(this.idleLongImgs);
+        this.animateIdle(this.idleLongImgs);
         world.playSound(this.snoringSound);
     }
 
     /**Tracks the Y-Position */
     updateLastY() {
         this.lastY = this.y;
+    }
+
+    /** Loads images from a cache and animates them*/
+    animateIdle(action) {
+            let i = this.currentImg % action.length;
+            let path = action[i];
+            this.img = this.imageCache[path];
+            this.currentImg++;
     }
 }

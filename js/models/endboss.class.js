@@ -43,6 +43,8 @@ class Endboss extends MoveableObject {
     constructor() {
         super();
         this.loadImg("img/4_enemie_boss_chicken/1_walk/G1.png");
+        this.loadImages(this.alertImgs);
+        this.loadImages(this.movingImg);
         this.bossAlert();
         this.bossHurt(this.hurtImgs);
         this.bossAttack();
@@ -103,7 +105,7 @@ class Endboss extends MoveableObject {
 
     /** Starts the forward movement and animation of the BossChicken */
     bossStartMoving(){
-        this.chickenMoving(this.movingImg, 2);
+        this.animate(this.movingImg, 2);
         this.movementLeft();
     }
 }

@@ -25,15 +25,16 @@ class MoveableObject extends DrawableObject {
         arr.forEach(path => {
             let img = new Image();
             img.src = path;
-            this.imageCache[path] = path;
+            this.imageCache[path] = img;
         })
     }
 
     /** Function for movement animation */
-    chickenMoving(movingImg, n) {
+    animate(action, n) {
         let Interval = setInterval(() => {
-            let i = this.currentImg % movingImg.length;
-            this.loadImg(movingImg[i]);
+            let i = this.currentImg % action.length;
+            let path = action[i];
+            this.img = this.imageCache[path];
             this.currentImg++;
             if (this.life == 0 || !world.gameStarted) {
                 clearInterval(Interval);
@@ -108,8 +109,6 @@ class MoveableObject extends DrawableObject {
             this.x + this.offset.left < obj.x + obj.width - (obj.offset?.right || 0)
         );
     }
-
-
 
     /** Function adds damage and checks if the character/enemy is still alive, if not the death animation is called */
     hit() {
