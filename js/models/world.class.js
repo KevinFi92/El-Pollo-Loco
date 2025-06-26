@@ -37,7 +37,7 @@ class World {
     throwable = [];
     intervals = [];
 
-/**Hier werden alle Elemente (Klassen) der Klasse "World" zugeordnet und in das Canvas "gemahlt".*/
+/**Here all elements (classes) are assigned to the "World" class and "painted" into the canvas.*/
     constructor(canvas, keyboard, character, soundMuted) {
         this.ctx = canvas.getContext("2d");
         this.canvas = canvas;
@@ -49,16 +49,16 @@ class World {
         this.run();
     }
 
-/**Die Funktion verknüpft den Charakter mit der "World" und dem "Keyboard"
- und durchsucht das Array "enemies" nach einem Gegner, der eine Instanz der Klasse endboss ist, und weist diesen
- der Welt zu*/
+/**The function links the character with the "World" and the "Keyboard"
+ and searches the "enemies" array for an enemy that is an instance of the endboss class, and assigns it
+ to the world*/
     setWorld() {
         this.character.world = this;
         this.character.keyboard = this.keyboard;
         this.endboss = this.lvl.enemies.find((e) => e instanceof Endboss);
     }
 
-    /** erstellt einzelne Objekte und weist Koordinaten zu  */
+    /** creates individual objects and assigns coordinates */
     creatObject(object) {
         if (object.otherDirection) {
             this.mirrowImg(object);
@@ -75,7 +75,7 @@ class World {
         }
     }
 
-    /** erstellt mehrere Objekte aus einem Array und weist Koordinaten, Bilder und Größe zu  */
+    /** creates multiple objects from an array and assigns coordinates, images and size */
     createObjectsFromArray(objects) {
         objects.forEach((o) => {
             if (!o.collected) {
@@ -84,7 +84,7 @@ class World {
         });
     }
 
-    /** Alle Objekte in der Welt werden erstellt*/
+    /** All objects in the world are created*/
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.translate(this.camera_x, 0);
@@ -102,7 +102,7 @@ class World {
         });
     }
 
-    /**Fast die Draw methode für den Hintergrund zusammen */
+    /**Combines the draw method for the background */
     drawBackground() {
         this.createObjectsFromArray(this.lvl.sky);
         this.createObjectsFromArray(this.lvl.thirdlayer);
@@ -111,21 +111,21 @@ class World {
         this.createObjectsFromArray(this.lvl.clouds);
     }
 
-    /**Fast die Draw methode für die Statusbars zusammen */
+    /**Combines the draw method for the status bars */
     drawStatusbars() {
         this.creatObject(this.statusBar);
         this.creatObject(this.coinBar);
         this.creatObject(this.salsaBar);
     }
 
-    /**Fast die Draw methode für die sammelbaren Gegenstände zusammen */
+    /**Combines the draw method for the collectable items */
     drawCollectables() {
         this.createObjectsFromArray(this.lvl.coin);
         this.createObjectsFromArray(this.lvl.salsa);
         this.createObjectsFromArray(this.throwable);
     }
 
-    /** Bild des Charakters wird gespiegelt, wenn er die Bewegungsrichtung von rechts nach links ändert  */
+    /** Character image is mirrored when he changes direction from right to left */
     mirrowImg(object) {
         this.ctx.save();
         this.ctx.translate(object.width, 0);
@@ -133,13 +133,13 @@ class World {
         object.x = object.x * -1;
     }
 
-    /** Bild des Charakters wird gespiegelt, wenn er die Bewegungsrichtung von links nach rechts ändert  */
+    /** Character image is mirrored when he changes direction from left to right */
     mirrowReset(object) {
         object.x = object.x * -1;
         this.ctx.restore();
     }
 
-    /** Interval der wichtige Funktionen immer wieder aufruft  */
+    /** Interval that repeatedly calls important functions */
     run() {
         if (this.gameStarted) {
             let run = setInterval(() => {
@@ -156,7 +156,7 @@ class World {
         }
     }
 
-    /**fasst alle Kollisionsbaufragen zusammen */
+    /**combines all collision queries */
     runCollisions() {
         this.collisionEnemy();
         this.collisionSalsas();
@@ -164,16 +164,16 @@ class World {
         this.collisionThrowable();
     }
 
-    /**fast die Funktionen zusammen, die ein Overlay öffnen */
+    /**combines the functions that open an overlay */
     runGameOverlays() {
         this.winnerWinnerChickenDinner()
         this.gameOver();
     }
 
-    /** Collisionsabfrage mit Gegnern  */
+    /** Collision detection with enemies */
     collisionEnemy() {
         this.lvl.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy) && this.character.life > 0 && enemy.life > 0 && !this.character.isHurt() && !this.character.landsOntop(enemy)) {
+            if (this.character.isColliding(enemy) && this.character.life > 0 && enemy.life > 0 && !this.character.isHurt()) {
                 this.character.hit();
                 this.statusBar.setPercentage(this.character.life, this.statusBar.lifeBar);
                 this.playSound(character.hit_sound);
@@ -185,7 +185,7 @@ class World {
         });
     }
 
-    /** Collisionsabfrage mit Objecten die gesammelt werden  */
+    /** Collision detection with objects that can be collected */
     collisionCoins() {
         this.lvl.coin.forEach((coin, i) => {
             if (this.character.isColliding(coin) && !this.lvl.coin[i].collected) {
@@ -197,7 +197,7 @@ class World {
         });
     }
 
-    /** Collisionsabfrage mit Objecten die gesammelt werden  */
+    /** Collision detection with objects that can be collected */
     collisionSalsas() {
         this.lvl.salsa.forEach((salsa, i) => {
             if (this.character.isColliding(salsa) && !this.lvl.salsa[i].collected) {
@@ -209,7 +209,7 @@ class World {
         });
     }
 
-    /** Collisionsabfrage mit Objecten die gesammelt werden  */
+    /** Collision detection with objects that can be collected */
     throwBottle() {
         if (this.keyboard.space && this.salsaBar.amount > 0) {
             this.throwable = [];
@@ -220,7 +220,7 @@ class World {
         }
     }
 
-    /** Collisionsabfrage für die geworfene Flasche  */
+    /** Collision detection for the thrown bottle */
     collisionThrowable() {
         setInterval(() => {
             this.lvl.enemies.forEach((enemy) => {
@@ -238,7 +238,7 @@ class World {
         }, 50);
     }
 
-    /** Öffnet das GameOver overlay und spielt Sound ab*/
+    /** Opens the GameOver overlay and plays sound */
     gameOver() {
         if (this.character.life <= 0) {
             this.playSound(this.gameOverSound);
@@ -248,7 +248,7 @@ class World {
         }
     }
 
-    /** Öffnet das winner overlay und spielt Sound ab*/
+    /** Opens the winner overlay and plays sound */
     winnerWinnerChickenDinner() {
         if (this.endboss.life <= 0) {
             this.playSound(this.youWinSound)
@@ -264,7 +264,7 @@ class World {
         }
     }
 
-    /** spielt Sound ab*/
+    /** plays sound */
     playSound(sound) {
         if (this.soundMuted || !this.gameStarted) {
             sound.pause();
@@ -274,10 +274,9 @@ class World {
         }
     }
 
-    /** Stoppt das Abspielen von sounds*/
+    /** Stops playing sounds */
     stopSounds(sound) {
         sound.pause();
         sound.currentTime = 0;
     }
 }
- 

@@ -38,8 +38,8 @@ class Endboss extends MoveableObject {
     speed = 0.5;
     hit_sound = new Audio("audio/boss_hit.mp3");
 
-    /**Weist dem Endboss alle nötigen Eigenschaften, wie Startposition, Größe und Lebenspunkte, zu.
-     Und setzt fest, ab wann der Boss beginnt sich zu bewegen und anzugreifen */
+    /**Assigns all necessary properties to the final boss, such as starting position, size and life points.
+     And determines when the boss begins to move and attack */
     constructor() {
         super();
         this.loadImg("img/4_enemie_boss_chicken/1_walk/G1.png");
@@ -58,7 +58,7 @@ class Endboss extends MoveableObject {
             right: 10,}
     }
 
-    /** Funktion spielt eine Animation ab, wenn der Boss Schaden nimmt. Aber nur wenn eine bestimmte Zeit zwischen den Treffern vergangen ist */
+    /** Function plays an animation when the boss takes damage. But only if a certain time has passed between hits */
     bossHurt(movingImg) {
         let i;
         let Interval = setInterval(() => {

@@ -27,8 +27,8 @@ class Character extends MoveableObject {
     snoringSound = new Audio("audio/snoring.mp3");
     hit_sound = new Audio("audio/pepe_hit.mp3");
 
-    /**Klasse des Spielcharakters, weißte Eigenschaften wie Größe, Breite und Startkoordinaten zu. Außerdem erhält der Charakter
-     wird die Steuerung aktiv und Gravität zugewiesen. Nach einer bestimmten Zeit ohne Bewegung wird die Idle animation abgespielt  */
+    /**Class of the game character, assigns properties such as height, width and starting coordinates. Additionally, the character
+     gets active controls and gravity assigned. After a certain time without movement, the idle animation is played */
     constructor() {
         super();
         this.loadImg("img/2_character_pepe/2_walk/W-21.png");
@@ -46,7 +46,7 @@ class Character extends MoveableObject {
             right: 60,}
     }
 
-    /**Charakter läuft nach links. Bewegungssounds und Animationen werden abgespielt und der Charakter in die richtige Richtung gedreht */
+    /**Character walks to the left. Movement sounds and animations are played and the character is turned in the right direction */
     walkLeft() {
         if (this.world.keyboard.left && this.x > 0) {
             this.x -= this.speed;
@@ -55,7 +55,7 @@ class Character extends MoveableObject {
         }
     }
 
-    /**Charakter läuft nach rechts. Bewegungssounds und Animationen werden abgespielt und der Charakter in die richtige Richtung gedreht */
+    /**Character walks to the right. Movement sounds and animations are played and the character is turned in the right direction */
     walkRight() {
         if (this.world.keyboard.right && this.x < this.world.lvl.level_end_x) {
             this.x += this.speed;
@@ -64,20 +64,20 @@ class Character extends MoveableObject {
         }
     }
 
-    /**Charakter spring. Bewegungssounds und Animationen werden abgespielt */
+    /**Character jumps. Movement sounds and animations are played */
     jump() {
         world.playSound(this.jumping_sound);
         this.speedY = 30;
     }
 
-    /** Funktion um Animationen dazustellen */
+    /** Function to display animations */
     movementAnimation(movement) {
         let i = this.currentImg % movement.length;
         this.loadImg(movement[i]);
         this.currentImg++;
     }
 
-    /** Funktion führt Charakterbewegungen aus, je nachdem welche Taste gedrückt wird */
+    /** Function executes character movements depending on which key is pressed */
     charMovement() {
         setInterval(() => {
             if (this.world.keyboard.right) {
@@ -99,7 +99,7 @@ class Character extends MoveableObject {
         }, 1000 / 30);
     }
 
-    /** Funktion setzt einen Timer auf Null jedes Mal, wenn der Charakter sich bewegt, nach 10sek ohne Bewegung wird die IDle Animation ausgeführt */
+    /** Function resets a timer to zero each time the character moves, after 10 seconds without movement the idle animation is executed */
     setIdleTimer() {
         let time = 0;
         let idle = setInterval(() => {
@@ -136,4 +136,3 @@ class Character extends MoveableObject {
         this.lastY = this.y;
     }
 }
-
