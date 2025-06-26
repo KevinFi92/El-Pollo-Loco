@@ -176,7 +176,7 @@ class World {
             if (this.character.isColliding(enemy) && this.character.life > 0 && enemy.life > 0 && !this.character.isHurt() && !this.character.landsOntop(enemy)) {
                 this.character.hit();
                 this.statusBar.setPercentage(this.character.life, this.statusBar.lifeBar);
-                this.playSound(character.hit_sound);
+                this.playSound(this.character.hit_sound);
             }
             if (this.character.landsOntop(enemy) && enemy.life > 0 && this.character.movingDown()) {
                 enemy.hit();

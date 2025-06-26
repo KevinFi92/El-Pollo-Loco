@@ -26,7 +26,7 @@ class MoveableObject extends DrawableObject {
             let i = this.currentImg % movingImg.length;
             this.loadImg(movingImg[i]);
             this.currentImg++;
-            if (this.life == 0) {
+            if (this.life == 0 || !world.gameStarted) {
                 clearInterval(Interval);
                 this.loadImg(this.deathImgs[n])
             }
@@ -37,7 +37,7 @@ class MoveableObject extends DrawableObject {
     movementLeft() {
         let movinginterval = setInterval(() => {
             this.x -= this.speed;
-            if (this.life <= 0) {
+            if (this.life <= 0 || !world.gameStarted) {
                 clearInterval(movinginterval);
             }
         }, 1000 / 60);
@@ -82,22 +82,25 @@ class MoveableObject extends DrawableObject {
     /** Function checks if two objects collide with each other */
     isColliding(obj) {
         return (
-            this.x + this.offset.left < obj.x + obj.width - (obj.offset?.right || 0) &&
-            this.x + this.width - this.offset.right > obj.x + (obj.offset?.left || 0) &&
-            this.y + this.offset.top < obj.y + obj.height - (obj.offset?.bottom || 0) &&
-            this.y + this.height - this.offset.bottom > obj.y + (obj.offset?.top || 0)
+            this.x + this.offset.left < obj.x + obj.width &&
+            this.x + this.width - this.offset.right > obj.x &&
+            this.y + this.offset.top < obj.y + obj.height &&
+            this.y + this.height - this.offset.bottom > obj.y
         );
     }
 
     /** Function checks if the character lands on top of an enemy */
     landsOntop(obj) {
         return (
-            this.y + this.height >= obj.y && // Bottom edge of character touches top edge of enemy
-            this.y + this.height <= obj.y + obj.height && // Character is in the upper area of the enemy
-            this.x + this.width - 60 > obj.x && // Right edge of character is right of the left edge of enemy
-            this.x < obj.x + obj.width // Left edge of character is left of the right edge of enemy
+            this.y + this.height - this.offset.bottom > obj.y &&  // Der Charakter ist tiefer als die Oberseite des Gegners
+            this.y + this.height - this.offset.bottom < obj.y + obj.height/2 &&  // aber nicht tiefer als die Mitte
+            this.speedY < 0 &&  // fällt nach unten
+            this.x + this.width - this.offset.right > obj.x + (obj.offset?.left || 0) &&
+            this.x + this.offset.left < obj.x + obj.width - (obj.offset?.right || 0)
         );
     }
+
+
 
     /** Function adds damage and checks if the character/enemy is still alive, if not the death animation is called */
     hit() {

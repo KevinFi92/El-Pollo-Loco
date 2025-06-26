@@ -1,6 +1,6 @@
 class FirstLayer extends Background{
 
-    /**Setzt die Größe und Position des ersten Layers des Hintergrundes */
+    /**Assigns the first layer of the background their starting position */
     constructor(path, x){
         super();
         this.loadImg(path, x);

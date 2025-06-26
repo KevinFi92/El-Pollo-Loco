@@ -1,6 +1,6 @@
 class Salsa extends DrawableObject {
 
-  /**Legt die Größe der Salsa fest und weist eine zufällige Position für X und Y fest */
+  /** Sets the size of the salsa and assigns a random position for X and Y */
   constructor() {
     super();
     this.loadImg("img/6_salsa_bottle/salsa_bottle.png");

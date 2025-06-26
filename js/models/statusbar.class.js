@@ -25,7 +25,7 @@ class StatusBar extends DrawableObject {
   ];
   percentage = 100;
 
-  /**Legt die Größe und Positon der Statusbars fest*/
+  /** Sets the size and position of the status bars */
   constructor(x, y, h, w, path) {
     super();
     this.loadImg(path);
@@ -36,7 +36,7 @@ class StatusBar extends DrawableObject {
     this.setPercentage();
   }
 
-/**Updated die einzelnen Statusbars. Bild entsprechend der aktuellen Prozentzahl wird geladen */
+/**Updated the status bars. loads the right picture according to the percentage */
   setPercentage(percentage, bar) {
     this.percentage = percentage;
 

@@ -5,5 +5,5 @@ class Keyboard{
     space = false;
 }
 
-/**Legt fest, welche Tasten im Spiel benutzt werden können und erkennt
-  ob die Taste gedrückt = true oder nicht gedrückt = False ist. Default = false */
+/**Determines which keys can be used in the game and detects
+ whether the key is pressed = true or not pressed = false. Default = false */

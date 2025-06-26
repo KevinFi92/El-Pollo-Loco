@@ -1,6 +1,6 @@
 class Sky extends Background{
 
-    /**Legt die größe und Position des Himmels fest */
+    /**Assigns the sky layer of the background their starting position */
     constructor(path, x){
         super();
         this.loadImg(path, x)

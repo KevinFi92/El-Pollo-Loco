@@ -1,6 +1,6 @@
 class ThirdLayer extends Background{
 
-    /**Setzt die Größe und Position des dritten Layers des Hintergrundes */
+    /**Assigns the third layer of the background their starting position */
     constructor(path, x){
         super();
         this.loadImg(path, x);
