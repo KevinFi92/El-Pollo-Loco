@@ -9,5 +9,4 @@ class Salsa extends DrawableObject {
     this.height = 80;
     this.width = 80;
   }
-
 }

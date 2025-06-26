@@ -39,7 +39,6 @@ class StatusBar extends DrawableObject {
 /**Updated the status bars. loads the right picture according to the percentage */
   setPercentage(percentage, bar) {
     this.percentage = percentage;
-
     if (this.percentage == 100) {
       this.loadImg(bar[0]);
     }

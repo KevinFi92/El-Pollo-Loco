@@ -37,7 +37,8 @@ class World {
     throwable = [];
     intervals = [];
 
-/**Here all elements (classes) are assigned to the "World" class and "painted" into the canvas.*/
+/**all elements (classes) are assigned to the "World" class and "painted" into the canvas.
+ Important functions like collisions are running in an interval so that they are always active*/
     constructor(canvas, keyboard, character, soundMuted) {
         this.ctx = canvas.getContext("2d");
         this.canvas = canvas;

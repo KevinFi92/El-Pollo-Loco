@@ -12,6 +12,4 @@ class Clouds extends MoveableObject {
         this.x += Math.random() * 500;
         this.movementLeft();
     }
-
-
 }

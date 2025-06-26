@@ -46,7 +46,6 @@ class Throwable extends MoveableObject {
         world.playSound(this.salsaSplashSound);
         this.movingAnimation(this.salsaSplashImgs);
         this.speedY = 0;
-
     }
 
     /**Überprüft in welche Richtung der Charakter schaut und beschleunigt die Flasche

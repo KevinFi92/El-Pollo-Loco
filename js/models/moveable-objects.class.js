@@ -21,6 +21,7 @@ class MoveableObject extends DrawableObject {
         super();
     }
 
+    /**loads images from arry and stores them in a cache  */
     loadImages(arr){
         arr.forEach(path => {
             let img = new Image();
