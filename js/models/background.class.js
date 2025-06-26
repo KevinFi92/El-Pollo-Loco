@@ -5,8 +5,8 @@ class Background{
     height;
     width;
 
-    /**Grundklasse des Hintergrunds. Legt fest, welche eingenschaften die einzelnen Layer des Hintergrunds benötigen
-     * @param {string} path - Pfad des Bildes, das geladen wird.*/
+    /**Base class of the background. Defines which properties the individual layers of the background need
+     * @param {string} path - Path of the image to be loaded.*/
     constructor(){};
     loadImg(path){
         this.img = new Image();

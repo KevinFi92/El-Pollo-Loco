@@ -20,10 +20,5 @@ class Chick extends MoveableObject {
         this.x = 400 + Math.random() * 500;
         this.chickenMoving(this.movingImg, 0);
         this.movementLeft();
-        this.offset = {
-            top: 10,
-            bottom: 0,
-            left: 10,
-            right: 10,}
     }
 }

@@ -6,7 +6,7 @@ class Coin extends DrawableObject {
     coinImgs = ["img/8_coin/coin_1.png", "img/8_coin/coin_2.png"];
     collected = false;
 
-    /**Erstellt die Coins an einer zufälligen Position und lässt sie pulsieren */
+    /**Creates the coins at a random position and makes them pulsate */
     constructor() {
         super();
         this.loadImg("img/8_coin/coin_1.png");
@@ -15,7 +15,7 @@ class Coin extends DrawableObject {
         this.y = 80 + Math.random() * 300;
     }
 
-    /** Funktion lässt die Coins in der Welt, durch eine Animation, pulsieren*/
+    /** Function makes the coins in the world pulsate through an animation*/
     pulsation() {
         setInterval(() => {
             let i = this.currentImg % this.coinImgs.length;
@@ -24,5 +24,3 @@ class Coin extends DrawableObject {
         }, 800);
     }
 }  
-
-

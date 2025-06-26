@@ -1,6 +1,6 @@
 let level_1;
 
-/**Erstellt die grundlegenden Elemente der Welt und weist ihnen ihr Bild zu und, wenn benötigt, eine X-Koordinate */
+/**Creates the basic elements of the world and assigns them their image and, if needed, an X-coordinate */
 function initLevel() {
   level_1 = new Level(
       [new chicken(), new chicken(), new chicken(), new Chick(), new Chick(), new Chick(), new Endboss()],

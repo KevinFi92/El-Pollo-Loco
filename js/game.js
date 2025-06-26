@@ -4,7 +4,7 @@ let character;
 let keyboard;
 let soundMuted = JSON.parse(localStorage.getItem("status"));
 
-/** Diese Funktion lädt den Status des MuteButtons aus dem Localstorage, wenn nicht vorhanden wird der Unmuted gesetzt */
+/** This function loads the status of the MuteButton from localStorage, if not available, it sets to Unmuted */
 function setMuteBtn() {
     let muteIcon = document.getElementById("muteImg");
     if (soundMuted) {
@@ -14,7 +14,7 @@ function setMuteBtn() {
     }
 }
 
-/**Die Init Funktion führt alle wichtigen Funktionen zum Start des Spiels aus */
+/**The Init function executes all important functions to start the game */
 function init() {
     initLevel();
     canvas = document.getElementById("canvas");
@@ -25,7 +25,7 @@ function init() {
     startGame();
 }
 
-/**Eventlistener für die Touch-Steuerung */
+/**Event listener for touch controls */
 document.addEventListener('DOMContentLoaded', () => {
     const buttons = document.querySelectorAll('.controls .button');
     buttons.forEach(btn => {
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-/**Eventlistener für die Tastatur-Steuerung */
+/**Event listener for keyboard controls */
 document.addEventListener("keydown", function (event) {
     if (event.code === "ArrowRight" && world.gameStarted) {
         keyboard.right = true;
@@ -74,7 +74,7 @@ document.addEventListener("keydown", function (event) {
     }
 });
 
-/**Eventlistener für die Tastatur-Steuerung */
+/**Event listener for keyboard controls */
 document.addEventListener("keyup", function (event) {
     if (event.code === "ArrowRight") {
         keyboard.right = false;
@@ -90,7 +90,7 @@ document.addEventListener("keyup", function (event) {
     }
 });
 
-/**Blendet das Startmenü aus und das Canvas ein */
+/**Hides the start menu and displays the canvas */
 function startGame() {
     document.getElementById("canvas").style.display = "block";
     document.getElementById("mute").style.display = "block";
@@ -101,19 +101,19 @@ function startGame() {
     }
 }
 
-/**Die Welt wird zurückgesetzt */
+/**The world is reset */
 function restartGame() {
     world.stopSounds(world.music);
     document.getElementById("restart").style.display = "none";
     init();
 }
 
-/**Nach Spielende wieder zurück ins Hauptmenü*/
+/**Return to the main menu after the game ends*/
 function backToMenu() {
     window.location.reload();
 }
 
-/**Sound wird ein bzw. aus geschaltet */
+/**Sound is turned on or off */
 function muteSound() {
     let muteBtn = document.getElementById("mute").querySelector("img");
     let muteStatus = localStorage.getItem("src");
@@ -130,7 +130,7 @@ function muteSound() {
     }
 }
 
-/**Funktion speichert ein key/value paar in den Localstorage. In diesem Fall den Pfad zum Mutebtn Bild und ob das Spiel gemuted ist oder nicht*/
+/**Function saves a key/value pair in localStorage. In this case, the path to the mute button image and whether the game is muted or not*/
 function saveInLocalStorage(key, value) {
     if (value === false || value === true) {
         localStorage.setItem(key, JSON.stringify(value));
@@ -139,7 +139,7 @@ function saveInLocalStorage(key, value) {
     }
 }
 
-/**Blendet im Hauptmenü die Erkärung der Steuerung ein bzw. aus*/
+/**Shows or hides the control explanation in the main menu*/
 function toggleControls() {
     let controls = document.getElementById("controlsInfo");
     switchControlInfo();
@@ -150,7 +150,7 @@ function toggleControls() {
     }
 }
 
-/**Passt die Steuerungserklärung zwischen Mobile und Desktop an */
+/**Adjusts the control explanation between mobile and desktop */
 function switchControlInfo(){
     let throwBtn = document.getElementById("throwImg");
     if(isTouchDevice()){
@@ -160,15 +160,14 @@ function switchControlInfo(){
     }
 }
 
-/**Zurück zum Hauptmenü aus dem Impressum */
+/**Back to the main menu from the imprint */
 function backToMainPage(){
     window.location.href = "index.html";
 }
 
-/**Abfrage ob ein Gerät Touchscreen hat */
+/**Check if a device has a touchscreen */
 function isTouchDevice() {
     return (('ontouchstart' in window) ||
         (navigator.maxTouchPoints > 0) ||
         (navigator.msMaxTouchPoints > 0));
 }
-

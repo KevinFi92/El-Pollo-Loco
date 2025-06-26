@@ -7,17 +7,17 @@ class DrawableObject {
   amount = 0;
   world;
 
-  /** Setzt die wichtigsten Parameter, die alle Gegenstände in der Welt benötigen */
+  /** Sets the most important parameters that all objects in the world need */
   constructor() {
   }
 
-/** Erstellt ein neues Bild und üer gebt mit "path" die source des Bildes */
+/** Creates a new image and passes the source of the image with "path" */
   loadImg(path) {
     this.img = new Image();
     this.img.src = path;
   }
 
-  /** Funktion erhöht einen Zähler, durch den die Statusbars aktualisiert werden */
+  /** Function increases a counter, through which the status bars are updated */
   collect() {
     this.amount += 20;
     if (this.amount === 100) {

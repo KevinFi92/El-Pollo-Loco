@@ -74,7 +74,7 @@ class Endboss extends MoveableObject {
         }, 100);
     }
 
-    /** Funktion um Animationen dazustellen. Animation wird abgespielt, wenn der Character nah genug am Boss ost */
+    /** Function to display animations. Animation is played when the character is close enough to the boss */
     bossAlert() {
         let alert = setInterval(() => {
             if (world.character.x >= 1100) {
@@ -85,7 +85,7 @@ class Endboss extends MoveableObject {
         }, 1000);
     }
 
-    /** Funktion Boss attackiert den Charakter, sobald der sich nähert */
+    /** Function: Boss attacks the character as soon as he approaches */
     bossAttack() {
         let attack = setInterval(() => {
             if (world.character.x > (this.x - 150) && !this.hadAttacked()) {
@@ -101,7 +101,7 @@ class Endboss extends MoveableObject {
         }, 1000)
     }
 
-    /** Startet die Vorwärtsbewegung und die Animation des BossChicken */
+    /** Starts the forward movement and animation of the BossChicken */
     bossStartMoving(){
         this.chickenMoving(this.movingImg, 2);
         this.movementLeft();
