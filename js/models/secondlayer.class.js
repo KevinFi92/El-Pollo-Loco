@@ -1,6 +1,8 @@
 class SecondLayer extends Background{
 
-    /**Assigns the second layer of the background their starting position */
+    /**Assigns the second layer of the background their starting position
+     *     @param {sting} path src of the image to load
+     *      @param {number} x the x-cordinate for the image*/
     constructor(path, x){
         super();
         this.loadImg(path, x);

@@ -5,7 +5,8 @@ class Clouds extends MoveableObject {
     height = 400;
     speed = 0.15;
 
-    /**Assigns the clouds their starting position and movement speed */
+    /**Assigns the clouds their starting position and movement speed
+     * @param {string} path src of the image to laod */
     constructor(path) {
         super();
         this.loadImg(path);

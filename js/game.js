@@ -131,7 +131,10 @@ function muteSound() {
     }
 }
 
-/**Function saves a key/value pair in localStorage. In this case, the path to the mute button image and whether the game is muted or not*/
+/**Function saves a key/value pair in localStorage. In this case, the path to the mute button image and whether the game is muted or not
+ * @param {string} key description of the value
+ * @param {string} value src of an image or true or false for sound muted
+ */
 function saveInLocalStorage(key, value) {
     if (value === false || value === true) {
         localStorage.setItem(key, JSON.stringify(value));

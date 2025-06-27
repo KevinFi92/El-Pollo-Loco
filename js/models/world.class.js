@@ -59,10 +59,12 @@ class World {
         this.endboss = this.lvl.enemies.find((e) => e instanceof Endboss);
     }
 
-    /** creates individual objects and assigns coordinates */
+    /** creates individual objects and assigns coordinates
+     * @param {string} object the object to draw on the canvas
+     */
     creatObject(object) {
         if (object.otherDirection) {
-            this.mirrowImg(object);
+            this.mirrorImg(object);
         }
         this.ctx.drawImage(
             object.img,
@@ -72,11 +74,13 @@ class World {
             object.height
         );
         if (object.otherDirection) {
-            this.mirrowReset(object);
+            this.mirrorReset(object);
         }
     }
 
-    /** creates multiple objects from an array and assigns coordinates, images and size */
+    /** creates multiple objects from an array and assigns coordinates, images and size
+    * @param {string} object the objects to draw on the canvas
+    */
     createObjectsFromArray(objects) {
         objects.forEach((o) => {
             if (!o.collected) {
@@ -104,7 +108,6 @@ class World {
         this.drawCollectables();
         this.createObjectsFromArray(this.lvl.enemies);
         this.creatObject(this.character);
-
     }
 
     /**Combines the draw method for the background */
@@ -130,16 +133,18 @@ class World {
         this.createObjectsFromArray(this.throwable);
     }
 
-    /** Character image is mirrored when he changes direction from right to left */
-    mirrowImg(object) {
+    /** Character image is mirrored when he changes direction from right to left
+     * @param {string} object the object to mirror the image*/
+    mirrorImg(object) {
         this.ctx.save();
         this.ctx.translate(object.width, 0);
         this.ctx.scale(-1, 1);
         object.x = object.x * -1;
     }
 
-    /** Character image is mirrored when he changes direction from left to right */
-    mirrowReset(object) {
+    /** Character image is mirrored when he changes direction from left to right
+     * @param {string} object the objects to reset the image */
+    mirrorReset(object) {
         object.x = object.x * -1;
         this.ctx.restore();
     }
@@ -270,7 +275,9 @@ class World {
         }
     }
 
-    /** plays sound */
+    /** plays sounds
+     * @param {string} sound the sound what should be played
+     */
     playSound(sound) {
         if (this.soundMuted || !this.gameStarted) {
             sound.pause();
@@ -280,7 +287,9 @@ class World {
         }
     }
 
-    /** Stops playing sounds */
+    /** Stops playing sounds
+     * @param {string} sound the sound what should be played
+     */
     stopSounds(sound) {
         sound.pause();
         sound.currentTime = 0;

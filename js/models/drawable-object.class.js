@@ -11,7 +11,8 @@ class DrawableObject {
   constructor() {
   }
 
-/** Creates a new image and passes the source of the image with "path" */
+/** Creates a new image and passes the source of the image with "path"
+ * @param {string} path src of the image to laod */
   loadImg(path) {
     this.img = new Image();
     this.img.src = path;

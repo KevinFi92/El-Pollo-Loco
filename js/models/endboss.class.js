@@ -62,7 +62,8 @@ class Endboss extends MoveableObject {
             right: 10,}
     }
 
-    /** Function plays an animation when the boss takes damage. But only if a certain time has passed between hits */
+    /** Function plays an animation when the boss takes damage. But only if a certain time has passed between hits
+     * @param {string} movingImg the array of Images to use in the animation */
     bossHurt(movingImg) {
         let i;
         let Interval = setInterval(() => {

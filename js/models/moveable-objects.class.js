@@ -69,12 +69,15 @@ class MoveableObject extends DrawableObject {
 
     /** Function for animations stops automatically once the animation has run through once */
     movingAnimation(action) {
+        let frame = 0;
         let movementInterval = setInterval(() => {
-            let i = this.currentImg % action.length;
-            let path = action[i];
+            let path = action[frame];
             this.img = this.imageCache[path];
-            this.currentImg++;
-            if (i == action.length -1 && !(this instanceof Throwable)) {
+            frame++;
+            if (frame === action.length && this instanceof Throwable){
+                frame = 0;
+            }
+            if (frame === action.length) {
                 clearInterval(movementInterval);
             }
         }, 50);

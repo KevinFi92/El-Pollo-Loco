@@ -15,7 +15,11 @@ class Throwable extends MoveableObject {
     ];
     salsaSplashSound = new Audio("audio/bottle_splash.mp3");
 
-    /**Sets the properties of the thrown bottle */
+    /**Sets the properties of the thrown bottle
+     * @param {number} x x cordinate for the throwable
+     * @param {number} y y cordinate for the throwable
+     * @param {string} path src of the image to load
+     */
     constructor(x, y, path) {
         super();
         this.loadImg(path);
