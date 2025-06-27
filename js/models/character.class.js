@@ -21,17 +21,18 @@ class Character extends MoveableObject {
     lastY;
     currentImg = 0;
     world;
-    speed = 8;
+    speed = 10;
     walking_sounds = new Audio("audio/walking.mp3");
     jumping_sound = new Audio("audio/jump.mp3");
     snoringSound = new Audio("audio/snoring.mp3");
     hit_sound = new Audio("audio/pepe_hit.mp3");
 
+
     /**Class of the game character, assigns properties such as height, width and starting coordinates. Additionally, the character
      gets active controls and gravity assigned. After a certain time without movement, the idle animation is played */
     constructor() {
         super();
-        this.loadImg("img/2_character_pepe/2_walk/W-21.png");
+        this.loadImg("img/2_character_pepe/1_idle/idle/I-1.png");
         this.loadImages(this.idleImgs)
         this.loadImages(this.animationImgs)
         this.loadImages(this.jumpingImgs)
@@ -95,7 +96,7 @@ class Character extends MoveableObject {
                 this.animateOnce(this.hurtImgs);
             }
             this.world.camera_x = -this.x + 150;
-        },  1000/30);
+        },  50);
     }
 
     /** Function resets a timer to zero each time the character moves, after 10 seconds without movement the idle animation is executed */
@@ -109,7 +110,7 @@ class Character extends MoveableObject {
             }
             if (time >= 5) {
                 this.playLongIdle()
-            } else {
+            } if (time > 0.2 && time < 5) {
                 this.animateOnce(this.idleImgs)
             }
             if (!world.gameStarted) {
@@ -135,11 +136,4 @@ class Character extends MoveableObject {
         this.lastY = this.y;
     }
 
-    /** Loads images from a cache and animates them*/
-    animateOnce(action) {
-            let i = this.currentImg % action.length;
-            let path = action[i];
-            this.img = this.imageCache[path];
-            this.currentImg++;
-    }
 }

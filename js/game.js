@@ -7,6 +7,7 @@ let soundMuted = JSON.parse(localStorage.getItem("status"));
 /** This function loads the status of the MuteButton from localStorage, if not available, it sets to Unmuted */
 function setMuteBtn() {
     let muteIcon = document.getElementById("muteImg");
+    soundMuted = JSON.parse(localStorage.getItem("status"));
     if (soundMuted) {
         muteIcon.src = localStorage.getItem("src");
     }else{
@@ -17,11 +18,11 @@ function setMuteBtn() {
 /**The Init function executes all important functions to start the game */
 function init() {
     initLevel();
+    setMuteBtn();
     canvas = document.getElementById("canvas");
     character = new Character();
     keyboard = new Keyboard();
     world = new World(canvas, keyboard, character, soundMuted);
-    setMuteBtn();
     startGame();
 }
 

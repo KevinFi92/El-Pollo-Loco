@@ -45,7 +45,7 @@ class Endboss extends MoveableObject {
         this.loadImg("img/4_enemie_boss_chicken/1_walk/G1.png");
         this.loadImages(this.alertImgs);
         this.loadImages(this.movingImgs);
-        this.loadImages(this.alertImgs);
+        this.loadImages(this.attackImgs);
         this.loadImages(this.deathImgs);
         this.bossAlert();
         this.bossHurt(this.hurtImgs);

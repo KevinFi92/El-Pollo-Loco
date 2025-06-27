@@ -15,7 +15,7 @@ class Throwable extends MoveableObject {
     ];
     salsaSplashSound = new Audio("audio/bottle_splash.mp3");
 
-    /**Legt die Eigenschaften der geworfenen Flasche fest */
+    /**Sets the properties of the thrown bottle */
     constructor(x, y, path) {
         super();
         this.loadImg(path);
@@ -28,7 +28,7 @@ class Throwable extends MoveableObject {
         this.throw();
     }
 
-    /**Setzt in welche Richtung und mit welcher Geschwindigkeit die Flasche fliegt und weist ihr Gravität zu */
+    /**Sets the direction and speed at which the bottle flies and assigns gravity to it */
     throw() {
         this.throwingDirection();
         this.speedY = 30;
@@ -42,16 +42,16 @@ class Throwable extends MoveableObject {
         }, 25);
     }
 
-    /**Wenn eine geworfene FLasche mit einem Objekt kollidiert, wird ein Sound und eine Animation abgespielt
-     und die Bewegung in Y Richtung gestoppt*/
+    /**When a thrown bottle collides with an object, a sound and animation are played
+     and the movement in Y direction is stopped*/
     bottleSplash() {
         world.playSound(this.salsaSplashSound);
         this.movingAnimation(this.salsaSplashImgs);
         this.speedY = 0;
     }
 
-    /**Überprüft in welche Richtung der Charakter schaut und beschleunigt die Flasche
-     mit einer festgelegten Geschwindigkeit */
+    /**Checks which direction the character is facing and accelerates the bottle
+     with a fixed speed */
     throwingSpeed() {
         if (world.character.otherDirection) {
             this.x -= 10;
@@ -60,11 +60,10 @@ class Throwable extends MoveableObject {
         }
     }
 
-    /**Überprüft in welche Richtung der Charakter schaut und beschleunigt die Flasche in dieselbe Richtung */
+    /**Checks which direction the character is facing and accelerates the bottle in the same direction */
     throwingDirection() {
         if (world.character.otherDirection) {
             this.x -= 100;
         }
     }
 }
-

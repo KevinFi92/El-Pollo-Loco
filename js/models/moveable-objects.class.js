@@ -14,6 +14,8 @@ class MoveableObject extends DrawableObject {
         left: 0
     };
     imageCache = {};
+    lastHit= 0;
+    lastAttack = 0;
 
 
     /** Sets the properties for all movable objects. Here all required functions are created */
@@ -72,10 +74,10 @@ class MoveableObject extends DrawableObject {
             let path = action[i];
             this.img = this.imageCache[path];
             this.currentImg++;
-            if (i == action.length - 1 && !(this instanceof Throwable)) {
+            if (i == action.length -1 && !(this instanceof Throwable)) {
                 clearInterval(movementInterval);
             }
-        }, 1000 / 30);
+        }, 50);
     }
 
     /** Adds gravity to the character and throwables */
@@ -143,9 +145,9 @@ class MoveableObject extends DrawableObject {
 
     /** Sets a timer when the character has attacked to avoid too frequent attacks */
     hadAttacked() {
-        let timepassed = new Date().getTime() - this.lastHit;
-        timepassed = timepassed / 2000;
-        return timepassed < 2.0;
+        let timepassed = new Date().getTime() - this.lastAttack;
+        timepassed = timepassed / 1000;
+        return timepassed < 1.0;
     }
 
     /**Returns true if the Character falls down */

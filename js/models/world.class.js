@@ -102,8 +102,9 @@ class World {
     drawWorld() {
         this.drawBackground();
         this.drawCollectables();
-        this.creatObject(this.character);
         this.createObjectsFromArray(this.lvl.enemies);
+        this.creatObject(this.character);
+
     }
 
     /**Combines the draw method for the background */
@@ -215,7 +216,8 @@ class World {
 
     /** Collision detection with objects that can be collected */
     throwBottle() {
-        if (this.keyboard.space && this.salsaBar.amount > 0) {
+        if (this.keyboard.space && this.salsaBar.amount > 0 && !this.character.hadAttacked()) {
+            this.character.lastAttack = new Date().getTime();
             this.throwable = [];
             this.salsaBar.amount -= 20;
             this.salsaBar.setPercentage(this.salsaBar.amount, this.salsaBar.salsaBar);
