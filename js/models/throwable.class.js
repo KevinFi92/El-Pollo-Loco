@@ -19,6 +19,8 @@ class Throwable extends MoveableObject {
     constructor(x, y, path) {
         super();
         this.loadImg(path);
+        this.loadImages(this.salsaRotationImgs);
+        this.loadImages(this.salsaSplashImgs);
         this.x = x;
         this.y = y;
         this.height = 80;

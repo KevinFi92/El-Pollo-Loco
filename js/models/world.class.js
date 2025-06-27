@@ -156,7 +156,7 @@ class World {
                 if (!this.gameStarted) {
                     clearInterval(run);
                 }
-            }, 50);
+            }, 1000/30);
         }
     }
 
@@ -182,7 +182,7 @@ class World {
                 this.statusBar.setPercentage(this.character.life, this.statusBar.lifeBar);
                 this.playSound(this.character.hit_sound);
             }
-            if (this.character.landsOntop(enemy) && enemy.life > 0 && this.character.movingDown()) {
+            if (this.character.landsOntop(enemy) && enemy.life > 0 && this.character.movingDown() && !(enemy instanceof Endboss)) {
                 enemy.hit();
                 this.playSound(enemy.hit_sound);
             }

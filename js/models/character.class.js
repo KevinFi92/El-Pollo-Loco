@@ -33,7 +33,11 @@ class Character extends MoveableObject {
         super();
         this.loadImg("img/2_character_pepe/2_walk/W-21.png");
         this.loadImages(this.idleImgs)
+        this.loadImages(this.animationImgs)
+        this.loadImages(this.jumpingImgs)
+        this.loadImages(this.hurtImgs)
         this.loadImages(this.idleLongImgs)
+        this.loadImages(this.deathImgs);
         this.height = 300;
         this.width = 150;
         this.walking_sounds.playbackRate = 2.5;
@@ -72,33 +76,26 @@ class Character extends MoveableObject {
         this.speedY = 30;
     }
 
-    /** Function to display animations */
-    movementAnimation(movement) {
-        let i = this.currentImg % movement.length;
-        this.loadImg(movement[i]);
-        this.currentImg++;
-    }
-
     /** Function executes character movements depending on which key is pressed */
     charMovement() {
         setInterval(() => {
             if (this.world.keyboard.right) {
                 this.walkRight();
-                this.movementAnimation(this.animationImgs);
+                this.animateOnce(this.animationImgs);
             }
             if (this.world.keyboard.left) {
                 this.walkLeft();
-                this.movementAnimation(this.animationImgs);
+                this.animateOnce(this.animationImgs);
             }
             if (this.world.keyboard.up && !this.isAboveGround()) {
                 this.jump();
                 this.movingAnimation(this.jumpingImgs);
             }
             if (this.isHurt()) {
-                this.movementAnimation(this.hurtImgs);
+                this.animateOnce(this.hurtImgs);
             }
             this.world.camera_x = -this.x + 150;
-        }, 1000 / 30);
+        },  1000/30);
     }
 
     /** Function resets a timer to zero each time the character moves, after 10 seconds without movement the idle animation is executed */
@@ -113,7 +110,7 @@ class Character extends MoveableObject {
             if (time >= 5) {
                 this.playLongIdle()
             } else {
-                this.animateIdle(this.idleImgs)
+                this.animateOnce(this.idleImgs)
             }
             if (!world.gameStarted) {
                 clearInterval(idle);
@@ -129,7 +126,7 @@ class Character extends MoveableObject {
 
     /**Starts the longIdle Animation and starts the snoring sound */
     playLongIdle() {
-        this.animateIdle(this.idleLongImgs);
+        this.animateOnce(this.idleLongImgs);
         world.playSound(this.snoringSound);
     }
 
@@ -139,7 +136,7 @@ class Character extends MoveableObject {
     }
 
     /** Loads images from a cache and animates them*/
-    animateIdle(action) {
+    animateOnce(action) {
             let i = this.currentImg % action.length;
             let path = action[i];
             this.img = this.imageCache[path];

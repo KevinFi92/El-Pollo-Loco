@@ -30,18 +30,29 @@ class MoveableObject extends DrawableObject {
         })
     }
 
-    /** Function for movement animation */
+    /** Function for looped animations */
     animate(action, n) {
         let Interval = setInterval(() => {
             let i = this.currentImg % action.length;
             let path = action[i];
             this.img = this.imageCache[path];
             this.currentImg++;
-            if (this.life == 0 || !world.gameStarted) {
+            if (this.life == 0) {
                 clearInterval(Interval);
                 this.loadImg(this.deathImgs[n])
             }
+            if (!world.gameStarted) {
+                clearInterval(Interval);
+            }
         }, 200);
+    }
+
+    /** Function for animations. Animation stopps */
+    animateOnce(action) {
+        let i = this.currentImg % action.length;
+        let path = action[i];
+        this.img = this.imageCache[path];
+        this.currentImg++;
     }
 
     /** Function sets the movement speed of enemies and clouds */
@@ -55,12 +66,13 @@ class MoveableObject extends DrawableObject {
     }
 
     /** Function for animations stops automatically once the animation has run through once */
-    movingAnimation(movingImg) {
+    movingAnimation(action) {
         let movementInterval = setInterval(() => {
-            let i = this.currentImg % movingImg.length;
-            this.loadImg(movingImg[i]);
+            let i = this.currentImg % action.length;
+            let path = action[i];
+            this.img = this.imageCache[path];
             this.currentImg++;
-            if (i == movingImg.length - 1 && !(this instanceof Throwable)) {
+            if (i == action.length - 1 && !(this instanceof Throwable)) {
                 clearInterval(movementInterval);
             }
         }, 1000 / 30);
