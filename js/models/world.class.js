@@ -162,7 +162,7 @@ class World {
                 if (!this.gameStarted) {
                     clearInterval(run);
                 }
-            }, 1000/30);
+            }, 1000/60);
         }
     }
 
@@ -221,12 +221,14 @@ class World {
 
     /** Collision detection with objects that can be collected */
     throwBottle() {
+        let x = this.character.x + 100;
+        let y = this.character.y + 100;
         if (this.keyboard.space && this.salsaBar.amount > 0 && !this.character.hadAttacked()) {
             this.character.lastAttack = new Date().getTime();
-            this.throwable = [];
             this.salsaBar.amount -= 20;
             this.salsaBar.setPercentage(this.salsaBar.amount, this.salsaBar.salsaBar);
-            let bottle = new Throwable(this.character.x + 100, this.character.y + 100, "img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png")
+            let direction = this.character.otherDirection;
+            let bottle = new Throwable(x , y, "img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png", direction)
             this.throwable.push(bottle);
         }
     }

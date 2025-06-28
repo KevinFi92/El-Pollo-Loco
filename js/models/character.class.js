@@ -26,6 +26,7 @@ class Character extends MoveableObject {
     jumping_sound = new Audio("audio/jump.mp3");
     snoringSound = new Audio("audio/snoring.mp3");
     hit_sound = new Audio("audio/pepe_hit.mp3");
+    jumping = false;
 
 
     /**Class of the game character, assigns properties such as height, width and starting coordinates. Additionally, the character

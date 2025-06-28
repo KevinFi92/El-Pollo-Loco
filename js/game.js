@@ -10,7 +10,7 @@ function setMuteBtn() {
     soundMuted = JSON.parse(localStorage.getItem("status"));
     if (soundMuted) {
         muteIcon.src = localStorage.getItem("src");
-    }else{
+    } else {
         muteIcon.src = "img/11_icons/sound_unmuted.png";
     }
 }
@@ -26,7 +26,7 @@ function init() {
     startGame();
 }
 
-/**Event listener for touch controls */
+/**Event listener for mouse controls */
 document.addEventListener('DOMContentLoaded', () => {
     const buttons = document.querySelectorAll('.controls .button');
     buttons.forEach(btn => {
@@ -44,6 +44,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 keyboard[dir] = false;
             }
         });
+    });
+});
+
+/**Event listener for touch controls */
+document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.controls .button');
+    buttons.forEach(btn => {
         btn.addEventListener('mousedown', (e) => {
             const dir = btn.dataset.dir;
             if (dir && world.gameStarted) {
@@ -69,6 +76,7 @@ document.addEventListener("keydown", function (event) {
     }
     if (event.code === "ArrowUp" && world.gameStarted) {
         keyboard.up = true;
+        world.character.jumping = true;
     }
     if (event.code === "Space" && world.gameStarted) {
         keyboard.space = true;
@@ -85,6 +93,7 @@ document.addEventListener("keyup", function (event) {
     }
     if (event.code === "ArrowUp") {
         keyboard.up = false;
+        world.character.jumping = false;
     }
     if (event.code === "Space") {
         keyboard.space = false;
@@ -149,23 +158,23 @@ function toggleControls() {
     switchControlInfo();
     if (controls.style.display === "none") {
         controls.style.display = "flex";
-    }else {
+    } else {
         controls.style.display = "none";
     }
 }
 
 /**Adjusts the control explanation between mobile and desktop */
-function switchControlInfo(){
+function switchControlInfo() {
     let throwBtn = document.getElementById("throwImg");
-    if(isTouchDevice()){
+    if (isTouchDevice()) {
         throwBtn.src = "img/12_controlls/semicircle_right_arrow.png"
-    }else{
+    } else {
         throwBtn.src = "img/12_controlls/spacebar.png";
     }
 }
 
 /**Back to the main menu from the imprint */
-function backToMainPage(){
+function backToMainPage() {
     window.location.href = "index.html";
 }
 

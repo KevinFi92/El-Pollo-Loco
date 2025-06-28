@@ -15,18 +15,22 @@ class Throwable extends MoveableObject {
     ];
     salsaSplashSound = new Audio("audio/bottle_splash.mp3");
 
+    direction;
+
     /**Sets the properties of the thrown bottle
      * @param {number} x x cordinate for the throwable
      * @param {number} y y cordinate for the throwable
      * @param {string} path src of the image to load
+     * @param {boolean} direction the direction in which the bottle is thrown. true = to the left; false = to the right
      */
-    constructor(x, y, path) {
+    constructor(x, y, path, direction) {
         super();
+        this.x = x;
+        this.y = y;
+        this.direction = direction;
         this.loadImg(path);
         this.loadImages(this.salsaRotationImgs);
         this.loadImages(this.salsaSplashImgs);
-        this.x = x;
-        this.y = y;
         this.height = 80;
         this.width = 80;
         this.throw();
@@ -57,7 +61,7 @@ class Throwable extends MoveableObject {
     /**Checks which direction the character is facing and accelerates the bottle
      with a fixed speed */
     throwingSpeed() {
-        if (world.character.otherDirection) {
+        if (this.direction === true) {
             this.x -= 10;
         } else {
             this.x += 10;

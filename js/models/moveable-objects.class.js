@@ -23,15 +23,6 @@ class MoveableObject extends DrawableObject {
         super();
     }
 
-    /**loads images from arry and stores them in a cache  */
-    loadImages(arr){
-        arr.forEach(path => {
-            let img = new Image();
-            img.src = path;
-            this.imageCache[path] = img;
-        })
-    }
-
     /** Function for looped animations */
     animate(action, n) {
         let Interval = setInterval(() => {
@@ -51,10 +42,12 @@ class MoveableObject extends DrawableObject {
 
     /** Function for animations. Animation stopps */
     animateOnce(action) {
-        let i = this.currentImg % action.length;
-        let path = action[i];
-        this.img = this.imageCache[path];
-        this.currentImg++;
+        if(!this.world.character.jumping) {
+            let i = this.currentImg % action.length;
+            let path = action[i];
+            this.img = this.imageCache[path];
+            this.currentImg++;
+        }
     }
 
     /** Function sets the movement speed of enemies and clouds */

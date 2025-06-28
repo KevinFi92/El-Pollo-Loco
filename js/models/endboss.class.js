@@ -35,7 +35,7 @@ class Endboss extends MoveableObject {
         "img/4_enemie_boss_chicken/3_attack/G19.png",
         "img/4_enemie_boss_chicken/3_attack/G20.png",
     ];
-    speed = 0.5;
+    speed = 2.0;
     hit_sound = new Audio("audio/boss_hit.mp3");
 
     /**Assigns all necessary properties to the final boss, such as starting position, size and life points.

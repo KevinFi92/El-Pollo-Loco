@@ -35,6 +35,9 @@ class StatusBar extends DrawableObject {
   constructor(x, y, h, w, path) {
     super();
     this.loadImg(path);
+    this.loadImages(this.lifeBar);
+    this.loadImages(this.coinBar);
+    this.loadImages(this.salsaBar);
     this.x = x;
     this.y = y;
     this.height = h;
@@ -50,22 +53,22 @@ class StatusBar extends DrawableObject {
   setPercentage(percentage, bar) {
     this.percentage = percentage;
     if (this.percentage == 100) {
-      this.loadImg(bar[0]);
+      this.loadImgFromCache(bar,0);
     }
     if (this.percentage == 80) {
-      this.loadImg(bar[1]);
+      this.loadImgFromCache(bar,1);
     }
     if (this.percentage == 60) {
-      this.loadImg(bar[2]);
+      this.loadImgFromCache(bar,2);
     }
     if (this.percentage == 40) {
-      this.loadImg(bar[3]);
+      this.loadImgFromCache(bar,3);
     }
     if (this.percentage == 20) {
-      this.loadImg(bar[4]);
+      this.loadImgFromCache(bar,4);
     }
     if (this.percentage == 0) {
-      this.loadImg(bar[5]);
+      this.loadImgFromCache(bar,5);
     }
   }
 }
